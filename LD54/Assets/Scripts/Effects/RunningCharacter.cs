@@ -5,11 +5,14 @@ using UnityEngine;
 public class RunningCharacter : MonoBehaviour
 {
     private Animator anim;
+    [SerializeField]
+    private float animationSpeed = 1.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        anim.speed = animationSpeed;
     }
 
     // Update is called once per frame

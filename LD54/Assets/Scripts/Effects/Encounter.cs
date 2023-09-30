@@ -35,6 +35,10 @@ public class Encounter : MonoBehaviour
             var chest = GetComponent<Chest>();
             knight.LootChest(chest, enemy);
         }
+        if (type == EncounterType.ENEMY) {
+            var enemyAnimator = GetComponent<EnemyAnimator>();
+            knight.KillEnemy(enemyAnimator, enemy);
+        }
         encountered = true;
     }
 }
