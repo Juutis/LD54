@@ -8,6 +8,7 @@ public class ScrollingWorld : MonoBehaviour
     public static ScrollingWorld Instance;
 
     private List<ScrollingImage> backgrounds;
+    private List<RunningCharacter> characters;
 
     [SerializeField]
     private Vector2 objectScrollSpeed;
@@ -24,6 +25,8 @@ public class ScrollingWorld : MonoBehaviour
     void Start()
     {
         backgrounds = GetComponentsInChildren<ScrollingImage>().ToList();
+        characters = GetComponentsInChildren<RunningCharacter>().ToList();
+        Pause(false);
     }
 
     // Update is called once per frame
@@ -38,6 +41,11 @@ public class ScrollingWorld : MonoBehaviour
     public void Pause(bool pause) {
         this.pause = pause;
         backgrounds.ForEach(it => it.Pause(pause));
+        if (pause) {
+            characters.ForEach(it => it.Stop());
+        } else {
+            characters.ForEach(it => it.Run());
+        }
     }
 
     public void AddScrollingObject(Transform transform) {

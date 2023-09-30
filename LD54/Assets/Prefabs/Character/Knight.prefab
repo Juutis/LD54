@@ -104,6 +104,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knight
       objectReference: {fileID: 0}
+    - target: {fileID: 1417637262792781694, guid: 3b5c8d91cb96cb947bba69b7f377c964, type: 3}
+      propertyPath: m_TagString
+      value: Knight
+      objectReference: {fileID: 0}
     - target: {fileID: 1548689544094310685, guid: 3b5c8d91cb96cb947bba69b7f377c964, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -190,10 +194,30 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4217079087173984756, guid: 3b5c8d91cb96cb947bba69b7f377c964, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2268981840640908151}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7985078811318277476, guid: 3b5c8d91cb96cb947bba69b7f377c964, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4998879318976224414}
   m_SourcePrefab: {fileID: 100100000, guid: 3b5c8d91cb96cb947bba69b7f377c964, type: 3}
 --- !u!4 &781649076691494387 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4217079087173984756, guid: 3b5c8d91cb96cb947bba69b7f377c964, type: 3}
   m_PrefabInstance: {fileID: 3485481167154480135}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6813480562226975075 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7985078811318277476, guid: 3b5c8d91cb96cb947bba69b7f377c964, type: 3}
+  m_PrefabInstance: {fileID: 3485481167154480135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4998879318976224414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6813480562226975075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3209023c638e02458bd141a2950fcda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
