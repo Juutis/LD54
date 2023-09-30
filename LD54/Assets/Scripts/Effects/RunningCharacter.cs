@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chest : MonoBehaviour
+public class RunningCharacter : MonoBehaviour
 {
     private Animator anim;
 
@@ -10,7 +10,6 @@ public class Chest : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        ScrollingWorld.Instance.AddScrollingObject(transform);
     }
 
     // Update is called once per frame
@@ -19,7 +18,11 @@ public class Chest : MonoBehaviour
         
     }
 
-    public void Open() {
-        anim.Play("Open");
+    public void Run() {
+        anim.SetBool("Run", true);
+    }
+
+    public void Stop() {
+        anim.SetBool("Run", false);
     }
 }
