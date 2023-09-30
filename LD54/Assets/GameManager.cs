@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -65,11 +66,10 @@ public class GameManager : MonoBehaviour
     {
         List<Enemy> enemies = new List<Enemy>();
 
-        for (int i = 0; i < currentLevel.Encounters.Count; i++)
+        foreach (Enemy enemyPrefab in currentLevel.Encounters)
         {
-            Enemy enemy = Instantiate(currentLevel.Encounters[i]);
+            Enemy enemy = Instantiate(enemyPrefab);
             enemies.Add(enemy);
-            enemy.transform.position = new Vector2((i + 1f) * enemyXSpace, 0);
 
             List<LootItem> items = new();
 
@@ -105,6 +105,16 @@ public class GameManager : MonoBehaviour
                     break;
                 }
             }
+        }
+
+        Helpers.Shuffle(enemies);
+
+        // spread enemies around
+        int i = 0;
+        foreach(Enemy enemy in enemies)
+        {
+            enemy.transform.position = new Vector2((i + 1f) * enemyXSpace, 0);
+            i++;
         }
     }
 }
