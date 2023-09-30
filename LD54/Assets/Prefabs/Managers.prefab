@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2967608068450949293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2806246024815387282}
+  - component: {fileID: 7276121974035106080}
+  - component: {fileID: 3193209045200749599}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2806246024815387282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2967608068450949293}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.445211, y: 4.5356436, z: -0.047217462}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7276121974035106080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2967608068450949293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94ffe130e585d84897261e004584c43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RarityConfigs:
+  - {fileID: 11400000, guid: 6e6e037f3a05aec4ea2972c5c30b4da4, type: 2}
+  - {fileID: 11400000, guid: fecd002007aa89a4fb6bfdaf0f71e05f, type: 2}
+  - {fileID: 11400000, guid: 365e938e489417340beaa81a090aee32, type: 2}
+  - {fileID: 11400000, guid: 1f8ddd412e97ea4418f0bababbf72f2d, type: 2}
+  baseLootConfigs:
+  - {fileID: 11400000, guid: 628c57b1ab0b65a4ca1cfeaf47691118, type: 2}
+  - {fileID: 11400000, guid: 16be8bbf951648142a54726404a16c6d, type: 2}
+--- !u!114 &3193209045200749599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2967608068450949293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad5b368eec5f394487d1aa8a05b903b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootItemPrefab: {fileID: 4004645567585264873, guid: b10e20baa39396141a62c6d0c3096291, type: 3}
+  enemyPrefab: {fileID: 5066067860774092073, guid: 79a6b42a36e017e4c8d3ff7373470054, type: 3}
+  levelConfigs:
+  - {fileID: 11400000, guid: 2de295c5a1257bc40a416cd443fd2f8d, type: 2}

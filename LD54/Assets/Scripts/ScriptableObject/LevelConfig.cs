@@ -9,7 +9,7 @@ public class LevelConfig : ScriptableObject
     public string LevelName;
     public List<DropRate> DropRates;
     public int ItemAmount;
-    public int EnemyAmount;
+    public List<Enemy> Encounters;
     public int EnemyMinItems;
     public int EnemyMaxItems;
 }

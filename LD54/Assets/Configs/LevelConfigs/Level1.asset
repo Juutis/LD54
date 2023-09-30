@@ -21,6 +21,11 @@ MonoBehaviour:
     Tier: 2
     Percentage: 20
   ItemAmount: 24
-  EnemyAmount: 6
+  Encounters:
+  - {fileID: 5066067860774092073, guid: 79a6b42a36e017e4c8d3ff7373470054, type: 3}
+  - {fileID: 5066067860774092073, guid: 546fbe695ab466f48b3153d32c226c42, type: 3}
+  - {fileID: 5066067860774092073, guid: c4f401309b0b08447a36cb1097440f35, type: 3}
+  - {fileID: 5066067860774092073, guid: 546fbe695ab466f48b3153d32c226c42, type: 3}
+  - {fileID: 5066067860774092073, guid: 79a6b42a36e017e4c8d3ff7373470054, type: 3}
   EnemyMinItems: 3
   EnemyMaxItems: 7

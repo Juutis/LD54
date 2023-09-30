@@ -14,8 +14,6 @@ public class GameManager : MonoBehaviour
     private int currentLevelNum = 0;
     private LevelConfig currentLevel;
 
-    private List<Enemy> enemies;
-
     private bool isLoaded = false;
 
     private float enemyXSpace = 10f;
@@ -23,6 +21,17 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        foreach (LevelConfig levelConfig in levelConfigs)
+        {
+            if (levelConfig.Encounters.Count * levelConfig.EnemyMinItems > levelConfig.ItemAmount)
+            {
+                Debug.LogError($"{levelConfig.LevelName} level has less total items than [ enemies ({levelConfig.Encounters.Count}) * min items ({levelConfig.EnemyMinItems}) ]!");
+            }
+            else if (levelConfig.Encounters.Count * levelConfig.EnemyMaxItems < levelConfig.ItemAmount)
+            {
+                Debug.LogError($"{levelConfig.LevelName} level has too many total items for the enemy count ({levelConfig.Encounters.Count}) / max items per enemy ({levelConfig.EnemyMaxItems})!");
+            }
+        }
     }
 
     // Update is called once per frame
@@ -49,11 +58,16 @@ public class GameManager : MonoBehaviour
         LootGenerator generator = new LootGenerator(currentLevel, LootManager.instance.GetBaseLootConfigs());
         generator.InitializeLoot();
 
+        InstantiateEnemiesWithLoot(generator);
+    }
+
+    private void InstantiateEnemiesWithLoot(LootGenerator generator)
+    {
         List<Enemy> enemies = new List<Enemy>();
 
-        for (int i = 0; i < currentLevel.EnemyAmount; i++)
+        for (int i = 0; i < currentLevel.Encounters.Count; i++)
         {
-            Enemy enemy = Instantiate(enemyPrefab);
+            Enemy enemy = Instantiate(currentLevel.Encounters[i]);
             enemies.Add(enemy);
             enemy.transform.position = new Vector2((i + 1f) * enemyXSpace, 0);
 
@@ -78,10 +92,8 @@ public class GameManager : MonoBehaviour
             LootItem item = Instantiate(lootItemPrefab);
             item.Initialize(data);
 
-            int x = 0;
             while (tmpEnemies.Count > 0)
             {
-                Debug.Log($"x {x} {generator.LootCount()}");
                 Enemy e = tmpEnemies[Random.Range(0, tmpEnemies.Count - 1)];
                 if (e.ItemCount() >= currentLevel.EnemyMaxItems)
                 {
@@ -92,7 +104,6 @@ public class GameManager : MonoBehaviour
                     e.AddItem(item);
                     break;
                 }
-                x++;
             }
         }
     }
