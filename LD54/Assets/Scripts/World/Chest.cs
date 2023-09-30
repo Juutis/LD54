@@ -11,6 +11,7 @@ public class Chest : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         ScrollingWorld.Instance.AddScrollingObject(transform);
+        Invoke("Open", 1.0f);
     }
 
     // Update is called once per frame
