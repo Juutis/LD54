@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using Unity.VisualScripting;
+using System.Diagnostics;
 
 public class InventoryGrid
 {
@@ -10,15 +12,15 @@ public class InventoryGrid
     private char emptyChar;
     private void UpdateSize()
     {
-        width = nodes.GetLength(0);
-        height = nodes.GetLength(1);
+        height = nodes.GetLength(0);
+        width = nodes.GetLength(1);
     }
 
     private void FillGrid()
     {
-        for (int row = 0; row < width; row++)
+        for (int row = 0; row < height; row++)
         {
-            for (int col = 0; col < height; col++)
+            for (int col = 0; col < width; col++)
             {
                 nodes[row, col] = new InventoryNode(row, col);
             }
@@ -28,9 +30,9 @@ public class InventoryGrid
     private List<InventoryNode> GetEmptyNodes()
     {
         List<InventoryNode> emptyNodes = new List<InventoryNode>();
-        for (int row = 0; row < width; row++)
+        for (int row = 0; row < height; row++)
         {
-            for (int col = 0; col < height; col++)
+            for (int col = 0; col < width; col++)
             {
                 InventoryNode node = nodes[row, col];
                 if (node.IsEmpty)
@@ -56,7 +58,15 @@ public class InventoryGrid
         {
             return null;
         }
+        //UnityEngine.Debug.Log($"Attempt to get node: Y: {y}, X: {x} (height: {height}, width: {width})");
         return nodes[y, x];
+    }
+
+    public void MoveItem(InventoryItem item, ItemPlacement placement)
+    {
+        RemoveItem(item);
+        //UnityEngine.Debug.Log($"move node to {placement.Nodes.First().Y}, {placement.Nodes.First().X}");
+        InsertItem(item, placement.Nodes.First());
     }
 
     public bool InsertItemRandomly(InventoryItem item)
@@ -76,13 +86,11 @@ public class InventoryGrid
         return false;
     }
 
-    public ItemPlacement GetItemPlacement(InventoryItem item, InventoryNode startingNode)
+    public ItemPlacement GetItemPlacement(InventoryItem item, int startY, int startX)
     {
         InventoryShape shape = item.Shape;
         bool success = true;
         int failedNodes = 0;
-        int currentX = startingNode.X;
-        int currentY = startingNode.Y;
         List<InventoryNode> placementNodes = new();
         for (int row = 0; row < shape.Positions.GetLength(0); row += 1)
         {
@@ -93,8 +101,8 @@ public class InventoryGrid
                 {
                     continue;
                 }
-                InventoryNode node = GetNode(currentY + row, currentX + col);
-                if (node == null || !node.IsEmpty)
+                InventoryNode node = GetNode(startY + row, startX + col);
+                if (node == null || !node.IsEmptyOrSame(item))
                 {
                     success = false;
                     failedNodes += 1;
@@ -112,7 +120,7 @@ public class InventoryGrid
 
     public bool InsertItem(InventoryItem item, InventoryNode startingNode)
     {
-        ItemPlacement itemPlacement = GetItemPlacement(item, startingNode);
+        ItemPlacement itemPlacement = GetItemPlacement(item, startingNode.Y, startingNode.X);
         if (!itemPlacement.Success)
         {
             //UnityEngine.Debug.Log($"Failed to place {item}. Blocked by {itemPlacement.FailedNodes} nodes.");
@@ -120,11 +128,20 @@ public class InventoryGrid
         }
         foreach (InventoryNode placementNode in itemPlacement.Nodes)
         {
+            item.AddPlacementNode(placementNode);
             placementNode.SetItem(item);
         }
-        item.SetNode(startingNode);
+        item.SetStartNode(startingNode);
 
         return true;
+    }
+
+    private void RemoveItem(InventoryItem item)
+    {
+        foreach (InventoryNode node in item.Nodes)
+        {
+            node.Clear();
+        }
     }
 
     public override string ToString()

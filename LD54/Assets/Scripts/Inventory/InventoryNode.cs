@@ -17,13 +17,13 @@ public class InventoryNode
         switch (direction)
         {
             case InventoryDirection.Up:
-                offsetY = -1;
+                offsetY = 1;
                 break;
             case InventoryDirection.Right:
                 offsetX = 1;
                 break;
             case InventoryDirection.Down:
-                offsetY = 1;
+                offsetY = -1;
                 break;
             case InventoryDirection.Left:
                 offsetX = -1;
@@ -32,15 +32,26 @@ public class InventoryNode
 
         return grid.GetNode(Y + offsetY, X + offsetX);
     }
-    public InventoryNode(int x, int y)
+
+    public bool IsEmptyOrSame(InventoryItem item)
     {
-        this.x = x;
+        return IsEmpty || inventoryItem.Identity.Index == item.Identity.Index;
+    }
+
+    public InventoryNode(int y, int x)
+    {
         this.y = y;
+        this.x = x;
     }
 
     public void SetItem(InventoryItem inventoryItem)
     {
         this.inventoryItem = inventoryItem;
+    }
+
+    public void Clear()
+    {
+        inventoryItem = null;
     }
 }
 

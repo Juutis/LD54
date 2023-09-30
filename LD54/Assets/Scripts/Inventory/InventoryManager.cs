@@ -3,6 +3,12 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
 
+    public static InventoryManager main;
+
+    void Awake()
+    {
+        main = this;
+    }
 
     [SerializeField]
     private char emptyInventorySlotCharacter = '■';
@@ -13,7 +19,10 @@ public class InventoryManager : MonoBehaviour
     ItemInventory inventory;
 
     [SerializeField]
-    private int size = 5;
+    private int width = 15;
+    [SerializeField]
+    private int height = 8;
+
     void Start()
     {
         InitInventory();
@@ -21,8 +30,18 @@ public class InventoryManager : MonoBehaviour
 
     private void InitInventory()
     {
-        inventory = new ItemInventory(size, size, emptyInventorySlotCharacter, itemCharacters);
+        inventory = new ItemInventory(width, height, emptyInventorySlotCharacter, itemCharacters);
         inventoryDebug = inventory.ToString();
+    }
+
+    public void MoveItem(InventoryItem item, ItemPlacement placement)
+    {
+        inventory.MoveItem(item, placement);
+    }
+
+    public ItemPlacement GetItemPlacement(InventoryItem item, int startY, int startX)
+    {
+        return inventory.GetItemPlacement(item, startY, startX);
     }
 
     void Update()

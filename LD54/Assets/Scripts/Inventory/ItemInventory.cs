@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class ItemInventory
 {
@@ -30,20 +31,37 @@ public class ItemInventory
         InventoryItem bigBox = CreateItem("BigBox", InventoryShapeType.Square4x4);
         InventoryItem donut = CreateItem("Donut", InventoryShapeType.Donut3x3);
 
+
         grid.InsertItemRandomly(ring);
+        UIInventoryManager.main.AddItem(ring);
         grid.InsertItemRandomly(lStick);
+        UIInventoryManager.main.AddItem(lStick);
         grid.InsertItemRandomly(box);
+        UIInventoryManager.main.AddItem(box);
         grid.InsertItemRandomly(bigBox);
+        UIInventoryManager.main.AddItem(bigBox);
         grid.InsertItemRandomly(donut);
+        UIInventoryManager.main.AddItem(donut);
+    }
+
+    public ItemPlacement GetItemPlacement(InventoryItem item, int startY, int startX)
+    {
+        return grid.GetItemPlacement(item, startY, startX);
     }
 
     public InventoryItem CreateItem(string name, InventoryShapeType shapeType)
     {
         ItemIdentity identity = new(name, itemCharacterSet[itemIndex], itemIndex);
-        InventoryItem inventoryItem = new(InventoryShapes.Shapes[shapeType], identity);
+        InventoryItem inventoryItem = new(InventoryShapes.Shapes[shapeType], identity, UIInventoryManager.main.PLACEHOLDER_SPRITE);
         itemIndex += 1;
         inventoryItems.Add(inventoryItem);
         return inventoryItem;
+    }
+
+    public void MoveItem(InventoryItem item, ItemPlacement placement)
+    {
+        grid.MoveItem(item, placement);
+        UIInventoryManager.main.AddItem(item);
     }
 
     public override string ToString()
