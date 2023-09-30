@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static UnityEditor.Progress;
 
@@ -15,7 +16,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void AddItems(List<LootItem> items)
@@ -33,5 +34,18 @@ public class Enemy : MonoBehaviour
     public int ItemCount()
     {
         return lootItems.Count;
+    }
+
+    public bool Loot()
+    {
+        if (lootItems.Count == 0)
+        {
+            return false;
+        }
+
+        LootItem item = lootItems.Last();
+        item.transform.parent = null;
+        lootItems.Remove(item);
+        return true;
     }
 }

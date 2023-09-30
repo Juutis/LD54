@@ -18,8 +18,10 @@ public class Knight : MonoBehaviour
 
     private float tmpEnemyHP = 1f;
 
-    private float lootTime = 5f;
+    private float lootTime = 0.5f;
     private float lootStarted = 0f;
+
+    private Enemy currentEnemy = null;
 
     // Start is called before the first frame update
     void Start()
@@ -57,18 +59,29 @@ public class Knight : MonoBehaviour
         }
         else
         {
-            transform.localPosition = new Vector2(tmpX + Mathf.Abs(Mathf.Sin(Time.time * 8) * 0.4f), tmpY + Mathf.Abs(Mathf.Sin(Time.time * 8) * 0.4f));
+            //transform.localPosition = new Vector2(tmpX + Mathf.Abs(Mathf.Sin(Time.time * 8) * 0.4f), tmpY + Mathf.Abs(Mathf.Sin(Time.time * 8) * 0.4f));
 
-            if (Time.time - lootStarted > lootTime)
+            transform.localPosition = new Vector2(tmpX + Mathf.Abs(Mathf.Sin(Time.time * 8) * 0.4f), tmpY + Mathf.Abs(Mathf.Sin(Time.time * 8) * 0.4f));
+            if (currentEnemy == null || currentEnemy.ItemCount() == 0)
             {
+                Debug.Log($"Back to walk: {currentEnemy == null} || {currentEnemy.ItemCount() == 0}");
                 phase = KnightPhase.Walking;
             } 
+            else if(Time.time - lootStarted > lootTime)
+            {
+                lootStarted = Time.time;
+                currentEnemy.Loot();
+            }
         }
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
         Debug.Log("Collided");
-        phase = KnightPhase.Fighting;
+        if (collision.TryGetComponent<Enemy>(out Enemy enemy))
+        {
+            currentEnemy = enemy;
+            phase = KnightPhase.Fighting;
+        }
     }
 }
 
