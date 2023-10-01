@@ -48,7 +48,7 @@ public class ItemInventory
 
     public bool AddItem(LootItemData lootData)
     {
-        InventoryItem item = CreateItem(lootData.LootConfig.LootName, InventoryShapeType.Single, lootData.LootConfig.Sprites[0]);
+        InventoryItem item = CreateItem(lootData.LootConfig.LootName, lootData.LootConfig.Shape, lootData.LootConfig.Sprites[0]);
         grid.InsertItemRandomly(item);
         UIInventoryManager.main.AddItem(item);
         return false;

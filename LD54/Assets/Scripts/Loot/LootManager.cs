@@ -10,8 +10,6 @@ public class LootManager : MonoBehaviour
 
     [SerializeField]
     public List<RarityConfig> RarityConfigs;
-    [SerializeField]
-    List<BaseLootConfig> baseLootConfigs;
 
     private Dictionary<LootRarity, RarityConfig> rarityConfigsDict;
 
@@ -49,8 +47,4 @@ public class LootManager : MonoBehaviour
         return rarityConfigsDict[rarity];
     }
 
-    public List<BaseLootConfig> GetBaseLootConfigs()
-    {
-        return baseLootConfigs;
-    }
 }

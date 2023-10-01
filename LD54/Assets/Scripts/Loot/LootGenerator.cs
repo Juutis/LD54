@@ -9,10 +9,10 @@ public class LootGenerator
     List<BaseLootConfig> baseLootConfigs;
     LevelConfig levelConfig;
 
-    public LootGenerator(LevelConfig levelConfig, List<BaseLootConfig> baseLootConfigs)
+    public LootGenerator(LevelConfig levelConfig)
     {
         this.levelConfig = levelConfig;
-        this.baseLootConfigs = baseLootConfigs;
+        this.baseLootConfigs = Resources.LoadAll("BaseLootConfigs", typeof(BaseLootConfig)).Select(it => (BaseLootConfig)it).ToList();
     }
 
     public void InitializeLoot()
@@ -33,7 +33,7 @@ public class LootGenerator
             for (int i = 0; i < itemDrops; i++)
             {
                 RarityConfig rconf = LootManager.instance.GetRarityConfig(dropRate.Rarity);
-                BaseLootConfig lconf = dropTierConfigs[Random.Range(0, dropTierConfigs.Count() - 1)];
+                BaseLootConfig lconf = dropTierConfigs[Random.Range(0, dropTierConfigs.Count())];
 
                 items.Add(new LootItemData(rconf, lconf));
             }

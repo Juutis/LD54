@@ -221,6 +221,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScrollingGraphics
       objectReference: {fileID: 0}
+    - target: {fileID: 4528164134562967410, guid: 2463cc662c076ab479fb833fd32b6961, type: 3}
+      propertyPath: baseLootConfigs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528164134562967410, guid: 2463cc662c076ab479fb833fd32b6961, type: 3}
+      propertyPath: 'baseLootConfigs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4062ebdd146ac6b45a596b823ab03099, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

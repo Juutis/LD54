@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 
         currentLevel = levelConfigs[currentLevelNum];
 
-        LootGenerator generator = new LootGenerator(currentLevel, LootManager.instance.GetBaseLootConfigs());
+        LootGenerator generator = new LootGenerator(currentLevel);
         generator.InitializeLoot();
 
         InstantiateEnemiesWithLoot(generator);
