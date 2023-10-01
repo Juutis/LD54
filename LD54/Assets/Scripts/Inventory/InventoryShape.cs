@@ -14,7 +14,10 @@ public enum InventoryShapeType
     Donut3x3,
     Row2x1,
     InverseT,
-    Pants
+    Pants,
+    WideTopNarrowBottom3x3,
+    Row3x2WithHole,
+    Cross3x3
 }
 
 public static class InventoryShapes
@@ -56,15 +59,33 @@ public static class InventoryShapes
             {1,1}
         }},
         {InventoryShapeType.InverseT, new int [,] {
-            {0,1,0,},
-            {0,1,0,},
-            {1,1,1,}
+            {0,0,1,0,0},
+            {0,0,1,0,0},
+            {0,0,1,0,0},
+            {1,0,1,0,1},
+            {1,1,1,1,1}
         }},
         {InventoryShapeType.Pants, new int [,] {
-            {1,1,1,},
-            {1,0,1,},
-            {1,0,1,}
-        }}
+            {1,1,1,1,1},
+            {1,1,1,1,1},
+            {1,1,0,1,1},
+            {1,1,0,1,1},
+            {1,1,0,1,1}
+        }},
+        {InventoryShapeType.WideTopNarrowBottom3x3, new int [,] {
+            {1,1,1},
+            {1,1,1},
+            {0,1,0},
+        }},
+        {InventoryShapeType.Row3x2WithHole, new int [,] {
+            {1,0,1},
+            {1,1,1}
+        }},
+        {InventoryShapeType.Cross3x3, new int [,] {
+            {0,1,0},
+            {1,1,1},
+            {0,1,0},
+        }},
     };
 
     public static Dictionary<InventoryShapeType, InventoryShape> Shapes =

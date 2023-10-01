@@ -153,8 +153,8 @@ MonoBehaviour:
   lockedInventorySlotCharacter: 9617
   itemCharacters: abcdefghijklmnopqrstuvwxyz1234567890
   inventoryDebug: 
-  width: 15
-  height: 8
+  width: 30
+  height: 15
 --- !u!4 &1986217264
 Transform:
   m_ObjectHideFlags: 0
