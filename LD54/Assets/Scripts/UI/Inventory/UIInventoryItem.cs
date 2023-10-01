@@ -65,24 +65,10 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         Initialize(item, nodeSize, isGhost);
         RectTransform rt = GetComponent<RectTransform>();
         rt.anchoredPosition = new Vector2(nodeSize.x, nodeSize.y);
-        RectTransform containerRt = container.GetComponent<RectTransform>();
+        RectTransform containerRt = shapePartContainer.GetComponent<RectTransform>();
         if (!isGhost)
         {
-            Debug.Log($"{shapeHeight} {shapeWidth} {containerRt.localScale}");
-
             containerRt.localScale = new Vector2(1.0f / shapeWidth, 1.0f / shapeHeight);
-            /*if (shapeWidth > shapeHeight)
-            {
-                float factor = 1.0f / shapeWidth;
-                containerRt.localScale = new Vector2(factor, factor * shapeHeight);
-                containerRt.localScale = new Vector2(factor, factor * shapeHeight);
-            }
-            else
-            {
-                float factor = 1.0f / shapeHeight;
-                containerRt.localScale = new Vector2(factor * shapeWidth, factor);
-            }*/
-            Debug.Log(container.localScale);
         }
     }
     public void Initialize(InventoryItem item, Vector2 nodeSize, bool isGhost = false)
