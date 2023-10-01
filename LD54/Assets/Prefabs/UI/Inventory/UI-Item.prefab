@@ -325,10 +325,10 @@ MonoBehaviour:
   imgBg: {fileID: 3772896707398847574}
   imgIcon: {fileID: 5248278701484422401}
   highlightColor: {r: 0, g: 0.6075773, b: 1, a: 0.49019608}
-  ghostBgColor: {r: 0.504717, g: 1, b: 0.98118615, a: 0.50980395}
+  ghostBgColor: {r: 0.504717, g: 1, b: 0.98118615, a: 0.2784314}
   blockedColor: {r: 0.8679245, g: 0.21698113, b: 0.21698113, a: 0.6156863}
   placeableColor: {r: 0.1573993, g: 1, b: 0, a: 0.6509804}
-  ghostIconColor: {r: 1, g: 1, b: 1, a: 0.5686275}
+  ghostIconColor: {r: 1, g: 1, b: 1, a: 0.27058825}
   container: {fileID: 2031000511991947202}
   stackCounterText: {fileID: 4879933673462309924}
   shapePartPrefab: {fileID: 3151985687429441542, guid: dee7263e1bb0c144f90c3174aee61a29, type: 3}

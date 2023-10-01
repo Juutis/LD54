@@ -59,6 +59,10 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public bool IsBufferItem { get { return isBufferItem; } }
     int shapeWidth = 1;
     int shapeHeight = 1;
+
+    [SerializeField]
+    float alphaWhenDragging = 0.5f;
+    private Color originalIconColor;
     public void InitializeAsBufferItem(InventoryItem item, Vector2 nodeSize, bool isGhost = false)
     {
         isBufferItem = true;
@@ -76,6 +80,7 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         this.nodeSize = nodeSize;
         inventoryItem = item;
         originalColor = imgBg.color;
+        originalIconColor = imgIcon.color;
         imgIcon.sprite = item.Sprite;
         RectTransform rt = GetComponent<RectTransform>();
         if (!isBufferItem)
@@ -115,6 +120,10 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private void Draw()
     {
+        RectTransform containerRt = shapePartContainer.GetComponent<RectTransform>();
+        RectTransform iconRt = imgIcon.GetComponent<RectTransform>();
+        containerRt.sizeDelta = nodeSize;
+        iconRt.sizeDelta = nodeSize;
         foreach (Transform child in shapePartContainer)
         {
             Destroy(child.gameObject);
@@ -188,6 +197,8 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         isDragging = true;
         positionAtDragStart = transform.position;
         dragOffset = positionAtDragStart - new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        imgIcon.color = new Color(imgIcon.color.r, imgIcon.color.g, imgIcon.color.b, alphaWhenDragging);
+        imgBg.color = new Color(imgBg.color.r, imgBg.color.g, imgBg.color.b, alphaWhenDragging);
     }
 
     public void EndDrag()
@@ -218,6 +229,8 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
             InventoryManager.main.MoveItem(inventoryItem, lastPlacement);
         }
         transform.position = positionAtDragStart;
+        imgIcon.color = originalColor;
+        imgBg.color = originalIconColor;
     }
 
 

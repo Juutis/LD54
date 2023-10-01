@@ -29,7 +29,7 @@ public class UIInventoryManager : MonoBehaviour
     private void Initialize()
     {
         Vector2 nodeSize = uiInventoryGrid.Initialize(columns, rows);
-        uiItemBuffer.Initialize(nodeSize, bufferSize);
+        uiItemBuffer.Initialize(bufferSize);
         uiItemDisposal.Initialize();
     }
 

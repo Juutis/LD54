@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 public class UIItemBuffer : MonoBehaviour
 {
     private List<UIInventoryNode> nodes = new();
@@ -15,12 +16,15 @@ public class UIItemBuffer : MonoBehaviour
     private Transform nodeContainer;
     [SerializeField]
     private Transform itemContainer;
+
+    [SerializeField]
+    private GridLayoutGroup grid;
     Vector2 nodeSize;
     int size = 5;
-    public void Initialize(Vector2 nodeSize, int size)
+    public void Initialize(int size)
     {
         this.size = size;
-        this.nodeSize = nodeSize;
+        nodeSize = grid.cellSize;
         FillGrid();
     }
 

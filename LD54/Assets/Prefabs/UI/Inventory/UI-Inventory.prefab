@@ -617,6 +617,7 @@ MonoBehaviour:
   nodePrefab: {fileID: 1977852244523308431, guid: 982f66acc27e12b4984ac938c65165ba, type: 3}
   nodeContainer: {fileID: 5798519260584425213}
   itemContainer: {fileID: 115073075721213006}
+  grid: {fileID: 5905820161475473201}
 --- !u!1 &7309379407099059406
 GameObject:
   m_ObjectHideFlags: 0
