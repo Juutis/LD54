@@ -43,16 +43,16 @@ public class InventoryManager : MonoBehaviour
             new Vector2Int(4, 2),
             new Vector2Int(4, 3),
             new Vector2Int(4, 4),
-            //
-            new Vector2Int(6, 2),
-            new Vector2Int(6, 3),
-            new Vector2Int(6, 4),
-            new Vector2Int(7, 2),
-            new Vector2Int(7, 3),
-            new Vector2Int(7, 4),
-            new Vector2Int(8, 2),
-            new Vector2Int(8, 3),
-            new Vector2Int(8, 4),
+            ////
+            //new Vector2Int(6, 2),
+            //new Vector2Int(6, 3),
+            //new Vector2Int(6, 4),
+            //new Vector2Int(7, 2),
+            //new Vector2Int(7, 3),
+            //new Vector2Int(7, 4),
+            //new Vector2Int(8, 2),
+            //new Vector2Int(8, 3),
+            //new Vector2Int(8, 4),
         };
         inventory = new ItemInventory(width, height, emptyInventorySlotCharacter, lockedInventorySlotCharacter, itemCharacters, openSlots);
         inventoryDebug = inventory.ToString();

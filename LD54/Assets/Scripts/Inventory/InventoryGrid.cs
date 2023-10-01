@@ -130,7 +130,7 @@ public class InventoryGrid
                 }
                 else if (node == null || !node.IsEmptyOrSame(item) || node.IsLocked)
                 {
-                    Debug.Log($"False placement: {node == null} {!node.IsEmptyOrSame(item)} {node.IsLocked}");
+                    //Debug.Log($"False placement: {node == null} {!node.IsEmptyOrSame(item)} {node.IsLocked}");
                     success = false;
                     failedNodes += 1;
                 }

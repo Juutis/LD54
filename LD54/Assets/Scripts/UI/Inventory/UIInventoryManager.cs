@@ -10,7 +10,10 @@ public class UIInventoryManager : MonoBehaviour
 
     [SerializeField]
     private UIInventoryGrid uiInventoryGrid;
-    public UIInventoryGrid UIInventoryGrid { get { return uiInventoryGrid; } }
+
+
+    [SerializeField]
+    private UIItemBuffer uiItemBuffer;
 
     public Sprite PLACEHOLDER_SPRITE;
 
@@ -18,10 +21,13 @@ public class UIInventoryManager : MonoBehaviour
     private int columns = 15;
     [SerializeField]
     private int rows = 8;
+    [SerializeField]
+    private int bufferSize = 5;
 
     private void Initialize()
     {
-        uiInventoryGrid.Initialize(columns, rows);
+        Vector2 nodeSize = uiInventoryGrid.Initialize(columns, rows);
+        uiItemBuffer.Initialize(nodeSize, bufferSize);
     }
 
 
@@ -48,6 +54,10 @@ public class UIInventoryManager : MonoBehaviour
     public void AddItem(InventoryItem item)
     {
         uiInventoryGrid.AddItem(item);
+    }
+    public void AddItemToBuffer(InventoryItem item)
+    {
+        uiItemBuffer.AddItem(item);
     }
 
     public void RemoveItem(UIInventoryItem uiInventoryItem)

@@ -250,7 +250,7 @@ MonoBehaviour:
   blockedColor: {r: 0.8679245, g: 0.21698113, b: 0.21698113, a: 0.6156863}
   placeableColor: {r: 0.1573993, g: 1, b: 0, a: 0.6509804}
   ghostIconColor: {r: 1, g: 1, b: 1, a: 0.5686275}
-  pixelSize: 64
+  container: {fileID: 2031000511991947202}
   shapePartPrefab: {fileID: 3151985687429441542, guid: dee7263e1bb0c144f90c3174aee61a29, type: 3}
   shapePartContainer: {fileID: 7063959889664035145}
 --- !u!1 &8305249198957110756

@@ -25,6 +25,9 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private Color ghostIconColor;
     private Color originalColor;
 
+    [SerializeField]
+    private Transform container;
+
     private InventoryItem inventoryItem;
 
     public InventoryItem InventoryItem { get { return inventoryItem; } }
@@ -50,6 +53,36 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private Vector2 nodeSize;
 
+    private bool isBufferItem = false;
+    public bool IsBufferItem { get { return isBufferItem; } }
+    int shapeWidth = 1;
+    int shapeHeight = 1;
+    public void InitializeAsBufferItem(InventoryItem item, Vector2 nodeSize, bool isGhost = false)
+    {
+        isBufferItem = true;
+        Initialize(item, nodeSize, isGhost);
+        RectTransform rt = GetComponent<RectTransform>();
+        rt.anchoredPosition = new Vector2(nodeSize.x, nodeSize.y);
+        RectTransform containerRt = container.GetComponent<RectTransform>();
+        if (!isGhost)
+        {
+            Debug.Log($"{shapeHeight} {shapeWidth} {containerRt.localScale}");
+
+            containerRt.localScale = new Vector2(1.0f / shapeWidth, 1.0f / shapeHeight);
+            /*if (shapeWidth > shapeHeight)
+            {
+                float factor = 1.0f / shapeWidth;
+                containerRt.localScale = new Vector2(factor, factor * shapeHeight);
+                containerRt.localScale = new Vector2(factor, factor * shapeHeight);
+            }
+            else
+            {
+                float factor = 1.0f / shapeHeight;
+                containerRt.localScale = new Vector2(factor * shapeWidth, factor);
+            }*/
+            Debug.Log(container.localScale);
+        }
+    }
     public void Initialize(InventoryItem item, Vector2 nodeSize, bool isGhost = false)
     {
         this.nodeSize = nodeSize;
@@ -57,7 +90,10 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         originalColor = imgBg.color;
         imgIcon.sprite = item.Sprite;
         RectTransform rt = GetComponent<RectTransform>();
-        rt.anchoredPosition = new Vector2(item.Node.X * nodeSize.x, -item.Node.Y * nodeSize.y);
+        if (!isBufferItem)
+        {
+            rt.anchoredPosition = new Vector2(item.Node.X * nodeSize.x, -item.Node.Y * nodeSize.y);
+        }
         rt.sizeDelta = nodeSize;
         this.isGhost = isGhost;
         string ghost = isGhost ? "-Ghost" : "";
@@ -70,6 +106,15 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
+    public void Kill()
+    {
+        Destroy(gameObject);
+    }
+    public void Hide()
+    {
+        Destroy(gameObject);
+    }
+
     private void Draw()
     {
         foreach (Transform child in shapePartContainer)
@@ -78,9 +123,11 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
         shapeParts = new();
         int[,] positions = inventoryItem.Shape.Positions;
-        for (int row = 0; row < positions.GetLength(0); row += 1)
+        shapeHeight = inventoryItem.Shape.Positions.GetLength(0);
+        shapeWidth = inventoryItem.Shape.Positions.GetLength(1);
+        for (int row = 0; row < shapeHeight; row += 1)
         {
-            for (int col = 0; col < positions.GetLength(1); col += 1)
+            for (int col = 0; col < shapeWidth; col += 1)
             {
                 int position = positions[row, col];
                 if (position == 1)
