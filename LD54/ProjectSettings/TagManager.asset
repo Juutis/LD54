@@ -45,3 +45,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Enemy
+    uniqueID: 1895923525
+    locked: 0
+  - name: Knight
+    uniqueID: 3143700407
+    locked: 0
+  - name: Squire
+    uniqueID: 1724736113
+    locked: 0
+  - name: Foreground
+    uniqueID: 2308901059
+    locked: 0
