@@ -19,12 +19,21 @@ public class InventoryItem
     private Color color;
     public Color Color { get { return color; } }
 
+    private LootItemData itemData;
+    private int stackCount;
+    private bool stackable = false;
+
     public InventoryItem(InventoryShape shape, ItemIdentity identity, Sprite sprite)
     {
         this.sprite = sprite;
         this.identity = identity;
         this.shape = shape;
         color = new Color(0.2f, 0.2f, 0.2f, 0.5f);
+
+        if (this.shape.ShapeType == InventoryShapeType.Single)
+        {
+            stackable = true;
+        }
     }
 
     public void ClearNodes()

@@ -28,14 +28,25 @@ public class LootItem : MonoBehaviour
 
 public class LootItemData
 {
-    private RarityConfig rarityConfig;
-    private BaseLootConfig lootConfig;
-
-    public BaseLootConfig LootConfig { get { return lootConfig; } }
+    public LootRarity Rarity { get; set; }
+    public string Prefix { get; set; }
+    public float PriceScale { get; set; }
+    public ItemTier Tier { get; set; }
+    public string LootName { get; set; }
+    public float BasePrice { get; set; }
+    public Sprite Sprite { get; set; }
+    public InventoryShapeType Shape { get; set; }
 
     public LootItemData(RarityConfig rarityConfig, BaseLootConfig lootConfig)
     {
-        this.rarityConfig = rarityConfig;
-        this.lootConfig = lootConfig;
+        Rarity = rarityConfig.Rarity;
+        Prefix = rarityConfig.Prefixes[Random.Range(0, rarityConfig.Prefixes.Count)];
+        PriceScale = rarityConfig.PriceScale;
+
+        Tier = lootConfig.Tier;
+        Shape = lootConfig.Shape;
+        BasePrice = lootConfig.BasePrice;
+        Sprite = lootConfig.Sprites[Random.Range(0, lootConfig.Sprites.Count)];
+        Shape = lootConfig.Shape;
     }
 }
