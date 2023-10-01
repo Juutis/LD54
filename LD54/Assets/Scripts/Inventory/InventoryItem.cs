@@ -33,10 +33,13 @@ public class InventoryItem
     private int stackCount = 1;
     public int StackCount { get { return stackCount; } }
 
+    private float itemPrice = 0f;
+    public float ItemPrice { get { return itemPrice; } }
+
     private LootItemData itemData;
     private bool stackable = false;
 
-    public InventoryItem(InventoryShape shape, ItemIdentity identity, Sprite sprite, string name, ItemTier tier, LootRarity rarity)
+    public InventoryItem(InventoryShape shape, ItemIdentity identity, Sprite sprite, string name, ItemTier tier, LootRarity rarity, float itemPrice)
     {
         this.sprite = sprite;
         this.identity = identity;
@@ -51,6 +54,7 @@ public class InventoryItem
         this.name = name;
         this.tier = tier;
         this.rarity = rarity;
+        this.itemPrice = itemPrice;
     }
 
     public void ClearNodes()

@@ -110,8 +110,11 @@ public class ItemInventory
         {
             itemChar = itemCharacterSet[itemIndex];
         }
+
+        float itemPrice = itemData.BasePrice * itemData.PriceScale;
+
         ItemIdentity identity = new(itemData.LootName, itemChar, itemIndex);
-        InventoryItem inventoryItem = new(InventoryShapes.Shapes[itemData.Shape], identity, itemData.Sprite, itemData.LootName, itemData.Tier, itemData.Rarity);
+        InventoryItem inventoryItem = new(InventoryShapes.Shapes[itemData.Shape], identity, itemData.Sprite, itemData.LootName, itemData.Tier, itemData.Rarity, itemPrice);
         itemIndex += 1;
 
         return inventoryItem;
@@ -135,5 +138,10 @@ public class ItemInventory
     {
         openSlots = slots;
         grid.SetOpenSlots(openSlots);
+    }
+
+    public float GetInventoryPrice()
+    {
+        return inventoryItems.Sum(x => x.ItemPrice);
     }
 }

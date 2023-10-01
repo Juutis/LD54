@@ -117,5 +117,6 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
+        Debug.Log($"You have {inventory.GetInventoryPrice()} monies");
     }
 }
