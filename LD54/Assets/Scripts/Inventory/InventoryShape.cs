@@ -9,7 +9,9 @@ public enum InventoryShapeType
     Square4x4,
     L,
     Donut3x3,
-    Row2x1
+    Row2x1,
+    InverseT,
+    Pants
 }
 
 public static class InventoryShapes
@@ -44,6 +46,16 @@ public static class InventoryShapes
         }},
         {InventoryShapeType.Row2x1, new int [,] {
             {1,1}
+        }},
+        {InventoryShapeType.InverseT, new int [,] {
+            {0,1,0,},
+            {0,1,0,},
+            {1,1,1,}
+        }},
+        {InventoryShapeType.Pants, new int [,] {
+            {1,1,1,},
+            {1,0,1,},
+            {1,0,1,}
         }}
     };
 
@@ -56,6 +68,8 @@ public static class InventoryShapes
         {InventoryShapeType.Square4x4, new InventoryShape(InventoryShapeType.Square4x4)},
         {InventoryShapeType.Donut3x3, new InventoryShape(InventoryShapeType.Donut3x3)},
         {InventoryShapeType.Row2x1, new InventoryShape(InventoryShapeType.Row2x1)},
+        {InventoryShapeType.InverseT, new InventoryShape(InventoryShapeType.InverseT)},
+        {InventoryShapeType.Pants, new InventoryShape(InventoryShapeType.Pants)},
     };
 }
 

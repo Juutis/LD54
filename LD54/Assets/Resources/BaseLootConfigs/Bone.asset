@@ -17,4 +17,4 @@ MonoBehaviour:
   BasePrice: 0.1
   Sprites:
   - {fileID: 21300000, guid: 869f5494a36ba714284087a9abb66726, type: 3}
-  Shape: 0
+  Shape: 6
