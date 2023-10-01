@@ -16,6 +16,7 @@ public class ScrollingWorld : MonoBehaviour
     private List<Transform> scrollingObjects = new List<Transform>();
 
     private bool pause;
+    private bool outro;
 
     void Awake() {
         Instance = this;
@@ -31,6 +32,13 @@ public class ScrollingWorld : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (outro) {
+            Vector3 posDelta = -objectScrollSpeed * Time.deltaTime;
+            backgrounds.ForEach(it => it.Pause(true));
+            characters.ForEach(it => it.transform.position -= posDelta);
+            characters.ForEach(it => it.Run());
+            return;
+        }
         if (!pause) {
             Vector3 posDelta = -objectScrollSpeed * Time.deltaTime;
             scrollingObjects.ForEach(it => it.position += posDelta);
@@ -49,5 +57,10 @@ public class ScrollingWorld : MonoBehaviour
 
     public void AddScrollingObject(Transform transform) {
         scrollingObjects.Add(transform);
+    }
+
+    public void Outro() {
+        backgrounds.ForEach(it => it.Pause(pause));
+        outro = true;
     }
 }

@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour
     {
         if (lootItems.Count == 0)
         {
+            GameManager.Main.EnemyHandled(this);
             return false;
         }
 

@@ -21,6 +21,14 @@ public class GameManager : MonoBehaviour
 
     private float enemyXSpace = 10f;
 
+    private List<Enemy> activeEnemies = new();
+
+    public static GameManager Main;
+
+    void Awake() {
+        Main = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -117,6 +125,23 @@ public class GameManager : MonoBehaviour
         {
             enemy.transform.position = new Vector2((i + 1f) * enemyXSpace, enemyAnchor.position.y);
             i++;
+            activeEnemies.Add(enemy);
         }
+    }
+
+    public void EnemyHandled(Enemy enemy) {
+        activeEnemies.Remove(enemy);
+        if (activeEnemies.Count == 0) {
+            Invoke("LevelOutro", 2.0f);
+            Invoke("LevelEnd", 10.0f);
+        }
+    }
+
+    public void LevelOutro() {
+        ScrollingWorld.Instance.Outro();
+    }
+
+    public void LevelEnd() {
+            Debug.Log("LEVEL FINISHED!");
     }
 }
