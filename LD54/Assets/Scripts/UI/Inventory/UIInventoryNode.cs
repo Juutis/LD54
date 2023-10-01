@@ -12,6 +12,10 @@ public class UIInventoryNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private Image imgBg;
     [SerializeField]
     private Color highlightColor;
+    [SerializeField]
+    private Color openColor;
+    [SerializeField]
+    private Color lockedColor;
     private Color originalColor;
     private bool isHighlighted = false;
     public bool IsHighlighted { get { return isHighlighted; } }
@@ -26,6 +30,7 @@ public class UIInventoryNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
         name = $"UINode [Y: {row}][X: {col}]";
         y = row;
         x = col;
+        imgBg.color = lockedColor;
         originalColor = imgBg.color;
     }
 
@@ -44,6 +49,12 @@ public class UIInventoryNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         imgBg.color = originalColor;
         isHighlighted = false;
+    }
+
+    public void Open()
+    {
+        imgBg.color = openColor;
+        originalColor = imgBg.color;
     }
 
     public void OnPointerEnter(PointerEventData pointerEventData)

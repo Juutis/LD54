@@ -61,6 +61,8 @@ MonoBehaviour:
   itemContainer: {fileID: 3742819614500418880}
   imgBg: {fileID: 1130778947364776717}
   highlightColor: {r: 0, g: 1, b: 0.06298852, a: 1}
+  openColor: {r: 1, g: 1, b: 1, a: 1}
+  lockedColor: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
 --- !u!1 &4520184912068430445
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -11,7 +12,9 @@ public class InventoryManager : MonoBehaviour
     }
 
     [SerializeField]
-    private char emptyInventorySlotCharacter = '■';
+    private char emptyInventorySlotCharacter = '▓';
+    [SerializeField]
+    private char lockedInventorySlotCharacter = '░';
     [SerializeField]
     private string itemCharacters = "abcdefghijklmnopqrstuvwxyz1234567890";
     [TextArea(20, 20)]
@@ -30,7 +33,28 @@ public class InventoryManager : MonoBehaviour
 
     private void InitInventory()
     {
-        inventory = new ItemInventory(width, height, emptyInventorySlotCharacter, itemCharacters);
+        List<Vector2Int> openSlots = new() {
+            new Vector2Int(2, 2),
+            new Vector2Int(2, 3),
+            new Vector2Int(2, 4),
+            new Vector2Int(3, 2),
+            new Vector2Int(3, 3),
+            new Vector2Int(3, 4),
+            new Vector2Int(4, 2),
+            new Vector2Int(4, 3),
+            new Vector2Int(4, 4),
+            //
+            new Vector2Int(6, 2),
+            new Vector2Int(6, 3),
+            new Vector2Int(6, 4),
+            new Vector2Int(7, 2),
+            new Vector2Int(7, 3),
+            new Vector2Int(7, 4),
+            new Vector2Int(8, 2),
+            new Vector2Int(8, 3),
+            new Vector2Int(8, 4),
+        };
+        inventory = new ItemInventory(width, height, emptyInventorySlotCharacter, lockedInventorySlotCharacter, itemCharacters, openSlots);
         inventoryDebug = inventory.ToString();
     }
 

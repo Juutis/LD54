@@ -62,6 +62,11 @@ public class UIInventoryManager : MonoBehaviour
         };
     }
 
+    public void OpenSlot(Vector2Int slot)
+    {
+        uiInventoryGrid.OpenSlot(slot);
+    }
+
     public void HideGhost()
     {
         uiInventoryItemGhost.gameObject.SetActive(false);
