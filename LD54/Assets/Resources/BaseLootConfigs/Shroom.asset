@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shroom
   m_EditorClassIdentifier: 
   Tier: 0
-  LootName: Diamond
+  LootName: Mushroom
   BasePrice: 20
   Sprites:
   - {fileID: 21300000, guid: d861da98e2948394e929c21ba077ac19, type: 3}

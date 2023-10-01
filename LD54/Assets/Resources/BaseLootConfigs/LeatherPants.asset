@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LeatherPants
   m_EditorClassIdentifier: 
   Tier: 0
-  LootName: Ring
+  LootName: Leather Pants
   BasePrice: 0.1
   Sprites:
   - {fileID: 21300000, guid: 46da03b328738364e88b0e327f4fa805, type: 3}
