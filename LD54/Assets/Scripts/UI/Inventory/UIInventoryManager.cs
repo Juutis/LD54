@@ -16,6 +16,8 @@ public class UIInventoryManager : MonoBehaviour
     private UIItemBuffer uiItemBuffer;
     [SerializeField]
     private UIItemDisposal uiItemDisposal;
+    [SerializeField]
+    private UIItemTooltip uiItemTooltip;
 
     public Sprite PLACEHOLDER_SPRITE;
 
@@ -102,5 +104,10 @@ public class UIInventoryManager : MonoBehaviour
         {
             uiItemBuffer.UpdateBufferSize(upgrade.BufferLength);
         }
+    }
+
+    public void ShowTooltip(InventoryItem item, string price)
+    {
+        uiItemTooltip.Show(item, price);
     }
 }

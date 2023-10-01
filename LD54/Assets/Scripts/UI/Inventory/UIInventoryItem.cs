@@ -163,6 +163,8 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             shapePart.SetColor(highlightColor);
         }
+
+        string price = InventoryManager.main.GetItemPrice(inventoryItem);
         isHovered = true;
     }
 

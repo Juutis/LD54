@@ -36,10 +36,13 @@ public class InventoryItem
     private float itemPrice = 0f;
     public float ItemPrice { get { return itemPrice; } }
 
+    private string lore;
+    public string Lore { get { return lore; } }
+
     private LootItemData itemData;
     private bool stackable = false;
 
-    public InventoryItem(InventoryShape shape, ItemIdentity identity, Sprite sprite, string name, ItemTier tier, LootRarity rarity, float itemPrice)
+    public InventoryItem(InventoryShape shape, ItemIdentity identity, Sprite sprite, string name, ItemTier tier, LootRarity rarity, float itemPrice, string lore)
     {
         this.sprite = sprite;
         this.identity = identity;
@@ -55,6 +58,7 @@ public class InventoryItem
         this.tier = tier;
         this.rarity = rarity;
         this.itemPrice = itemPrice;
+        this.lore = lore;
     }
 
     public void ClearNodes()
@@ -81,6 +85,11 @@ public class InventoryItem
         }
 
         return false;
+    }
+
+    public string ItemKey()
+    {
+        return $"{this.name};{this.tier.ToString()};{this.rarity.ToString()}";
     }
 
     public bool IsStackable(string name, ItemTier tier, LootRarity rarity)

@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class LootItem : MonoBehaviour
@@ -74,6 +71,7 @@ public class LootItemData
     public float BasePrice { get; set; }
     public Sprite Sprite { get; set; }
     public InventoryShapeType Shape { get; set; }
+    public string Lore { get; set; }
 
     public LootItemData(RarityConfig rarityConfig, BaseLootConfig lootConfig)
     {
@@ -86,5 +84,6 @@ public class LootItemData
         BasePrice = lootConfig.BasePrice;
         Sprite = lootConfig.Sprites[UnityEngine.Random.Range(0, lootConfig.Sprites.Count)];
         Shape = lootConfig.Shape;
+        Lore = lootConfig.Lore;
     }
 }

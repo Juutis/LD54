@@ -114,7 +114,7 @@ public class ItemInventory
         float itemPrice = itemData.BasePrice * itemData.PriceScale;
 
         ItemIdentity identity = new(itemData.LootName, itemChar, itemIndex);
-        InventoryItem inventoryItem = new(InventoryShapes.Shapes[itemData.Shape], identity, itemData.Sprite, itemData.LootName, itemData.Tier, itemData.Rarity, itemPrice);
+        InventoryItem inventoryItem = new(InventoryShapes.Shapes[itemData.Shape], identity, itemData.Sprite, itemData.LootName, itemData.Tier, itemData.Rarity, itemPrice, itemData.Lore);
         itemIndex += 1;
 
         return inventoryItem;

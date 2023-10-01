@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using UnityEngine;
 
@@ -29,6 +30,9 @@ public class InventoryManager : MonoBehaviour
 
     [SerializeField]
     private UpgradeConfig upgradeConfig;
+
+    // Dictionary for known item prices (those that have been sold)
+    Dictionary<string, float> itemPriceDict = new();
 
     void Start()
     {
@@ -101,9 +105,28 @@ public class InventoryManager : MonoBehaviour
     {
         return inventory.AddItem(lootData);
     }
+
     public void RemoveItem(InventoryItem item)
     {
         inventory.RemoveItem(item);
+    }
+
+    public void SetItemPrice(InventoryItem item, float price)
+    {
+        if (!itemPriceDict.ContainsKey(item.ItemKey()))
+        {
+            itemPriceDict.Add(item.ItemKey(), price);
+        }
+    }
+
+    public string GetItemPrice(InventoryItem item)
+    {
+        if (itemPriceDict.ContainsKey(item.ItemKey()))
+        {
+            return itemPriceDict[item.ItemKey()].ToString();
+        }
+
+        return "???";
     }
 
     public void UpdateDebug()
