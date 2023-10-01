@@ -63,9 +63,9 @@ public class InventoryManager : MonoBehaviour
         inventory.MoveItem(item, placement);
     }
 
-    public ItemPlacement GetItemPlacement(InventoryItem item, int startY, int startX)
+    public ItemPlacement GetItemPlacement(InventoryItem item, int startY, int startX, bool forceNoStack = true)
     {
-        return inventory.GetItemPlacement(item, startY, startX);
+        return inventory.GetItemPlacement(item, startY, startX, forceNoStack);
     }
 
     public bool AddItem(LootItemData lootData)

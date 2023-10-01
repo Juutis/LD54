@@ -63,7 +63,7 @@ public class UIInventoryGrid : MonoBehaviour
                 uiInventoryItemGhost.gameObject.SetActive(true);
                 uiInventoryItemGhost.Initialize(uiInventoryItem.InventoryItem, nodeSize, true);
             }
-            ItemPlacement placement = InventoryManager.main.GetItemPlacement(uiInventoryItem.InventoryItem, closestNode.Y, closestNode.X);
+            ItemPlacement placement = InventoryManager.main.GetItemPlacement(uiInventoryItem.InventoryItem, closestNode.Y, closestNode.X, false);
             uiInventoryItemGhost.transform.position = closestNode.transform.position;
             if (!placement.Success)
             {
@@ -110,6 +110,7 @@ public class UIInventoryGrid : MonoBehaviour
     public void RemoveItem(UIInventoryItem uiInventoryItem)
     {
         items.Remove(uiInventoryItem);
+        Debug.Log(uiInventoryItem.gameObject.name);
         Destroy(uiInventoryItem.gameObject);
     }
 

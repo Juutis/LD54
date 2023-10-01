@@ -31,7 +31,8 @@ public class ItemInventory
         grid = new InventoryGrid(width, height, emptyChar, lockedChar, openSlots);
         Sprite sprite = UIInventoryManager.main.PLACEHOLDER_SPRITE;
 
-        InventoryItem ring = CreateItem("Ring", InventoryShapeType.Single, sprite);
+        InventoryItem ring = CreateItem(new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "Ring", Shape = InventoryShapeType.Single });
+        InventoryItem ring2 = CreateItem(new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "Ring", Shape = InventoryShapeType.Single });
         /*InventoryItem lStick = CreateItem("LStick", InventoryShapeType.L, sprite);
         InventoryItem box = CreateItem("Box", InventoryShapeType.Square2x2, sprite);
         InventoryItem bigBox = CreateItem("BigBox", InventoryShapeType.Square4x4, sprite);
@@ -39,7 +40,9 @@ public class ItemInventory
 
 
         grid.InsertItemRandomly(ring);
+        grid.InsertItemRandomly(ring2);
         UIInventoryManager.main.AddItem(ring);
+        UIInventoryManager.main.AddItem(ring2);
         /*grid.InsertItemRandomly(lStick);
         UIInventoryManager.main.AddItem(lStick);
         grid.InsertItemRandomly(box);
@@ -53,7 +56,7 @@ public class ItemInventory
 
     public bool AddItem(LootItemData lootData)
     {
-        InventoryItem item = CreateItem(lootData.LootName, lootData.Shape, lootData.Sprite);
+        InventoryItem item = CreateItem(lootData);
         bool wasInserted = grid.InsertItemRandomly(item);
         if (wasInserted)
         {
@@ -66,12 +69,12 @@ public class ItemInventory
         return false;
     }
 
-    public ItemPlacement GetItemPlacement(InventoryItem item, int startY, int startX)
+    public ItemPlacement GetItemPlacement(InventoryItem item, int startY, int startX, bool forceNoStack = true)
     {
-        return grid.GetItemPlacement(item, startY, startX);
+        return grid.GetItemPlacement(item, startY, startX, forceNoStack);
     }
 
-    public InventoryItem CreateItem(string name, InventoryShapeType shapeType, Sprite sprite)
+    public InventoryItem CreateItem(LootItemData itemData)
     {
         char itemChar;
         if (itemIndex >= itemCharacterSet.Length)
@@ -82,8 +85,8 @@ public class ItemInventory
         {
             itemChar = itemCharacterSet[itemIndex];
         }
-        ItemIdentity identity = new(name, itemChar, itemIndex);
-        InventoryItem inventoryItem = new(InventoryShapes.Shapes[shapeType], identity, sprite);
+        ItemIdentity identity = new(itemData.LootName, itemChar, itemIndex);
+        InventoryItem inventoryItem = new(InventoryShapes.Shapes[itemData.Shape], identity, itemData.Sprite, itemData.LootName, itemData.Tier, itemData.Rarity);
         itemIndex += 1;
         inventoryItems.Add(inventoryItem);
         return inventoryItem;
@@ -92,7 +95,10 @@ public class ItemInventory
     public void MoveItem(InventoryItem item, ItemPlacement placement)
     {
         grid.MoveItem(item, placement);
-        UIInventoryManager.main.AddItem(item);
+        if (!placement.isStacked)
+        {
+            UIInventoryManager.main.AddItem(item);
+        }
     }
 
     public override string ToString()

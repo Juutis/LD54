@@ -149,10 +149,10 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         isDragging = false;
         UIInventoryManager.main.HideGhost();
-        //Debug.Log($"Lastplacement: {lastPlacement.Success}");
+        Debug.Log($"Lastplacement: {lastPlacement.Success}");
         if (lastPlacement.Success)
         {
-            //Debug.Log($"Lastplacement: {lastPlacement.Success} ({lastPlacement.Nodes.First()})");
+            Debug.Log($"Lastplacement: {lastPlacement.Success} ({lastPlacement.Nodes.First()})");
             UIInventoryManager.main.RemoveItem(this);
             InventoryManager.main.MoveItem(inventoryItem, lastPlacement);
         }

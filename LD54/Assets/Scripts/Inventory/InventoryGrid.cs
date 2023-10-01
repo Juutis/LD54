@@ -63,6 +63,7 @@ public class InventoryGrid
         {
             return null;
         }
+
         //UnityEngine.Debug.Log($"Attempt to get node: Y: {y}, X: {x} (height: {height}, width: {width})");
         return nodes[y, x];
     }
@@ -71,7 +72,16 @@ public class InventoryGrid
     {
         RemoveItem(item);
         //UnityEngine.Debug.Log($"move node to {placement.Nodes.First().Y}, {placement.Nodes.First().X}");
-        InsertItem(item, placement.Nodes.First());
+
+        if (placement.isStacked)
+        {
+            InsertStack(item, placement);
+        }
+        else
+        {
+            InsertItem(item, placement.Nodes.First(), false);
+        }
+
     }
 
     public bool InsertItemRandomly(InventoryItem item)
@@ -91,7 +101,7 @@ public class InventoryGrid
         return false;
     }
 
-    public ItemPlacement GetItemPlacement(InventoryItem item, int startY, int startX)
+    public ItemPlacement GetItemPlacement(InventoryItem item, int startY, int startX, bool forceNoStack = true)
     {
         InventoryShape shape = item.Shape;
         bool success = true;
@@ -107,11 +117,24 @@ public class InventoryGrid
                     continue;
                 }
                 InventoryNode node = GetNode(startY + row, startX + col);
-                if (node == null || !node.IsEmptyOrSame(item) || node.IsLocked)
+                bool stackPossible = node?.InventoryItem?.IsStackable(item) ?? false;
+
+                if (stackPossible && !forceNoStack)
                 {
+                    return new ItemPlacement
+                    {
+                        Nodes = new() { node }, // Only 1x1 supported!
+                        Success = true,
+                        isStacked = true
+                    };
+                }
+                else if (node == null || !node.IsEmptyOrSame(item) || node.IsLocked)
+                {
+                    Debug.Log($"False placement: {node == null} {!node.IsEmptyOrSame(item)} {node.IsLocked}");
                     success = false;
                     failedNodes += 1;
                 }
+
                 placementNodes.Add(node);
             }
         }
@@ -119,16 +142,17 @@ public class InventoryGrid
         {
             Nodes = placementNodes,
             Success = success,
-            FailedNodes = failedNodes
+            FailedNodes = failedNodes,
+            isStacked = false
         };
     }
 
-    public bool InsertItem(InventoryItem item, InventoryNode startingNode)
+    public bool InsertItem(InventoryItem item, InventoryNode startingNode, bool forceNoStack = true)
     {
-        ItemPlacement itemPlacement = GetItemPlacement(item, startingNode.Y, startingNode.X);
+        ItemPlacement itemPlacement = GetItemPlacement(item, startingNode.Y, startingNode.X, forceNoStack);
         if (!itemPlacement.Success)
         {
-            //UnityEngine.Debug.Log($"Failed to place {item}. Blocked by {itemPlacement.FailedNodes} nodes.");
+            UnityEngine.Debug.Log($"Failed to place {item}. Blocked by {itemPlacement.FailedNodes} nodes.");
             return false;
         }
         foreach (InventoryNode placementNode in itemPlacement.Nodes)
@@ -137,6 +161,13 @@ public class InventoryGrid
             placementNode.SetItem(item);
         }
         item.SetStartNode(startingNode);
+        InventoryManager.main.UpdateDebug();
+        return true;
+    }
+
+    public bool InsertStack(InventoryItem item, ItemPlacement placement)
+    {
+        placement.Nodes[0].InventoryItem.AddStack(item.StackCount);
         InventoryManager.main.UpdateDebug();
         return true;
     }
@@ -182,4 +213,5 @@ public struct ItemPlacement
     public List<InventoryNode> Nodes;
     public int FailedNodes;
     public bool Success;
+    public bool isStacked;
 }
