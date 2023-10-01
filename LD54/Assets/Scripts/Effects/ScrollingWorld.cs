@@ -26,7 +26,6 @@ public class ScrollingWorld : MonoBehaviour
     {
         backgrounds = GetComponentsInChildren<ScrollingImage>().ToList();
         characters = GetComponentsInChildren<RunningCharacter>().ToList();
-        Pause(false);
     }
 
     // Update is called once per frame
