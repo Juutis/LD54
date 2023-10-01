@@ -5,7 +5,7 @@ using System.Linq;
 public class UIItemBuffer : MonoBehaviour
 {
     private List<UIInventoryNode> nodes = new();
-    private Queue<UIInventoryItem> items = new();
+    private List<UIInventoryItem> items = new();
 
     [SerializeField]
     private UIInventoryItem itemPrefab;
@@ -33,18 +33,24 @@ public class UIItemBuffer : MonoBehaviour
             nodes.Add(node);
         }
     }
+
+    public void RemoveItem(UIInventoryItem uiItem)
+    {
+        items.Remove(uiItem);
+        uiItem.Hide();
+    }
     public void AddItem(InventoryItem inventoryItem)
     {
         UIInventoryItem uiItem = Instantiate(itemPrefab, itemContainer);
         uiItem.InitializeAsBufferItem(inventoryItem, nodeSize);
-        items.Enqueue(uiItem);
-        if (items.Count >= size)
+        items.Add(uiItem);
+        if (items.Count > size)
         {
-            UIInventoryItem lastItem = items.Dequeue();
+            UIInventoryItem lastItem = items.FirstOrDefault();
             if (lastItem != null)
             {
                 Debug.Log($"Hide {lastItem}");
-                lastItem.Hide();
+                RemoveItem(lastItem);
             }
         }
         Draw();
