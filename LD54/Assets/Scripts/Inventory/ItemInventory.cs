@@ -53,7 +53,7 @@ public class ItemInventory
 
     public bool AddItem(LootItemData lootData)
     {
-        InventoryItem item = CreateItem(lootData.LootConfig.LootName, lootData.LootConfig.Shape, lootData.LootConfig.Sprites[0]);
+        InventoryItem item = CreateItem(lootData.LootName, lootData.Shape, lootData.Sprite);
         bool wasInserted = grid.InsertItemRandomly(item);
         if (wasInserted)
         {

@@ -79,6 +79,7 @@ public class InventoryShape
     public int[,] Positions { get { return positions; } }
 
     private readonly InventoryShapeType shapeType;
+    public InventoryShapeType ShapeType { get { return shapeType; } }
 
     public InventoryShape(InventoryShapeType shapeType)
     {
