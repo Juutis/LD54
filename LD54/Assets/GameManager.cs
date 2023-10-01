@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Enemy enemyPrefab;
     [SerializeField]
+    private Transform enemyAnchor;
+    [SerializeField]
     private List<LevelConfig> levelConfigs;
 
     private int currentLevelNum = 0;
@@ -113,7 +115,7 @@ public class GameManager : MonoBehaviour
         int i = 0;
         foreach(Enemy enemy in enemies)
         {
-            enemy.transform.position = new Vector2((i + 1f) * enemyXSpace, 0);
+            enemy.transform.position = new Vector2((i + 1f) * enemyXSpace, enemyAnchor.position.y);
             i++;
         }
     }
