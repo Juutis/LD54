@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class InventoryItem
 {
     private readonly InventoryShape shape;
@@ -19,11 +21,22 @@ public class InventoryItem
     private Color color;
     public Color Color { get { return color; } }
 
+    private string name;
+    public string Name { get { return name; } }
+
+    private ItemTier tier;
+    public ItemTier Tier { get { return tier; } }
+
+    private LootRarity rarity;
+    public LootRarity Rarity { get { return rarity; } }
+
+    private int stackCount = 1;
+    public int StackCount { get { return stackCount; } }
+
     private LootItemData itemData;
-    private int stackCount;
     private bool stackable = false;
 
-    public InventoryItem(InventoryShape shape, ItemIdentity identity, Sprite sprite)
+    public InventoryItem(InventoryShape shape, ItemIdentity identity, Sprite sprite, string name, ItemTier tier, LootRarity rarity)
     {
         this.sprite = sprite;
         this.identity = identity;
@@ -34,6 +47,10 @@ public class InventoryItem
         {
             stackable = true;
         }
+
+        this.name = name;
+        this.tier = tier;
+        this.rarity = rarity;
     }
 
     public void ClearNodes()
@@ -51,6 +68,31 @@ public class InventoryItem
         nodes.Add(newNode);
     }
 
+    public bool AddStack(int count)
+    {
+        if (stackable)
+        {
+            stackCount += count;
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool IsStackable(string name, ItemTier tier, LootRarity rarity)
+    {
+        if (!stackable) { return false; }
+        else if (this.name != name) { return false; }
+        else if (this.tier != tier) { return false; }
+        else if (this.rarity != rarity) { return false; }
+
+        return true;
+    }
+
+    public bool IsStackable(InventoryItem item)
+    {
+        return IsStackable(item.name, item.tier, item.rarity);
+    }
 
     public override string ToString()
     {

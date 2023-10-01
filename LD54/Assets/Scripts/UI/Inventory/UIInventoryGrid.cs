@@ -60,6 +60,7 @@ public class UIInventoryGrid : MonoBehaviour
     public void RemoveItem(UIInventoryItem uiInventoryItem)
     {
         items.Remove(uiInventoryItem);
+        Debug.Log(uiInventoryItem.gameObject.name);
         Destroy(uiInventoryItem.gameObject);
     }
 

@@ -44,7 +44,7 @@ public class UIInventoryManager : MonoBehaviour
                 uiInventoryItemGhost.gameObject.SetActive(true);
                 uiInventoryItemGhost.Initialize(uiInventoryItem.InventoryItem, true);
             }
-            ItemPlacement placement = InventoryManager.main.GetItemPlacement(uiInventoryItem.InventoryItem, closestNode.Y, closestNode.X);
+            ItemPlacement placement = InventoryManager.main.GetItemPlacement(uiInventoryItem.InventoryItem, closestNode.Y, closestNode.X, false);
             uiInventoryItemGhost.transform.position = closestNode.transform.position;
             if (!placement.Success)
             {

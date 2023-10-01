@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,7 @@ public class LootItem : MonoBehaviour
     }
 }
 
+[Serializable]
 public class LootItemData
 {
     public LootRarity Rarity { get; set; }
@@ -40,13 +42,13 @@ public class LootItemData
     public LootItemData(RarityConfig rarityConfig, BaseLootConfig lootConfig)
     {
         Rarity = rarityConfig.Rarity;
-        Prefix = rarityConfig.Prefixes[Random.Range(0, rarityConfig.Prefixes.Count)];
+        Prefix = rarityConfig.Prefixes[UnityEngine.Random.Range(0, rarityConfig.Prefixes.Count)];
         PriceScale = rarityConfig.PriceScale;
 
         Tier = lootConfig.Tier;
         Shape = lootConfig.Shape;
         BasePrice = lootConfig.BasePrice;
-        Sprite = lootConfig.Sprites[Random.Range(0, lootConfig.Sprites.Count)];
+        Sprite = lootConfig.Sprites[UnityEngine.Random.Range(0, lootConfig.Sprites.Count)];
         Shape = lootConfig.Shape;
     }
 }
