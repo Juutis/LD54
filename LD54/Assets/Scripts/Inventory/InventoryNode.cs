@@ -5,7 +5,9 @@ public class InventoryNode
     private readonly int y;
 
     private InventoryItem inventoryItem;
+    private bool locked = true;
     //
+    public bool IsLocked { get { return locked; } }
     public bool IsEmpty { get { return inventoryItem == null; } }
     public int X { get { return x; } }
     public int Y { get { return y; } }
@@ -47,6 +49,11 @@ public class InventoryNode
     public void SetItem(InventoryItem inventoryItem)
     {
         this.inventoryItem = inventoryItem;
+    }
+
+    public void Open()
+    {
+        locked = false;
     }
 
     public void Clear()

@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using Unity.VisualScripting;
-using System.Diagnostics;
+using UnityEngine;
 
 public class InventoryGrid
 {
@@ -10,13 +8,14 @@ public class InventoryGrid
     private int width;
     private int height;
     private char emptyChar;
+    private char lockedChar;
     private void UpdateSize()
     {
         height = nodes.GetLength(0);
         width = nodes.GetLength(1);
     }
 
-    private void FillGrid()
+    private void FillGrid(List<Vector2Int> openSlots)
     {
         for (int row = 0; row < height; row++)
         {
@@ -24,6 +23,11 @@ public class InventoryGrid
             {
                 nodes[row, col] = new InventoryNode(row, col);
             }
+        }
+        foreach (Vector2Int slot in openSlots)
+        {
+            nodes[slot.y, slot.x].Open();
+            UIInventoryManager.main.OpenSlot(slot);
         }
     }
 
@@ -35,7 +39,7 @@ public class InventoryGrid
             for (int col = 0; col < width; col++)
             {
                 InventoryNode node = nodes[row, col];
-                if (node.IsEmpty)
+                if (node.IsEmpty && !node.IsLocked)
                 {
                     emptyNodes.Add(node);
                 }
@@ -44,12 +48,13 @@ public class InventoryGrid
         return emptyNodes;
     }
 
-    public InventoryGrid(int gridWidth, int gridHeight, char emptyChar)
+    public InventoryGrid(int gridWidth, int gridHeight, char emptyChar, char lockedChar, List<Vector2Int> openSlots)
     {
         this.emptyChar = emptyChar;
+        this.lockedChar = lockedChar;
         nodes = new InventoryNode[gridHeight, gridWidth];
         UpdateSize();
-        FillGrid();
+        FillGrid(openSlots);
     }
 
     public InventoryNode GetNode(int y, int x)
@@ -72,7 +77,7 @@ public class InventoryGrid
     public bool InsertItemRandomly(InventoryItem item)
     {
         List<InventoryNode> emptyNodes = GetEmptyNodes();
-        Random random = new();
+        System.Random random = new();
         List<InventoryNode> randomizedNodes = emptyNodes.OrderBy((item) => random.Next()).ToList();
 
         foreach (InventoryNode node in randomizedNodes)
@@ -102,7 +107,7 @@ public class InventoryGrid
                     continue;
                 }
                 InventoryNode node = GetNode(startY + row, startX + col);
-                if (node == null || !node.IsEmptyOrSame(item))
+                if (node == null || !node.IsEmptyOrSame(item) || node.IsLocked)
                 {
                     success = false;
                     failedNodes += 1;
@@ -153,7 +158,11 @@ public class InventoryGrid
             for (int col = 0; col < width; col++)
             {
                 InventoryNode node = nodes[row, col];
-                if (node.IsEmpty)
+                if (node.IsLocked)
+                {
+                    representation += lockedChar;
+                }
+                else if (node.IsEmpty)
                 {
                     representation += emptyChar;
                 }

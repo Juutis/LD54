@@ -8,42 +8,47 @@ public class ItemInventory
     private readonly int width;
     private readonly int height;
     private readonly char emptyChar;
+    private readonly char lockedChar;
     private List<InventoryItem> inventoryItems = new();
     private readonly char[] itemCharacterSet;
+    private List<Vector2Int> openSlots;
 
-    public ItemInventory(int width, int height, char emptyChar, string itemCharacters)
+    public ItemInventory(int width, int height, char emptyChar, char lockedChar, string itemCharacters, List<Vector2Int> openSlots)
     {
         itemCharacterSet = itemCharacters.ToCharArray();
         this.emptyChar = emptyChar;
+        this.lockedChar = lockedChar;
         this.width = width;
         this.height = height;
+        this.openSlots = openSlots;
         Initialize();
     }
 
     private void Initialize()
     {
+
         inventoryItems = new();
-        grid = new InventoryGrid(width, height, emptyChar);
+        grid = new InventoryGrid(width, height, emptyChar, lockedChar, openSlots);
         Sprite sprite = UIInventoryManager.main.PLACEHOLDER_SPRITE;
 
-        /*InventoryItem ring = CreateItem("Ring", InventoryShapeType.Single);
-        InventoryItem lStick = CreateItem("LStick", InventoryShapeType.L);
-        InventoryItem box = CreateItem("Box", InventoryShapeType.Square2x2);
-        InventoryItem bigBox = CreateItem("BigBox", InventoryShapeType.Square4x4);
-        InventoryItem donut = CreateItem("Donut", InventoryShapeType.Donut3x3);
+        InventoryItem ring = CreateItem("Ring", InventoryShapeType.Single, sprite);
+        /*InventoryItem lStick = CreateItem("LStick", InventoryShapeType.L, sprite);
+        InventoryItem box = CreateItem("Box", InventoryShapeType.Square2x2, sprite);
+        InventoryItem bigBox = CreateItem("BigBox", InventoryShapeType.Square4x4, sprite);
+        InventoryItem donut = CreateItem("Donut", InventoryShapeType.Donut3x3, sprite);*/
 
 
         grid.InsertItemRandomly(ring);
         UIInventoryManager.main.AddItem(ring);
-        grid.InsertItemRandomly(lStick);
+        /*grid.InsertItemRandomly(lStick);
         UIInventoryManager.main.AddItem(lStick);
         grid.InsertItemRandomly(box);
         UIInventoryManager.main.AddItem(box);
         grid.InsertItemRandomly(bigBox);
         UIInventoryManager.main.AddItem(bigBox);
         grid.InsertItemRandomly(donut);
-        UIInventoryManager.main.AddItem(donut);
-        */
+        UIInventoryManager.main.AddItem(donut);*/
+
     }
 
     public bool AddItem(LootItemData lootData)
