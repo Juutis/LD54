@@ -15,6 +15,15 @@ public class UIInventoryItemShapePart : MonoBehaviour
         SetColor(color);
     }
 
+    public void DisableRaycastTarget()
+    {
+        imgBg.raycastTarget = false;
+    }
+    public void EnableRaycastTarget()
+    {
+        imgBg.raycastTarget = true;
+    }
+
     public void SetColor(Color color)
     {
         imgBg.color = color;

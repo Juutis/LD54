@@ -200,11 +200,19 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         dragOffset = positionAtDragStart - new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         imgIcon.color = new Color(imgIcon.color.r, imgIcon.color.g, imgIcon.color.b, alphaWhenDragging);
         imgBg.color = new Color(imgBg.color.r, imgBg.color.g, imgBg.color.b, alphaWhenDragging);
+        foreach (UIInventoryItemShapePart shapePart in shapeParts)
+        {
+            shapePart.DisableRaycastTarget();
+        }
     }
 
     public void EndDrag()
     {
         isDragging = false;
+        foreach (UIInventoryItemShapePart shapePart in shapeParts)
+        {
+            shapePart.EnableRaycastTarget();
+        }
         if (UIInventoryManager.main.DisposalIsHovered())
         {
             if (isBufferItem)
