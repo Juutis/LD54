@@ -32,7 +32,7 @@ public class LootGenerator
 
             for (int i = 0; i < itemDrops; i++)
             {
-                RarityConfig rconf = LootManager.instance.GetRarityConfig(dropRate.Rarity);
+                RarityConfig rconf = LootManager.main.GetRarityConfig(dropRate.Rarity);
                 BaseLootConfig lconf = dropTierConfigs[Random.Range(0, dropTierConfigs.Count())];
 
                 items.Add(new LootItemData(rconf, lconf));

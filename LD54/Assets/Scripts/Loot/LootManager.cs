@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class LootManager : MonoBehaviour
 {
-    public static LootManager instance;
+    public static LootManager main;
 
     [SerializeField]
     public List<RarityConfig> RarityConfigs;
@@ -15,7 +15,7 @@ public class LootManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        main = this;
     }
 
     void Start()

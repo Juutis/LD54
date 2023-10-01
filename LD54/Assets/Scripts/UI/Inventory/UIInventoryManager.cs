@@ -95,4 +95,12 @@ public class UIInventoryManager : MonoBehaviour
     {
         uiItemDisposal.Unhighlight();
     }
+
+    public void BufferSizeUpgrade(UpgradeConfig upgrade)
+    {
+        if (upgrade.Type == UpgradeType.Buffer)
+        {
+            uiItemBuffer.UpdateBufferSize(upgrade.BufferLength);
+        }
+    }
 }

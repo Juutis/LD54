@@ -68,4 +68,26 @@ public class UIItemBuffer : MonoBehaviour
             rt.SetAsFirstSibling();
         }
     }
+
+    public void UpdateBufferSize(int size)
+    {
+        if (size == 0)
+        {
+            return;
+        }
+        else if (size <= this.size)
+        {
+            return;
+        }
+
+        int added = size - this.size;
+        this.size = size;
+
+        for (int i = 0; i < added; i++)
+        {
+            UIInventoryNode node = Instantiate(nodePrefab, nodeContainer);
+            node.Initialize(i, 0, nodeSize);
+            nodes.Add(node);
+        }
+    }
 }
