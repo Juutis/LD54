@@ -105,7 +105,8 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
         if (!isBufferItem)
         {
-            imgIcon.transform.localScale = new Vector2(shapeWidth, shapeHeight);
+            var maxDimension = Mathf.Max(shapeWidth, shapeHeight);
+            imgIcon.transform.localScale = new Vector2(maxDimension, maxDimension);
         }
     }
 
