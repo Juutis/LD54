@@ -40,6 +40,11 @@ public class InventoryNode
         return IsEmpty || inventoryItem.Identity.Index == item.Identity.Index;
     }
 
+    public bool IsSame(InventoryItem item)
+    {
+        return !IsEmpty && inventoryItem.Identity.Index == item.Identity.Index;
+    }
+
     public InventoryNode(int y, int x)
     {
         this.y = y;
@@ -54,6 +59,11 @@ public class InventoryNode
     public void Open()
     {
         locked = false;
+    }
+
+    public void Close()
+    {
+        locked = true;
     }
 
     public void Clear()

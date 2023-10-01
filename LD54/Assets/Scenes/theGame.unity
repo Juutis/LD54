@@ -155,6 +155,7 @@ MonoBehaviour:
   inventoryDebug: 
   width: 15
   height: 8
+  upgradeConfig: {fileID: 11400000, guid: eac279e10caf965409f0eaf99edaf5c8, type: 2}
 --- !u!4 &1986217264
 Transform:
   m_ObjectHideFlags: 0

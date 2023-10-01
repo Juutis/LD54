@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -25,6 +26,9 @@ public class InventoryManager : MonoBehaviour
     private int width = 15;
     [SerializeField]
     private int height = 8;
+
+    [SerializeField]
+    private UpgradeConfig upgradeConfig;
 
     void Start()
     {
@@ -58,6 +62,33 @@ public class InventoryManager : MonoBehaviour
         inventoryDebug = inventory.ToString();
     }
 
+    public void UpdateInventory()
+    {
+        List<RectInt> openAreas = upgradeConfig.InventoryAreas;
+        List<Vector2Int> openSlots = new();
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                foreach (RectInt area in openAreas)
+                {
+                    if (
+                        x >= area.x &&
+                        x <= area.x + area.width &&
+                        y >= area.y &&
+                        y <= area.y + area.height
+                    )
+                    {
+                        openSlots.Add(new Vector2Int(x, y));
+                    }
+                }
+            }
+        }
+
+        Debug.Log($"Opened slots: {string.Join(',', openSlots.Select(x => $"({x.x}, {x.y})"))}");
+        inventory.SetOpenSlots(openSlots);
+    }
+
     public void MoveItem(InventoryItem item, ItemPlacement placement)
     {
         inventory.MoveItem(item, placement);
@@ -84,6 +115,9 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            UpdateInventory();
+        }
     }
 }

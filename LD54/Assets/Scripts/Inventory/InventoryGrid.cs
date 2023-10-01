@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class InventoryGrid
@@ -28,6 +29,26 @@ public class InventoryGrid
         {
             nodes[slot.y, slot.x].Open();
             UIInventoryManager.main.OpenSlot(slot);
+        }
+    }
+
+    public void SetOpenSlots(List<Vector2Int> openSlots)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (openSlots.Any(slot => slot.x == x && slot.y == y))
+                {
+                    nodes[y, x].Open();
+                    UIInventoryManager.main.OpenSlot(new Vector2Int(x, y));
+                }
+                else
+                {
+                    nodes[y, x].Close();
+                    UIInventoryManager.main.CloseSlot(new Vector2Int(x, y));
+                }
+            }
         }
     }
 
@@ -119,7 +140,7 @@ public class InventoryGrid
                 InventoryNode node = GetNode(startY + row, startX + col);
                 bool stackPossible = node?.InventoryItem?.IsStackable(item) ?? false;
 
-                if (stackPossible && !forceNoStack)
+                if (stackPossible && !forceNoStack && !node.IsSame(item))
                 {
                     return new ItemPlacement
                     {

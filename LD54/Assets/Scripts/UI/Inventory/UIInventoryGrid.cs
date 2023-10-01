@@ -107,6 +107,17 @@ public class UIInventoryGrid : MonoBehaviour
         foundNode.Open();
     }
 
+    public void CloseSlot(Vector2Int slot)
+    {
+        UIInventoryNode foundNode = nodes.Find(node => node.Y == slot.y && node.X == slot.x);
+        if (foundNode == null)
+        {
+            Debug.Log($"Couldn't find node at {slot}!");
+            return;
+        } 
+        foundNode.Close();
+    }
+
     public void RemoveItem(UIInventoryItem uiInventoryItem)
     {
         items.Remove(uiInventoryItem);

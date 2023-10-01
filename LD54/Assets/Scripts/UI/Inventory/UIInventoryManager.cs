@@ -40,6 +40,11 @@ public class UIInventoryManager : MonoBehaviour
         uiInventoryGrid.OpenSlot(slot);
     }
 
+    public void CloseSlot(Vector2Int slot)
+    {
+        uiInventoryGrid.CloseSlot(slot);
+    }
+
     public void HideGhost()
     {
         uiInventoryGrid.HideGhost();

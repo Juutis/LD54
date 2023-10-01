@@ -59,6 +59,12 @@ public class UIInventoryNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
         originalColor = imgBg.color;
     }
 
+    public void Close()
+    {
+        imgBg.color = lockedColor;
+        originalColor = imgBg.color;
+    }
+
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
         Highlight();

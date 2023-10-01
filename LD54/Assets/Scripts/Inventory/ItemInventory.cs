@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ItemInventory
@@ -104,5 +105,11 @@ public class ItemInventory
     public override string ToString()
     {
         return grid.ToString();
+    }
+
+    public void SetOpenSlots(List<Vector2Int> slots)
+    {
+        openSlots = slots;
+        grid.SetOpenSlots(openSlots);
     }
 }
