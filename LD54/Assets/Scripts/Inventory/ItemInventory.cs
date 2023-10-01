@@ -54,8 +54,15 @@ public class ItemInventory
     public bool AddItem(LootItemData lootData)
     {
         InventoryItem item = CreateItem(lootData.LootConfig.LootName, lootData.LootConfig.Shape, lootData.LootConfig.Sprites[0]);
-        grid.InsertItemRandomly(item);
-        UIInventoryManager.main.AddItem(item);
+        bool wasInserted = grid.InsertItemRandomly(item);
+        if (wasInserted)
+        {
+            UIInventoryManager.main.AddItem(item);
+        }
+        else
+        {
+            Debug.Log("No space, put it somewhere else!");
+        }
         return false;
     }
 
@@ -66,7 +73,16 @@ public class ItemInventory
 
     public InventoryItem CreateItem(string name, InventoryShapeType shapeType, Sprite sprite)
     {
-        ItemIdentity identity = new(name, itemCharacterSet[itemIndex], itemIndex);
+        char itemChar;
+        if (itemIndex >= itemCharacterSet.Length)
+        {
+            itemChar = itemCharacterSet[itemIndex % itemCharacterSet.Length];
+        }
+        else
+        {
+            itemChar = itemCharacterSet[itemIndex];
+        }
+        ItemIdentity identity = new(name, itemChar, itemIndex);
         InventoryItem inventoryItem = new(InventoryShapes.Shapes[shapeType], identity, sprite);
         itemIndex += 1;
         inventoryItems.Add(inventoryItem);

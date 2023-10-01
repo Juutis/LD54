@@ -33,7 +33,7 @@ public class UIInventoryGrid : MonoBehaviour
     }
     public void AddItem(InventoryItem inventoryItem)
     {
-        UIInventoryNode node = nodes.Find(node => node != null && node.X == inventoryItem.Node.X && node.Y == inventoryItem.Node.Y);
+        UIInventoryNode node = nodes.Where(node => node != null && node.X == inventoryItem.Node.X && node.Y == inventoryItem.Node.Y).FirstOrDefault();
         if (node == null)
         {
             Debug.Log($"Couldn't find node {inventoryItem.Node}!");
