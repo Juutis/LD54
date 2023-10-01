@@ -98,6 +98,10 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             stackCounterText.enabled = false;
         }
+        if (!isBufferItem)
+        {
+            imgIcon.transform.localScale = new Vector2(shapeWidth, shapeHeight);
+        }
     }
 
     public void Kill()
