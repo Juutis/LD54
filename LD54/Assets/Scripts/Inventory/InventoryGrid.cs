@@ -100,7 +100,7 @@ public class InventoryGrid
         }
         else
         {
-            InsertItem(item, placement.Nodes.First(), false);
+            InsertItem(item, placement.Origin, false);
         }
 
     }
@@ -160,6 +160,7 @@ public class InventoryGrid
         }
         return new ItemPlacement
         {
+            Origin = GetNode(startY, startX),
             Nodes = placementNodes,
             Success = success,
             FailedNodes = failedNodes,
@@ -192,7 +193,7 @@ public class InventoryGrid
         return true;
     }
 
-    private void RemoveItem(InventoryItem item)
+    public void RemoveItem(InventoryItem item)
     {
         foreach (InventoryNode node in item.Nodes)
         {
@@ -230,6 +231,7 @@ public class InventoryGrid
 
 public struct ItemPlacement
 {
+    public InventoryNode Origin;
     public List<InventoryNode> Nodes;
     public int FailedNodes;
     public bool Success;

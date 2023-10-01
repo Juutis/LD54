@@ -10,7 +10,12 @@ public class UIInventoryManager : MonoBehaviour
 
     [SerializeField]
     private UIInventoryGrid uiInventoryGrid;
-    public UIInventoryGrid UIInventoryGrid { get { return uiInventoryGrid; } }
+
+
+    [SerializeField]
+    private UIItemBuffer uiItemBuffer;
+    [SerializeField]
+    private UIItemDisposal uiItemDisposal;
 
     public Sprite PLACEHOLDER_SPRITE;
 
@@ -18,10 +23,14 @@ public class UIInventoryManager : MonoBehaviour
     private int columns = 15;
     [SerializeField]
     private int rows = 8;
+    [SerializeField]
+    private int bufferSize = 5;
 
     private void Initialize()
     {
-        uiInventoryGrid.Initialize(columns, rows);
+        Vector2 nodeSize = uiInventoryGrid.Initialize(columns, rows);
+        uiItemBuffer.Initialize(nodeSize, bufferSize);
+        uiItemDisposal.Initialize();
     }
 
 
@@ -54,14 +63,36 @@ public class UIInventoryManager : MonoBehaviour
     {
         uiInventoryGrid.AddItem(item);
     }
+    public void AddItemToBuffer(InventoryItem item)
+    {
+        uiItemBuffer.AddItem(item);
+    }
 
     public void RemoveItem(UIInventoryItem uiInventoryItem)
     {
         uiInventoryGrid.RemoveItem(uiInventoryItem);
     }
+    public void RemoveBufferItem(UIInventoryItem uiInventoryItem)
+    {
+        uiItemBuffer.RemoveItem(uiInventoryItem);
+    }
 
     public UIInventoryNode ClosestNode(Vector2 position)
     {
         return uiInventoryGrid.ClosestNode(position);
+    }
+
+    public bool DisposalIsHovered()
+    {
+        return uiItemDisposal.IsHovered;
+    }
+
+    public void HighlightDisposal()
+    {
+        uiItemDisposal.Highlight();
+    }
+    public void UnhighlightDisposal()
+    {
+        uiItemDisposal.Unhighlight();
     }
 }

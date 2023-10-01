@@ -26,6 +26,8 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private Color originalColor;
 
     [SerializeField]
+    private Transform container;
+    [SerializeField]
     private Text stackCounterText;
 
     private InventoryItem inventoryItem;
@@ -53,6 +55,22 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private Vector2 nodeSize;
 
+    private bool isBufferItem = false;
+    public bool IsBufferItem { get { return isBufferItem; } }
+    int shapeWidth = 1;
+    int shapeHeight = 1;
+    public void InitializeAsBufferItem(InventoryItem item, Vector2 nodeSize, bool isGhost = false)
+    {
+        isBufferItem = true;
+        Initialize(item, nodeSize, isGhost);
+        RectTransform rt = GetComponent<RectTransform>();
+        rt.anchoredPosition = new Vector2(nodeSize.x, nodeSize.y);
+        RectTransform containerRt = shapePartContainer.GetComponent<RectTransform>();
+        if (!isGhost)
+        {
+            containerRt.localScale = new Vector2(1.0f / shapeWidth, 1.0f / shapeHeight);
+        }
+    }
     public void Initialize(InventoryItem item, Vector2 nodeSize, bool isGhost = false)
     {
         this.nodeSize = nodeSize;
@@ -60,7 +78,10 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         originalColor = imgBg.color;
         imgIcon.sprite = item.Sprite;
         RectTransform rt = GetComponent<RectTransform>();
-        rt.anchoredPosition = new Vector2(item.Node.X * nodeSize.x, -item.Node.Y * nodeSize.y);
+        if (!isBufferItem)
+        {
+            rt.anchoredPosition = new Vector2(item.Node.X * nodeSize.x, -item.Node.Y * nodeSize.y);
+        }
         rt.sizeDelta = nodeSize;
         this.isGhost = isGhost;
         string ghost = isGhost ? "-Ghost" : "";
@@ -77,6 +98,19 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             stackCounterText.enabled = false;
         }
+        if (!isBufferItem)
+        {
+            imgIcon.transform.localScale = new Vector2(shapeWidth, shapeHeight);
+        }
+    }
+
+    public void Kill()
+    {
+        Destroy(gameObject);
+    }
+    public void Hide()
+    {
+        Destroy(gameObject);
     }
 
     private void Draw()
@@ -87,9 +121,11 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
         shapeParts = new();
         int[,] positions = inventoryItem.Shape.Positions;
-        for (int row = 0; row < positions.GetLength(0); row += 1)
+        shapeHeight = inventoryItem.Shape.Positions.GetLength(0);
+        shapeWidth = inventoryItem.Shape.Positions.GetLength(1);
+        for (int row = 0; row < shapeHeight; row += 1)
         {
-            for (int col = 0; col < positions.GetLength(1); col += 1)
+            for (int col = 0; col < shapeWidth; col += 1)
             {
                 int position = positions[row, col];
                 if (position == 1)
@@ -157,6 +193,22 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void EndDrag()
     {
         isDragging = false;
+        if (UIInventoryManager.main.DisposalIsHovered())
+        {
+            if (isBufferItem)
+            {
+                UIInventoryManager.main.RemoveBufferItem(this);
+            }
+            else
+            {
+
+                UIInventoryManager.main.RemoveItem(this);
+            }
+            InventoryManager.main.RemoveItem(inventoryItem);
+            UIInventoryManager.main.UnhighlightDisposal();
+            UIInventoryManager.main.HideGhost();
+            return;
+        }
         UIInventoryManager.main.HideGhost();
         //Debug.Log($"Lastplacement: {lastPlacement.Success}");
         if (lastPlacement.Success)
@@ -229,6 +281,10 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         transform.position = Input.mousePosition + new Vector3(dragOffset.x, dragOffset.y, 0f);
         Vector2 moveDelta = (Vector2)transform.position - positionAtDragStart;
         lastPlacement = UIInventoryManager.main.ShowGhost(this);
+        if (UIInventoryManager.main.DisposalIsHovered())
+        {
+            UIInventoryManager.main.HighlightDisposal();
+        }
 
         //Debug.Log(moveDelta);
     }

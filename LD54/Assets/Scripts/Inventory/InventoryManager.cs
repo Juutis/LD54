@@ -37,27 +37,12 @@ public class InventoryManager : MonoBehaviour
 
     private void InitInventory()
     {
-        List<Vector2Int> openSlots = new() {
-            new Vector2Int(2, 2),
-            new Vector2Int(2, 3),
-            new Vector2Int(2, 4),
-            new Vector2Int(3, 2),
-            new Vector2Int(3, 3),
-            new Vector2Int(3, 4),
-            new Vector2Int(4, 2),
-            new Vector2Int(4, 3),
-            new Vector2Int(4, 4),
-            //
-            new Vector2Int(6, 2),
-            new Vector2Int(6, 3),
-            new Vector2Int(6, 4),
-            new Vector2Int(7, 2),
-            new Vector2Int(7, 3),
-            new Vector2Int(7, 4),
-            new Vector2Int(8, 2),
-            new Vector2Int(8, 3),
-            new Vector2Int(8, 4),
-        };
+        List<Vector2Int> openSlots = new();
+        for (var i = 0; i < 30; i++) {
+            for (var j = 0; j < 15; j++) {
+                openSlots.Add(new Vector2Int(i, j));
+            }
+        }
         inventory = new ItemInventory(width, height, emptyInventorySlotCharacter, lockedInventorySlotCharacter, itemCharacters, openSlots);
         inventoryDebug = inventory.ToString();
     }
@@ -102,6 +87,10 @@ public class InventoryManager : MonoBehaviour
     public bool AddItem(LootItemData lootData)
     {
         return inventory.AddItem(lootData);
+    }
+    public void RemoveItem(InventoryItem item)
+    {
+        inventory.RemoveItem(item);
     }
 
     public void UpdateDebug()

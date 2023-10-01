@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Wizardhat
   m_EditorClassIdentifier: 
   Tier: 0
-  LootName: Ring
+  LootName: Pointy Hat
   BasePrice: 0.1
   Sprites:
   - {fileID: 21300000, guid: 2165978eb509d8741bf789bd5d5643c9, type: 3}
-  Shape: 1
+  Shape: 2

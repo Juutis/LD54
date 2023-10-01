@@ -26,7 +26,7 @@ public class UIInventoryGrid : MonoBehaviour
     [SerializeField]
     private UIInventoryItem uiInventoryItemGhost;
 
-    public void Initialize(int columns, int rows)
+    public Vector2 Initialize(int columns, int rows)
     {
         nodes = new();
         items = new();
@@ -45,6 +45,7 @@ public class UIInventoryGrid : MonoBehaviour
                 nodes.Add(node);
             }
         }
+        return nodeSize;
     }
 
     public void HideGhost()
@@ -61,7 +62,14 @@ public class UIInventoryGrid : MonoBehaviour
             if (!uiInventoryItemGhost.gameObject.activeSelf)
             {
                 uiInventoryItemGhost.gameObject.SetActive(true);
-                uiInventoryItemGhost.Initialize(uiInventoryItem.InventoryItem, nodeSize, true);
+                if (uiInventoryItem.IsBufferItem)
+                {
+                    uiInventoryItemGhost.InitializeAsBufferItem(uiInventoryItem.InventoryItem, nodeSize, true);
+                }
+                else
+                {
+                    uiInventoryItemGhost.Initialize(uiInventoryItem.InventoryItem, nodeSize, true);
+                }
             }
             ItemPlacement placement = InventoryManager.main.GetItemPlacement(uiInventoryItem.InventoryItem, closestNode.Y, closestNode.X, false);
             uiInventoryItemGhost.transform.position = closestNode.transform.position;

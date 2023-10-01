@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using System.Linq;
 
 public enum InventoryShapeType
 {
     Single,
     Square2x2,
+    AlmostSquare3x3,
     Square3x3,
     Square4x4,
     L,
     Donut3x3,
     Row2x1,
     InverseT,
-    Pants
+    Pants,
+    WideTopNarrowBottom3x3,
+    Row3x2WithHole,
+    Cross3x3
 }
 
 public static class InventoryShapes
@@ -33,6 +39,11 @@ public static class InventoryShapes
             {1,1,1},
             {1,1,1}
         }},
+        {InventoryShapeType.AlmostSquare3x3, new int [,] {
+            {0,1,1},
+            {1,1,1},
+            {1,1,1}
+        }},
         {InventoryShapeType.Square4x4, new int [,] {
             {1,1,1,1},
             {1,1,1,1},
@@ -48,29 +59,39 @@ public static class InventoryShapes
             {1,1}
         }},
         {InventoryShapeType.InverseT, new int [,] {
-            {0,1,0,},
-            {0,1,0,},
-            {1,1,1,}
+            {0,0,1,0,0},
+            {0,0,1,0,0},
+            {0,0,1,0,0},
+            {1,0,1,0,1},
+            {1,1,1,1,1}
         }},
         {InventoryShapeType.Pants, new int [,] {
-            {1,1,1,},
-            {1,0,1,},
-            {1,0,1,}
-        }}
+            {1,1,1,1,1},
+            {1,1,1,1,1},
+            {1,1,0,1,1},
+            {1,1,0,1,1},
+            {1,1,0,1,1}
+        }},
+        {InventoryShapeType.WideTopNarrowBottom3x3, new int [,] {
+            {1,1,1},
+            {1,1,1},
+            {0,1,0},
+        }},
+        {InventoryShapeType.Row3x2WithHole, new int [,] {
+            {1,0,1},
+            {1,1,1}
+        }},
+        {InventoryShapeType.Cross3x3, new int [,] {
+            {0,1,0},
+            {1,1,1},
+            {0,1,0},
+        }},
     };
 
-    public static Dictionary<InventoryShapeType, InventoryShape> Shapes = new()
-    {
-        {InventoryShapeType.Single, new InventoryShape(InventoryShapeType.Single)},
-        {InventoryShapeType.L, new InventoryShape(InventoryShapeType.L)},
-        {InventoryShapeType.Square2x2, new InventoryShape(InventoryShapeType.Square2x2)},
-        {InventoryShapeType.Square3x3, new InventoryShape(InventoryShapeType.Square3x3)},
-        {InventoryShapeType.Square4x4, new InventoryShape(InventoryShapeType.Square4x4)},
-        {InventoryShapeType.Donut3x3, new InventoryShape(InventoryShapeType.Donut3x3)},
-        {InventoryShapeType.Row2x1, new InventoryShape(InventoryShapeType.Row2x1)},
-        {InventoryShapeType.InverseT, new InventoryShape(InventoryShapeType.InverseT)},
-        {InventoryShapeType.Pants, new InventoryShape(InventoryShapeType.Pants)},
-    };
+    public static Dictionary<InventoryShapeType, InventoryShape> Shapes =
+        Enum.GetValues(typeof(InventoryShapeType))
+        .OfType<InventoryShapeType>()
+        .ToDictionary(it => it, it => new InventoryShape(it));
 }
 
 public class InventoryShape

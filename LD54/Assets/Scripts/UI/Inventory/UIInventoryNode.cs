@@ -24,9 +24,11 @@ public class UIInventoryNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private int y = 0;
     public int X { get { return x; } }
     public int Y { get { return y; } }
+    private bool isBufferNode = false;
 
-    public void Initialize(int row, int col, Vector2 size)
+    public void Initialize(int row, int col, Vector2 size, bool isBufferNode = false)
     {
+        this.isBufferNode = isBufferNode;
         name = $"UINode [Y: {row}][X: {col}]";
         y = row;
         x = col;
@@ -38,23 +40,39 @@ public class UIInventoryNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void Highlight(Color color)
     {
+        if (isBufferNode)
+        {
+            return;
+        }
         imgBg.color = color;
         isHighlighted = true;
     }
     public void Highlight()
     {
+        if (isBufferNode)
+        {
+            return;
+        }
         imgBg.color = highlightColor;
         isHighlighted = true;
     }
 
     public void Unhighlight()
     {
+        if (isBufferNode)
+        {
+            return;
+        }
         imgBg.color = originalColor;
         isHighlighted = false;
     }
 
     public void Open()
     {
+        if (isBufferNode)
+        {
+            return;
+        }
         imgBg.color = openColor;
         originalColor = imgBg.color;
     }
@@ -67,10 +85,18 @@ public class UIInventoryNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
+        if (isBufferNode)
+        {
+            return;
+        }
         Highlight();
     }
     public void OnPointerExit(PointerEventData pointerEventData)
     {
+        if (isBufferNode)
+        {
+            return;
+        }
         Unhighlight();
     }
 }
