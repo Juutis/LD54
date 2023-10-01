@@ -25,6 +25,9 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private Color ghostIconColor;
     private Color originalColor;
 
+    [SerializeField]
+    private Text stackCounterText;
+
     private InventoryItem inventoryItem;
 
     public InventoryItem InventoryItem { get { return inventoryItem; } }
@@ -67,6 +70,12 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             imgBg.color = ghostBgColor;
             imgIcon.color = ghostIconColor;
+            stackCounterText.enabled = false;
+        }
+
+        if (item.Shape.ShapeType != InventoryShapeType.Single)
+        {
+            stackCounterText.enabled = false;
         }
     }
 
@@ -149,10 +158,10 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         isDragging = false;
         UIInventoryManager.main.HideGhost();
-        Debug.Log($"Lastplacement: {lastPlacement.Success}");
+        //Debug.Log($"Lastplacement: {lastPlacement.Success}");
         if (lastPlacement.Success)
         {
-            Debug.Log($"Lastplacement: {lastPlacement.Success} ({lastPlacement.Nodes.First()})");
+            //Debug.Log($"Lastplacement: {lastPlacement.Success} ({lastPlacement.Nodes.First()})");
             UIInventoryManager.main.RemoveItem(this);
             InventoryManager.main.MoveItem(inventoryItem, lastPlacement);
         }
@@ -211,6 +220,8 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             HandleDragging();
         }
+
+        stackCounterText.text = $"x{inventoryItem.StackCount}";
     }
 
     void HandleDragging()
