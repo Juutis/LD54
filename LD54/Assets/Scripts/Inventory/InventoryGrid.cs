@@ -172,7 +172,7 @@ public class InventoryGrid
         return true;
     }
 
-    private void RemoveItem(InventoryItem item)
+    public void RemoveItem(InventoryItem item)
     {
         foreach (InventoryNode node in item.Nodes)
         {

@@ -72,6 +72,10 @@ public class InventoryManager : MonoBehaviour
     {
         return inventory.AddItem(lootData);
     }
+    public void RemoveItem(InventoryItem item)
+    {
+        inventory.RemoveItem(item);
+    }
 
     public void UpdateDebug()
     {

@@ -69,6 +69,12 @@ public class ItemInventory
 
     }
 
+    public void RemoveItem(InventoryItem item)
+    {
+        inventoryItems.Remove(item);
+        grid.RemoveItem(item);
+    }
+
     public bool AddItem(LootItemData lootData)
     {
         InventoryItem item = CreateItem(lootData);

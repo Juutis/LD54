@@ -193,6 +193,22 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void EndDrag()
     {
         isDragging = false;
+        if (UIInventoryManager.main.DisposalIsHovered())
+        {
+            if (isBufferItem)
+            {
+                UIInventoryManager.main.RemoveBufferItem(this);
+            }
+            else
+            {
+
+                UIInventoryManager.main.RemoveItem(this);
+            }
+            InventoryManager.main.RemoveItem(inventoryItem);
+            UIInventoryManager.main.UnhighlightDisposal();
+            UIInventoryManager.main.HideGhost();
+            return;
+        }
         UIInventoryManager.main.HideGhost();
         //Debug.Log($"Lastplacement: {lastPlacement.Success}");
         if (lastPlacement.Success)
@@ -265,6 +281,10 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         transform.position = Input.mousePosition + new Vector3(dragOffset.x, dragOffset.y, 0f);
         Vector2 moveDelta = (Vector2)transform.position - positionAtDragStart;
         lastPlacement = UIInventoryManager.main.ShowGhost(this);
+        if (UIInventoryManager.main.DisposalIsHovered())
+        {
+            UIInventoryManager.main.HighlightDisposal();
+        }
 
         //Debug.Log(moveDelta);
     }
