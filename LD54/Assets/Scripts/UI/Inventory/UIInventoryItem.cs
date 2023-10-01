@@ -25,9 +25,6 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private Color ghostIconColor;
     private Color originalColor;
 
-    [SerializeField]
-    private float pixelSize = 64;
-
     private InventoryItem inventoryItem;
 
     public InventoryItem InventoryItem { get { return inventoryItem; } }
@@ -51,13 +48,17 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private ItemPlacement lastPlacement;
 
-    public void Initialize(InventoryItem item, bool isGhost = false)
+    private Vector2 nodeSize;
+
+    public void Initialize(InventoryItem item, Vector2 nodeSize, bool isGhost = false)
     {
+        this.nodeSize = nodeSize;
         inventoryItem = item;
         originalColor = imgBg.color;
         imgIcon.sprite = item.Sprite;
         RectTransform rt = GetComponent<RectTransform>();
-        rt.anchoredPosition = new Vector2(item.Node.X * pixelSize, -item.Node.Y * pixelSize);
+        rt.anchoredPosition = new Vector2(item.Node.X * nodeSize.x, -item.Node.Y * nodeSize.y);
+        rt.sizeDelta = nodeSize;
         this.isGhost = isGhost;
         string ghost = isGhost ? "-Ghost" : "";
         name = $"UI-Item{ghost} {item}";
@@ -87,21 +88,18 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
                     UIInventoryItemShapePart shapePart = Instantiate(shapePartPrefab, shapePartContainer);
                     if (isGhost)
                     {
-                        shapePart.Initialize(placeableColor);
+                        shapePart.Initialize(placeableColor, nodeSize);
                     }
                     else
                     {
-                        shapePart.Initialize(inventoryItem.Color);
+                        shapePart.Initialize(inventoryItem.Color, nodeSize);
 
                     }
-                    shapePart.transform.localPosition = new Vector2(col * pixelSize, -row * pixelSize);
+                    shapePart.transform.localPosition = new Vector2(col * nodeSize.x, -row * nodeSize.y);
                     shapeParts.Add(shapePart);
                 }
             }
-
         }
-        //RectTransform rt = GetComponent<RectTransform>();
-        //rt.sizeDelta = new Vector2(width * pixelSize, height * pixelSize);
     }
 
     public void Highlight()

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class UIInventoryGrid : MonoBehaviour
 {
@@ -15,22 +17,70 @@ public class UIInventoryGrid : MonoBehaviour
     private Transform nodeContainer;
     [SerializeField]
     private Transform itemContainer;
+    private Vector2 nodeSize;
 
-    public void Initialize(int width, int height)
+    [SerializeField]
+    private GridLayoutGroup grid;
+
+
+    [SerializeField]
+    private UIInventoryItem uiInventoryItemGhost;
+
+    public void Initialize(int columns, int rows)
     {
         nodes = new();
         items = new();
-        for (int row = 0; row < height; row += 1)
+        RectTransform rt = GetComponent<RectTransform>();
+        float width = rt.rect.width;
+        float height = rt.rect.height;
+        nodeSize = new(width / columns, height / rows);
+        grid.cellSize = nodeSize;
+        for (int row = 0; row < rows; row += 1)
         {
-            for (int col = 0; col < width; col += 1)
+            for (int col = 0; col < columns; col += 1)
             {
 
                 UIInventoryNode node = Instantiate(nodePrefab, nodeContainer);
-                node.Initialize(row, col);
+                node.Initialize(row, col, nodeSize);
                 nodes.Add(node);
             }
         }
     }
+
+    public void HideGhost()
+    {
+        uiInventoryItemGhost.gameObject.SetActive(false);
+    }
+
+    public ItemPlacement ShowGhost(UIInventoryItem uiInventoryItem)
+    {
+        UIInventoryNode closestNode = ClosestNode((Vector2)uiInventoryItem.transform.position);
+        if (closestNode != null)
+        {
+            //closestNode.Highlight(Color.magenta);
+            if (!uiInventoryItemGhost.gameObject.activeSelf)
+            {
+                uiInventoryItemGhost.gameObject.SetActive(true);
+                uiInventoryItemGhost.Initialize(uiInventoryItem.InventoryItem, nodeSize, true);
+            }
+            ItemPlacement placement = InventoryManager.main.GetItemPlacement(uiInventoryItem.InventoryItem, closestNode.Y, closestNode.X);
+            uiInventoryItemGhost.transform.position = closestNode.transform.position;
+            if (!placement.Success)
+            {
+                uiInventoryItemGhost.HighlightAsBlocked();
+            }
+            else
+            {
+                uiInventoryItemGhost.HighlightAsPlaceable();
+                return placement;
+            }
+        }
+        return new ItemPlacement
+        {
+            Success = false
+        };
+    }
+
     public void AddItem(InventoryItem inventoryItem)
     {
         UIInventoryNode node = nodes.Where(node => node != null && node.X == inventoryItem.Node.X && node.Y == inventoryItem.Node.Y).FirstOrDefault();
@@ -41,7 +91,7 @@ public class UIInventoryGrid : MonoBehaviour
         }
         //Debug.Log($"Node: {node} ({node.transform.position}) ");
         UIInventoryItem uiItem = Instantiate(itemPrefab, itemContainer);
-        uiItem.Initialize(inventoryItem);
+        uiItem.Initialize(inventoryItem, nodeSize);
         //Debug.Log($"{uiItem.transform.position}");
         items.Add(uiItem);
     }
