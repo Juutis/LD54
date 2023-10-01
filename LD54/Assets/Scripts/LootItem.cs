@@ -1,17 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LootItem : MonoBehaviour
 {
     private LootItemData lootData;
+    private SpriteRenderer spriteRenderer;
+    private bool thrown = false;
+    private float lerp_t = 0f;
+    private Transform start;
+    private Transform end;
 
     public LootItemData LootData { get { return lootData; } }
 
     public void Initialize(LootItemData data)
     {
         lootData = data;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Start is called before the first frame update
@@ -23,7 +30,36 @@ public class LootItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (thrown)
+        {
+            lerp_t += Time.deltaTime * 1f;
+            lerp_t = Mathf.Min(lerp_t, 1f);
+            float lerp_t2 = lerp_t * lerp_t;
 
+            transform.position = new Vector2(
+                Mathf.Lerp(start.position.x, end.position.x, lerp_t),
+                Mathf.LerpUnclamped(start.position.y, end.position.y, 1f - 8f * (0.625f * lerp_t2 - 0.5f * lerp_t))
+            );
+
+            transform.localScale = new Vector2(
+                Mathf.Lerp(0.5f, 0.75f, lerp_t),
+                Mathf.Lerp(0.5f, 0.75f, lerp_t)
+            );
+
+            if (Mathf.Approximately(lerp_t, 1) || lerp_t > 1)
+            {
+                spriteRenderer.enabled = false;
+            }
+        }
+    }
+
+    public void Throw(Transform start, Transform end)
+    {
+        spriteRenderer.enabled = true;
+        spriteRenderer.sprite = lootData.Sprite;
+        this.start = start;
+        this.end = end;
+        this.thrown = true;
     }
 }
 

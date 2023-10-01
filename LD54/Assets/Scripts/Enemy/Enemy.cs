@@ -44,6 +44,8 @@ public class Enemy : MonoBehaviour
         }
 
         LootItem item = lootItems.Last();
+        item.transform.position = transform.position;
+        item.Throw(transform, ScrollingWorld.Instance.GetSquire());
         item.transform.parent = null;
         InventoryManager.main.AddItem(item.LootData);
         lootItems.Remove(item);

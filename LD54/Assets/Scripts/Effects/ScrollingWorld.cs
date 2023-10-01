@@ -63,4 +63,9 @@ public class ScrollingWorld : MonoBehaviour
         backgrounds.ForEach(it => it.Pause(pause));
         outro = true;
     }
+
+    public Transform GetSquire()
+    {
+        return characters.OrderBy(x => x.transform.position.x).FirstOrDefault().transform;
+    }
 }
