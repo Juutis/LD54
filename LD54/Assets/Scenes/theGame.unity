@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emptyInventorySlotCharacter: 9632
+  lockedInventorySlotCharacter: 9617
   itemCharacters: abcdefghijklmnopqrstuvwxyz1234567890
   inventoryDebug: 
   width: 15
