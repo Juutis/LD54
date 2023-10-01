@@ -50,4 +50,9 @@ public class ScrollingWorld : MonoBehaviour
     public void AddScrollingObject(Transform transform) {
         scrollingObjects.Add(transform);
     }
+
+    public Transform GetSquire()
+    {
+        return characters.OrderBy(x => x.transform.position.x).FirstOrDefault().transform;
+    }
 }
