@@ -8,8 +8,10 @@ public class UIInventoryItemShapePart : MonoBehaviour
     [SerializeField]
     private Image imgBg;
 
-    public void Initialize(Color color)
+    public void Initialize(Color color, Vector2 nodeSize)
     {
+        RectTransform rt = GetComponent<RectTransform>();
+        rt.sizeDelta = nodeSize;
         SetColor(color);
     }
 

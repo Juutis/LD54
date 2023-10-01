@@ -25,13 +25,15 @@ public class UIInventoryNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public int X { get { return x; } }
     public int Y { get { return y; } }
 
-    public void Initialize(int row, int col)
+    public void Initialize(int row, int col, Vector2 size)
     {
         name = $"UINode [Y: {row}][X: {col}]";
         y = row;
         x = col;
         imgBg.color = lockedColor;
         originalColor = imgBg.color;
+        RectTransform rt = GetComponent<RectTransform>();
+        rt.sizeDelta = size;
     }
 
     public void Highlight(Color color)
