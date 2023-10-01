@@ -17,7 +17,9 @@ public enum InventoryShapeType
     Pants,
     WideTopNarrowBottom3x3,
     Row3x2WithHole,
-    Cross3x3
+    Cross3x3,
+    InverseL,
+    Triangle
 }
 
 public static class InventoryShapes
@@ -26,8 +28,8 @@ public static class InventoryShapes
     {
         {InventoryShapeType.Single, new int [,] {{1}}},
         {InventoryShapeType.L, new int [,] {
-            {1,0},
-            {1,0},
+            {0,1},
+            {0,1},
             {1,1}
         }},
         {InventoryShapeType.Square2x2, new int [,] {
@@ -60,7 +62,7 @@ public static class InventoryShapes
         }},
         {InventoryShapeType.InverseT, new int [,] {
             {0,0,1,0,0},
-            {0,0,1,0,0},
+            {0,1,1,1,0},
             {0,0,1,0,0},
             {1,0,1,0,1},
             {1,1,1,1,1}
@@ -85,6 +87,15 @@ public static class InventoryShapes
             {0,1,0},
             {1,1,1},
             {0,1,0},
+        }},
+        {InventoryShapeType.InverseL, new int [,] {
+            {1,1},
+            {1,0},
+        }},
+        {InventoryShapeType.Triangle, new int [,] {
+            {1,1,1},
+            {1,1,0},
+            {1,0,0},
         }},
     };
 
