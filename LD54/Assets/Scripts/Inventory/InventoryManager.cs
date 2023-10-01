@@ -38,8 +38,10 @@ public class InventoryManager : MonoBehaviour
     private void InitInventory()
     {
         List<Vector2Int> openSlots = new();
-        for (var i = 0; i < 30; i++) {
-            for (var j = 0; j < 15; j++) {
+        for (var i = 0; i < 30; i++)
+        {
+            for (var j = 0; j < 15; j++)
+            {
                 openSlots.Add(new Vector2Int(i, j));
             }
         }
@@ -47,9 +49,21 @@ public class InventoryManager : MonoBehaviour
         inventoryDebug = inventory.ToString();
     }
 
-    public void UpdateInventory()
+    public void InventoryUpgrade(UpgradeConfig upgrade)
     {
-        List<RectInt> openAreas = upgradeConfig.InventoryAreas;
+        if (upgrade.Type == UpgradeType.Inventory)
+        {
+            UpgradeInventorySize(upgrade);
+        }
+        else if (upgrade.Type == UpgradeType.Buffer)
+        {
+            UIInventoryManager.main.BufferSizeUpgrade(upgrade);
+        }
+    }
+
+    private void UpgradeInventorySize(UpgradeConfig upgrade)
+    {
+        List<RectInt> openAreas = upgrade.InventoryAreas;
         List<Vector2Int> openSlots = new();
         for (int x = 0; x < width; x++)
         {
@@ -70,7 +84,6 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        Debug.Log($"Opened slots: {string.Join(',', openSlots.Select(x => $"({x.x}, {x.y})"))}");
         inventory.SetOpenSlots(openSlots);
     }
 
@@ -104,9 +117,5 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            UpdateInventory();
-        }
     }
 }
