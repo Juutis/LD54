@@ -24,8 +24,9 @@ public class ItemInventory
     {
         inventoryItems = new();
         grid = new InventoryGrid(width, height, emptyChar);
+        Sprite sprite = UIInventoryManager.main.PLACEHOLDER_SPRITE;
 
-        InventoryItem ring = CreateItem("Ring", InventoryShapeType.Single);
+        /*InventoryItem ring = CreateItem("Ring", InventoryShapeType.Single);
         InventoryItem lStick = CreateItem("LStick", InventoryShapeType.L);
         InventoryItem box = CreateItem("Box", InventoryShapeType.Square2x2);
         InventoryItem bigBox = CreateItem("BigBox", InventoryShapeType.Square4x4);
@@ -42,6 +43,15 @@ public class ItemInventory
         UIInventoryManager.main.AddItem(bigBox);
         grid.InsertItemRandomly(donut);
         UIInventoryManager.main.AddItem(donut);
+        */
+    }
+
+    public bool AddItem(LootItemData lootData)
+    {
+        InventoryItem item = CreateItem(lootData.LootConfig.LootName, InventoryShapeType.Single, lootData.LootConfig.Sprites[0]);
+        grid.InsertItemRandomly(item);
+        UIInventoryManager.main.AddItem(item);
+        return false;
     }
 
     public ItemPlacement GetItemPlacement(InventoryItem item, int startY, int startX)
@@ -49,10 +59,10 @@ public class ItemInventory
         return grid.GetItemPlacement(item, startY, startX);
     }
 
-    public InventoryItem CreateItem(string name, InventoryShapeType shapeType)
+    public InventoryItem CreateItem(string name, InventoryShapeType shapeType, Sprite sprite)
     {
         ItemIdentity identity = new(name, itemCharacterSet[itemIndex], itemIndex);
-        InventoryItem inventoryItem = new(InventoryShapes.Shapes[shapeType], identity, UIInventoryManager.main.PLACEHOLDER_SPRITE);
+        InventoryItem inventoryItem = new(InventoryShapes.Shapes[shapeType], identity, sprite);
         itemIndex += 1;
         inventoryItems.Add(inventoryItem);
         return inventoryItem;

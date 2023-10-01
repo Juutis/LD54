@@ -45,6 +45,7 @@ public class Enemy : MonoBehaviour
 
         LootItem item = lootItems.Last();
         item.transform.parent = null;
+        InventoryManager.main.AddItem(item.LootData);
         lootItems.Remove(item);
         return true;
     }

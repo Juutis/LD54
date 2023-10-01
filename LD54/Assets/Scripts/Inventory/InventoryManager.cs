@@ -44,6 +44,11 @@ public class InventoryManager : MonoBehaviour
         return inventory.GetItemPlacement(item, startY, startX);
     }
 
+    public bool AddItem(LootItemData lootData)
+    {
+        return inventory.AddItem(lootData);
+    }
+
     public void UpdateDebug()
     {
         if (inventory == null)
