@@ -132,7 +132,7 @@ public class InventoryGrid
             placementNode.SetItem(item);
         }
         item.SetStartNode(startingNode);
-
+        InventoryManager.main.UpdateDebug();
         return true;
     }
 
@@ -142,6 +142,7 @@ public class InventoryGrid
         {
             node.Clear();
         }
+        item.Nodes.Clear();
     }
 
     public override string ToString()

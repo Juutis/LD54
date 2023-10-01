@@ -44,11 +44,17 @@ public class InventoryManager : MonoBehaviour
         return inventory.GetItemPlacement(item, startY, startX);
     }
 
+    public void UpdateDebug()
+    {
+        if (inventory == null)
+        {
+            return;
+        }
+        inventoryDebug = inventory.ToString();
+    }
+
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            InitInventory();
-        }
+
     }
 }
