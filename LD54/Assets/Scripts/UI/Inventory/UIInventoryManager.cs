@@ -30,6 +30,9 @@ public class UIInventoryManager : MonoBehaviour
 
     private bool showingGhost = false;
 
+    private bool stackAllButtonEnabled = false;
+    private bool junkRemoveButtonEnabled = false;
+
     private void Initialize()
     {
         Vector2 nodeSize = uiInventoryGrid.Initialize(columns, rows);
@@ -133,5 +136,25 @@ public class UIInventoryManager : MonoBehaviour
     public void DeleteItem(InventoryItem item)
     {
         uiInventoryGrid.DeleteItem(item);
+    }
+
+    public void EnableJunkRemoveButton()
+    {
+        junkRemoveButtonEnabled = true;
+    }
+
+    public bool IsJunkRemoveButtonVisible()
+    {
+        return junkRemoveButtonEnabled;
+    }
+
+    public void EnableStackAllButton()
+    {
+        stackAllButtonEnabled = true;
+    }
+
+    public bool IsStackAllButtonVisible()
+    {
+        return stackAllButtonEnabled;
     }
 }
