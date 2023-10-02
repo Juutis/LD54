@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: InvUpg 2
   m_EditorClassIdentifier: 
   Type: 0
-  Price: 1
+  Price: 10
   Requirements:
   - {fileID: 11400000, guid: eac279e10caf965409f0eaf99edaf5c8, type: 2}
   InventoryAreas:

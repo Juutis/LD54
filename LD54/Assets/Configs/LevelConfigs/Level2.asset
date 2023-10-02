@@ -24,7 +24,7 @@ MonoBehaviour:
     Weight: 10
   RarityDropRates:
   - Rarity: 0
-    Weight: 10
+    Weight: 15
   - Rarity: 1
     Weight: 5
   - Rarity: 2
