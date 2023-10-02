@@ -28,6 +28,8 @@ public class UIInventoryManager : MonoBehaviour
     [SerializeField]
     private int bufferSize = 5;
 
+    private bool showingGhost = false;
+
     private void Initialize()
     {
         Vector2 nodeSize = uiInventoryGrid.Initialize(columns, rows);
@@ -43,6 +45,7 @@ public class UIInventoryManager : MonoBehaviour
 
     public ItemPlacement ShowGhost(UIInventoryItem uiInventoryItem)
     {
+        showingGhost = true;
         return uiInventoryGrid.ShowGhost(uiInventoryItem);
     }
 
@@ -58,6 +61,7 @@ public class UIInventoryManager : MonoBehaviour
 
     public void HideGhost()
     {
+        showingGhost = false;
         uiInventoryGrid.HideGhost();
     }
 
@@ -109,5 +113,10 @@ public class UIInventoryManager : MonoBehaviour
     public void ShowTooltip(InventoryItem item, string lore, string price)
     {
         uiItemTooltip.Show(item, lore, price);
+    }
+
+    public bool IsShowingGhost()
+    {
+        return showingGhost;
     }
 }

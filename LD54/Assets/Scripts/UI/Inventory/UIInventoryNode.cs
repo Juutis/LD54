@@ -49,7 +49,7 @@ public class UIInventoryNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
     }
     public void Highlight()
     {
-        if (isBufferNode)
+        if (isBufferNode || UIInventoryManager.main.IsShowingGhost())
         {
             return;
         }
