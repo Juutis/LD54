@@ -19,7 +19,8 @@ public enum InventoryShapeType
     Row3x2WithHole,
     Cross3x3,
     InverseL,
-    Triangle
+    Triangle,
+    Row1x2
 }
 
 public static class InventoryShapes
@@ -96,6 +97,10 @@ public static class InventoryShapes
             {1,1,1},
             {1,1,0},
             {1,0,0},
+        }},
+        {InventoryShapeType.Row1x2, new int [,] {
+            {1},
+            {1},
         }},
     };
 
