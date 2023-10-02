@@ -47,3 +47,4 @@ MonoBehaviour:
     Count: 4
   - Enemy: {fileID: 8287582213028744936, guid: 25d9d0975549ea4419a6e2b9132cd42d, type: 3}
     Count: 5
+  TargetGold: 50

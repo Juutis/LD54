@@ -14,6 +14,7 @@ public class LevelConfig : ScriptableObject
     public int EnemyMinItems;
     public int EnemyMaxItems;
     public List<EncounterCount> EncounterCounts;
+    public int TargetGold;
 
     private List<Enemy> getEnemies() {
         var enemies = new List<Enemy>();

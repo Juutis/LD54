@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     private List<LevelConfig> levelConfigs;
 
     private int currentLevelNum = 0;
-    private LevelConfig currentLevel;
+    public LevelConfig currentLevel;
 
     private bool isLoaded = false;
 
@@ -160,9 +160,15 @@ public class GameManager : MonoBehaviour
         Debug.Log("LEVEL FINISHED!");
         UIShop.main.Show(delegate
         {
-            Debug.Log("Shop closed.");
+            Debug.Log("Shop closed. Loading next level.");
             ScrollingWorld.Instance.Reset();
             currentLevelNum += 1;
+            LoadLevel();
+        },
+        delegate
+        {
+            Debug.Log("Shop closed. Retrying previous level.");
+            ScrollingWorld.Instance.Reset();
             LoadLevel();
         });
     }

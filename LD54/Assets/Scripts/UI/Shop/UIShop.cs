@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public delegate void Callback();
 public class UIShop : MonoBehaviour
@@ -16,6 +18,7 @@ public class UIShop : MonoBehaviour
     [SerializeField]
     private Animator animator;
     Callback shopFinished;
+    Callback retry;
 
     [SerializeField]
     private Transform container;
@@ -33,20 +36,42 @@ public class UIShop : MonoBehaviour
     private bool isShown = false;
     private bool itemsSold = false;
 
-    public void Show(Callback afterFinish)
+    [SerializeField]
+    private Button nextQuestButton;
+    [SerializeField]
+    private Button retryQuestButton;
+    [SerializeField]
+    private GameObject nextQuestRequirementNotification;
+    [SerializeField]
+    private TMP_Text nextQuestRequirementText;
+
+    public void Show(Callback afterFinish, Callback retry)
     {
         itemsSold = false;
         Time.timeScale = 0f;
         container.gameObject.SetActive(true);
         shopFinished = afterFinish;
+        this.retry = retry;
         animator.SetTrigger("Show");
         MusicManager.main.SwitchMusic(true);
     }
 
     public void Hide()
     {
+        nextQuestRequirementNotification.SetActive(false);
         animator.SetTrigger("Hide");
+        retryPrevious = false;
     }
+
+    private bool retryPrevious = false;
+
+    public void RetryPrevious()
+    {
+        nextQuestRequirementNotification.SetActive(false);
+        animator.SetTrigger("Hide");
+        retryPrevious = true;
+    }
+
 
     public void AnimationCallShowFinish()
     {
@@ -58,14 +83,17 @@ public class UIShop : MonoBehaviour
         Time.timeScale = 1f;
         isShown = false;
         container.gameObject.SetActive(false);
-        shopFinished();
+        if (retryPrevious) {
+            retry();
+        } else {
+            shopFinished();
+        }
         MusicManager.main.SwitchMusic(false);
     }
     public void AnimationCallHideSellOverlayFinish()
     {
         itemsSold = true;
     }
-
 
     public void SellInventory()
     {
@@ -85,6 +113,16 @@ public class UIShop : MonoBehaviour
         int gainedGold = Mathf.FloorToInt(inventoryValue);
         UpdateGold(gainedGold);
         animator.SetTrigger("HideSellOverlay");
+
+        var goldRequirement = GameManager.Main.currentLevel.TargetGold;
+        if (gainedGold >= goldRequirement) {
+            nextQuestButton.interactable = true;
+            nextQuestRequirementNotification.SetActive(false);
+        } else {
+            nextQuestButton.interactable = false;
+            nextQuestRequirementNotification.SetActive(true);
+            nextQuestRequirementText.text = "You gained " + gainedGold + " gold.\nGain at least " + goldRequirement + " gold in a single run to unlock the next quest.";
+        }
     }
 
     public void BuyUpgrade(UpgradeConfig upgrade)
@@ -153,6 +191,9 @@ public class UIShop : MonoBehaviour
                 Show(delegate
                 {
                     Debug.Log("Shop closed");
+                },delegate
+                {
+                    Debug.Log("Retry previous");
                 });
             }
             else
