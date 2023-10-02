@@ -23,6 +23,10 @@ public class UIItemBuffer : MonoBehaviour
     private GridLayoutGroup grid;
     Vector2 nodeSize;
     int size = 5;
+
+    [SerializeField]
+    private GameObject graphics;
+
     public void Initialize(int size)
     {
         this.size = size;
@@ -80,12 +84,15 @@ public class UIItemBuffer : MonoBehaviour
     {
         if (size == 0)
         {
+            graphics.SetActive(false);
             return;
         }
         else if (size <= this.size)
         {
+            graphics.SetActive(true);
             return;
         }
+        graphics.SetActive(true);
 
         int added = size - this.size;
         this.size = size;

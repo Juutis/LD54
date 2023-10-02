@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BufUpg 1
   m_EditorClassIdentifier: 
   Type: 1
-  Price: 100
+  Price: 1
   Requirements:
   - {fileID: 11400000, guid: d1eb9c184b7096240864b70e0550862b, type: 2}
   InventoryAreas:
@@ -21,7 +21,7 @@ MonoBehaviour:
     y: 2
     width: 2
     height: 2
-  BufferLength: 3
-  Title: 
-  Description: 
-  FlavorText: 
+  BufferLength: 1
+  Title: Handsfree backpack straps
+  Description: Free your hands and carry an extra item in your hands.
+  FlavorText: Who knew you could, you know, grab and carry things. Genius!
