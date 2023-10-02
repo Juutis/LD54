@@ -96,7 +96,7 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
             stackCounterText.enabled = false;
         }
 
-        if (item.Shape.ShapeType != InventoryShapeType.Single)
+        if (!item.Stackable)
         {
             stackCounterText.enabled = false;
         }
