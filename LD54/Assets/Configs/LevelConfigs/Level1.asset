@@ -18,7 +18,7 @@ MonoBehaviour:
     Tier: 0
     Percentage: 80
   - Rarity: 0
-    Tier: 2
+    Tier: 1
     Percentage: 20
   ItemAmount: 24
   Encounters:

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f2b985d15e4e847bf87171c74378f1, type: 3}
   m_Name: LeatherPants
   m_EditorClassIdentifier: 
-  Tier: 0
+  Tier: 3
   LootName: Leather Pants
+  Lore: 
   BasePrice: 0.1
   Sprites:
   - {fileID: 21300000, guid: 46da03b328738364e88b0e327f4fa805, type: 3}

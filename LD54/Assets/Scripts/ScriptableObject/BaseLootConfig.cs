@@ -18,7 +18,10 @@ public class BaseLootConfig : ScriptableObject
 public enum ItemTier
 {
     Junk,
-    Potion,
-    Gem,
-    Other
+    Normal,
+    Valuable,
+    Huge,
+    LargeValuable,
+    SlightlyLarger,
+    LargeJunk
 }
