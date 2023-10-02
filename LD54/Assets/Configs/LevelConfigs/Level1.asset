@@ -18,7 +18,13 @@ MonoBehaviour:
     Weight: 10
   - Tier: 1
     Weight: 10
-  RarityDropRates: []
+  RarityDropRates:
+  - Rarity: 0
+    Weight: 10
+  - Rarity: 1
+    Weight: 5
+  - Rarity: 2
+    Weight: 1
   ItemAmount: 24
   EnemyMinItems: 3
   EnemyMaxItems: 7
