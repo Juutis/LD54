@@ -201,14 +201,13 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log($"You have {inventory.GetInventoryPrice()} monies");
-        if (Input.GetKeyDown(KeyCode.L) || autoStacker)
-        {
-            inventory.StackSingles();
-        }
-        else if (Input.GetKeyDown(KeyCode.K) || autoJunkRemoval)
-        {
-            inventory.DeleteJunk();
-        }
+    }
+
+    public void StackSingles() {
+        inventory.StackSingles();
+    }
+
+    public void DeleteJunk() {
+        inventory.DeleteJunk();
     }
 }

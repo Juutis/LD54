@@ -161,4 +161,12 @@ public class UIInventoryManager : MonoBehaviour
     {
         return stackAllButtonEnabled;
     }
+
+    public void StackSingles() {
+        InventoryManager.main.StackSingles();
+    }
+
+    public void DeleteJunk() {
+        InventoryManager.main.DeleteJunk();
+    }
 }
