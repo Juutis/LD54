@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: AutoStacker
   m_EditorClassIdentifier: 
   Type: 3
-  Price: 1500
+  Price: 500
   Requirements:
   - {fileID: 11400000, guid: e78517261003caf44960f94e39177abf, type: 2}
   InventoryAreas: []
   BufferLength: 0
   Title: Auto stacking
-  Description: Stacks small things automagically
-  FlavorText: Magical button works its magic automagically
+  Description: Stacks small things automagically.
+  FlavorText: Magical button works its magic automagically.

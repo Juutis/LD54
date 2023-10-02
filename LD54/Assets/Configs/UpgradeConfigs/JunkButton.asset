@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: JunkButton
   m_EditorClassIdentifier: 
   Type: 4
-  Price: 1500
-  Requirements:
-  - {fileID: 11400000, guid: 8a77b279d95e96e4884f6f51b88619b0, type: 2}
+  Price: 100
+  Requirements: []
   InventoryAreas: []
   BufferLength: 0
   Title: Junk Remove Button
-  Description: A button to remove useless junk
-  FlavorText: A shirt button that has magical properties
+  Description: A button to remove useless junk.
+  FlavorText: A shirt button that has magical properties.

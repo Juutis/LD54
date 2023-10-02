@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: StackButton
   m_EditorClassIdentifier: 
   Type: 2
-  Price: 1500
-  Requirements:
-  - {fileID: 11400000, guid: d1eb9c184b7096240864b70e0550862b, type: 2}
-  - {fileID: 11400000, guid: eac279e10caf965409f0eaf99edaf5c8, type: 2}
+  Price: 100
+  Requirements: []
   InventoryAreas: []
   BufferLength: 0
   Title: Stack All Button
-  Description: A button to stack small items
-  FlavorText: A shirt button that has magical properties
+  Description: A button to stack small items.
+  FlavorText: A shirt button that has magical properties.

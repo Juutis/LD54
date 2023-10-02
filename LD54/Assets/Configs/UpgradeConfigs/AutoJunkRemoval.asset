@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AutoJunkRemoval
   m_EditorClassIdentifier: 
   Type: 5
-  Price: 1500
+  Price: 500
   Requirements:
   - {fileID: 11400000, guid: 194e5aea26763864a8d1695ae111e704, type: 2}
   InventoryAreas: []
