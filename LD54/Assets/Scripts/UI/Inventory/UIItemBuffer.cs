@@ -49,6 +49,11 @@ public class UIItemBuffer : MonoBehaviour
         items.Remove(uiItem);
         uiItem.Hide();
     }
+    public bool CanAdd()
+    {
+        return size > 0;
+    }
+
     public bool AddItem(InventoryItem inventoryItem)
     {
         if (size == 0)

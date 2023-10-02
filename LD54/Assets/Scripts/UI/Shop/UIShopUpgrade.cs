@@ -46,14 +46,15 @@ public class UIShopUpgrade : MonoBehaviour
     {
         textValue.text = $"{upgrade.Price}";
         UpdateStatus();
-        Debug.Log("updateStatus");
+        //        Debug.Log("updateStatus");
         titleText.text = upgrade.Title;
         descriptionText.text = upgrade.Description;
         flavorText.text = upgrade.FlavorText;
         anim = GetComponent<Animator>();
     }
 
-    public void Update() {
+    public void Update()
+    {
         UpdateStatus();
     }
 

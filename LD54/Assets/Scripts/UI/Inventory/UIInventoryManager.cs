@@ -94,6 +94,10 @@ public class UIInventoryManager : MonoBehaviour
     {
         return uiItemBuffer.AddItem(item);
     }
+    public bool CanAddToBuffer()
+    {
+        return uiItemBuffer.CanAdd();
+    }
 
     public void RemoveItem(UIInventoryItem uiInventoryItem)
     {

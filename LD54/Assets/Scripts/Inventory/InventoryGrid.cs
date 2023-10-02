@@ -317,7 +317,7 @@ public class InventoryGrid
 
     public void RemoveItem(InventoryItem item)
     {
-        Debug.Log($"Cleaning up item {item}");
+        //        Debug.Log($"Cleaning up item {item}");
         foreach (InventoryNode node in item.Nodes)
         {
             node.Clear();

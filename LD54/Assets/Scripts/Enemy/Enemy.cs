@@ -67,26 +67,29 @@ public class Enemy : MonoBehaviour
         {
             SoundManager.main.PlaySound(GameSoundType.HeroGrumble);
         }
+        ItemInsertResult insertResult = InventoryManager.main.AddItem(item.LootData);
         item.Throw(transform, ScrollingWorld.Instance.GetSquire(), delegate
         {
-            ItemInsertResult insertResult = InventoryManager.main.AddItem(item.LootData);
-            Debug.Log("Throwing item");
-            if (insertResult == ItemInsertResult.InsertedToInventory)
+            //            Debug.Log("Throwing item");
+            if (insertResult.Result == InsertResult.InsertedToInventory)
             {
                 //Vector2 pos = UIInventoryManager.main.ClosestNode()
                 //UIInventoryManager.main.AnimateThrownItem(item.LootData.Sprite, item.transform.position, );
                 UIInventoryManager.main.AnimateThrownItem(item.LootData.Sprite, UIInventoryManager.main.InventoryThrowTarget.position);
+                insertResult.UICallback();
             }
-            else if (insertResult == ItemInsertResult.InsertedToBuffer)
+            else if (insertResult.Result == InsertResult.InsertedToBuffer)
             {
                 Debug.Log("Throwing item to buffer");
                 UIInventoryManager.main.AnimateThrownItem(item.LootData.Sprite, UIInventoryManager.main.BufferThrowTarget.position);
+                insertResult.UICallback();
             }
-            else if (insertResult == ItemInsertResult.DidNotFitToBuffer)
+            else if (insertResult.Result == InsertResult.DidNotFitToBuffer)
             {
                 Debug.Log("Throwing item to garbage");
                 UIInventoryManager.main.ShowPoppingText("No room!");
                 UIInventoryManager.main.AnimateThrownItem(item.LootData.Sprite, UIInventoryManager.main.GarbageThrowTarget.position);
+                insertResult.UICallback();
             }
         });
         item.transform.parent = null;

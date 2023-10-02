@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ItemInventory
 {
@@ -82,20 +83,40 @@ public class ItemInventory
         if (wasInserted)
         {
             inventoryItems.Add(item);
-            UIInventoryManager.main.AddItem(item);
-            return ItemInsertResult.InsertedToInventory;
+            return new()
+            {
+                Result = InsertResult.InsertedToInventory,
+                UICallback = delegate
+                {
+                    UIInventoryManager.main.AddItem(item);
+                }
+            };
         }
         else
         {
             Debug.Log("No space, put it somewhere else!");
             bufferedItems.Add(item);
-            bool insertedToBuffer = UIInventoryManager.main.AddItemToBuffer(item);
+            bool insertedToBuffer = UIInventoryManager.main.CanAddToBuffer();
             if (insertedToBuffer)
             {
-                return ItemInsertResult.InsertedToBuffer;
+                return new()
+                {
+                    Result = InsertResult.InsertedToBuffer,
+                    UICallback = delegate
+                    {
+                        UIInventoryManager.main.AddItemToBuffer(item);
+                    }
+                };
             }
         }
-        return ItemInsertResult.DidNotFitToBuffer;
+        return new()
+        {
+            Result = InsertResult.DidNotFitToBuffer,
+            UICallback = delegate
+            {
+                //
+            }
+        };
     }
 
     public ItemPlacement GetItemPlacement(InventoryItem item, int startY, int startX, bool forceNoStack = true)
@@ -234,7 +255,13 @@ public class ItemInventory
 
 }
 
-public enum ItemInsertResult
+public struct ItemInsertResult
+{
+    public InsertResult Result;
+    public UnityAction UICallback;
+}
+
+public enum InsertResult
 {
     InsertedToInventory,
     InsertedToBuffer,
