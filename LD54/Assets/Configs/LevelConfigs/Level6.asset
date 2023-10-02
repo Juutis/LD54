@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdb74dcd0bb11ec42b9189056c28f2b6, type: 3}
-  m_Name: Level4
+  m_Name: Level6
   m_EditorClassIdentifier: 
-  LevelName: Level 5
+  LevelName: Level 7
   DropRates:
   - Tier: 0
     Weight: 10
@@ -28,23 +28,25 @@ MonoBehaviour:
     Weight: 1
   - Tier: 4
     Weight: 1
+  - Tier: 3
+    Weight: 5
   RarityDropRates:
   - Rarity: 0
     Weight: 20
   - Rarity: 1
     Weight: 10
   - Rarity: 2
-    Weight: 2
+    Weight: 3
   - Rarity: 3
     Weight: 1
-  ItemAmount: 50
+  ItemAmount: 100
   EnemyMinItems: 3
-  EnemyMaxItems: 7
+  EnemyMaxItems: 10
   EncounterCounts:
   - Enemy: {fileID: 300038784792007239, guid: e0ced71ca777739499a74f946afe6aea, type: 3}
     Count: 5
   - Enemy: {fileID: 8764759191118173614, guid: 272186cfbf18e384486a408808f6e96d, type: 3}
-    Count: 4
+    Count: 5
   - Enemy: {fileID: 8287582213028744936, guid: 25d9d0975549ea4419a6e2b9132cd42d, type: 3}
     Count: 5
-  TargetGold: 100
+  TargetGold: 300
