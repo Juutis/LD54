@@ -227,9 +227,9 @@ public class ItemInventory
     {
         List<InventoryItem> items = grid.GetJunkItems();
 
-        items.ForEach(x => inventoryItems.Remove(x));
-
         items.ForEach(x => UIInventoryManager.main.DeleteItem(x));
+        items.ForEach(x => RemoveItem(x));
+
     }
 
 }
