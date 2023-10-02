@@ -305,7 +305,14 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     void HandleDragging()
     {
-        transform.position = Input.mousePosition + new Vector3(dragOffset.x, dragOffset.y, 0f);
+        if (isBufferItem)
+        {
+            transform.position = Input.mousePosition + new Vector3(-1f, 1f, 0f);
+        }
+        else
+        {
+            transform.position = Input.mousePosition + new Vector3(dragOffset.x, dragOffset.y, 0f);
+        }
         Vector2 moveDelta = (Vector2)transform.position - positionAtDragStart;
         lastPlacement = UIInventoryManager.main.ShowGhost(this);
         if (UIInventoryManager.main.DisposalIsHovered())
