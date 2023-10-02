@@ -15,7 +15,7 @@ MonoBehaviour:
   Tier: 3
   LootName: Leather Pants
   Lore: Who needs these anyway?
-  BasePrice: 80
+  BasePrice: 125
   Sprites:
   - {fileID: 21300000, guid: 46da03b328738364e88b0e327f4fa805, type: 3}
   Shape: 9

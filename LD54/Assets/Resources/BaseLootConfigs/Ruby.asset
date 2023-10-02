@@ -15,7 +15,7 @@ MonoBehaviour:
   Tier: 2
   LootName: Ruby
   Lore: A shiny gem.
-  BasePrice: 50
+  BasePrice: 40
   Sprites:
   - {fileID: 21300000, guid: a869f49a58ad3034aa124cf9aa178e1f, type: 3}
   Shape: 0

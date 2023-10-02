@@ -15,7 +15,7 @@ MonoBehaviour:
   Tier: 4
   LootName: Candles
   Lore: Now if we only had something to light them with.
-  BasePrice: 20
+  BasePrice: 35
   Sprites:
   - {fileID: 21300000, guid: b2372054e6c4b6b469ca96a51ccff691, type: 3}
   Shape: 10

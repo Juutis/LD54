@@ -15,7 +15,7 @@ MonoBehaviour:
   Tier: 5
   LootName: Beast Horns
   Lore: Horns of a marvellous beast.
-  BasePrice: 30
+  BasePrice: 25
   Sprites:
   - {fileID: 21300000, guid: b013539e71796c045ad6aad3ca42ef5f, type: 3}
   Shape: 11
