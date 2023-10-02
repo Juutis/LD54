@@ -89,7 +89,7 @@ public class InventoryItem
 
     public string ItemKey()
     {
-        return $"{this.name};{this.tier.ToString()};{this.rarity.ToString()}";
+        return $"{this.name};{this.tier.ToString()}";
     }
 
     public bool IsStackable(string name, ItemTier tier, LootRarity rarity)
