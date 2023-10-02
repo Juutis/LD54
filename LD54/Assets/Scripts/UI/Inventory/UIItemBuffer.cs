@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using System.Runtime.CompilerServices;
+
 public class UIItemBuffer : MonoBehaviour
 {
     private List<UIInventoryNode> nodes = new();
@@ -48,9 +50,10 @@ public class UIItemBuffer : MonoBehaviour
         UIInventoryItem uiItem = Instantiate(itemPrefab, itemContainer);
         uiItem.InitializeAsBufferItem(inventoryItem, nodeSize);
         items.Add(uiItem);
+        items = items.Where(x => x != null).ToList();
         if (items.Count > size)
         {
-            UIInventoryItem lastItem = items.FirstOrDefault();
+            UIInventoryItem lastItem = items.FirstOrDefault(x => x != null);
             if (lastItem != null)
             {
                 Debug.Log($"Hide {lastItem}");
@@ -64,6 +67,10 @@ public class UIItemBuffer : MonoBehaviour
     {
         foreach (UIInventoryItem item in items)
         {
+            if (item == null)
+            {
+                continue;
+            }
             RectTransform rt = item.GetComponent<RectTransform>();
             rt.SetAsFirstSibling();
         }
