@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: InvUpg 4
   m_EditorClassIdentifier: 
   Type: 0
-  Price: 0
+  Price: 3
   Requirements:
   - {fileID: 11400000, guid: eac279e10caf965409f0eaf99edaf5c8, type: 2}
   - {fileID: 11400000, guid: 9a6e105c52ad1d244823d12a4a4e3974, type: 2}
+  - {fileID: 11400000, guid: b8494b5c547a0b84db3b2d31f0ea9ef2, type: 2}
   InventoryAreas:
   - x: 7
     y: 0
@@ -35,3 +36,6 @@ MonoBehaviour:
     width: 15
     height: 5
   BufferLength: 0
+  Title: Modular Design
+  Description: Increase backpack size.
+  FlavorText: Gain extra space by linking the side pockets to the main compartment.
