@@ -42,7 +42,7 @@ public class UIItemTooltip : MonoBehaviour
         itemPrice.text = price;
         itemIcon.sprite = item.Sprite;
         itemRarity.text = item.Rarity.ToString();
-        itemRarity.color = GetRarityColor(item);
+        itemRarity.color = item.Color;
     }
 
     public void Hide()
@@ -52,13 +52,4 @@ public class UIItemTooltip : MonoBehaviour
             t.gameObject.SetActive(false);
         }
     }
-
-    public Color GetRarityColor(InventoryItem item) => item.Rarity switch
-    {
-        LootRarity.Common => Color.gray,
-        LootRarity.Uncommon => Color.white,
-        LootRarity.Rare => Color.blue,
-        LootRarity.Legendary => Color.red + Color.yellow,
-        _ => Color.magenta
-    };
 }

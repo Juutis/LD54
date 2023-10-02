@@ -158,6 +158,16 @@ public class InventoryManager : MonoBehaviour
         inventory.EmptyInventory();
     }
 
+    public static Color GetRarityColor(LootRarity rarity) => rarity switch
+    {
+        LootRarity.Common => Color.gray,
+        LootRarity.Uncommon => Color.white,
+        LootRarity.Rare => Color.blue,
+        LootRarity.Legendary => Color.red + Color.yellow,
+        _ => Color.magenta
+    };
+
+
     void Update()
     {
         //Debug.Log($"You have {inventory.GetInventoryPrice()} monies");

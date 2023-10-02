@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [Serializable]
 public class InventoryItem
@@ -47,13 +48,12 @@ public class InventoryItem
         this.sprite = sprite;
         this.identity = identity;
         this.shape = shape;
-        color = new Color(0.2f, 0.2f, 0.2f, 0.5f);
 
         if (this.shape.ShapeType == InventoryShapeType.Single)
         {
             stackable = true;
         }
-
+        color = InventoryManager.GetRarityColor(rarity);
         this.name = name;
         this.tier = tier;
         this.rarity = rarity;
