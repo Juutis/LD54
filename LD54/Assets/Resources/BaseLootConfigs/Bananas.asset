@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f2b985d15e4e847bf87171c74378f1, type: 3}
   m_Name: Bananas
   m_EditorClassIdentifier: 
-  Tier: 1
+  Tier: 5
   LootName: Bananas
   Lore: A bundle of two bananas. Such an unusual configuration.
   BasePrice: 5
