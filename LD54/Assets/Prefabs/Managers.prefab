@@ -51,9 +51,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fecd002007aa89a4fb6bfdaf0f71e05f, type: 2}
   - {fileID: 11400000, guid: 365e938e489417340beaa81a090aee32, type: 2}
   - {fileID: 11400000, guid: 1f8ddd412e97ea4418f0bababbf72f2d, type: 2}
-  baseLootConfigs:
-  - {fileID: 11400000, guid: 628c57b1ab0b65a4ca1cfeaf47691118, type: 2}
-  - {fileID: 11400000, guid: 16be8bbf951648142a54726404a16c6d, type: 2}
 --- !u!114 &3193209045200749599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +67,9 @@ MonoBehaviour:
   enemyPrefab: {fileID: 5066067860774092073, guid: 79a6b42a36e017e4c8d3ff7373470054, type: 3}
   enemyAnchor: {fileID: 4657802727350745050}
   levelConfigs:
+  - {fileID: 11400000, guid: b5387e0e44a06694b87f5bbd0cd8913c, type: 2}
   - {fileID: 11400000, guid: 2de295c5a1257bc40a416cd443fd2f8d, type: 2}
+  - {fileID: 11400000, guid: 5aa068c4d86acb449ad42807c4fb3894, type: 2}
 --- !u!1 &8542251969334744556
 GameObject:
   m_ObjectHideFlags: 0

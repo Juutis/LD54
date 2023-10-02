@@ -19,28 +19,45 @@ public class LootGenerator
     {
         List<LootItemData> items = new();
 
-        foreach (DropRate dropRate in levelConfig.DropRates)
-        {
-            List<BaseLootConfig> dropTierConfigs = baseLootConfigs.Where(x => x.Tier == dropRate.Tier).ToList();
+        for(var i = 0; i < levelConfig.ItemAmount; i++) {
+            var itemTier = randomItemTier(levelConfig);
+            var itemRarity = randomLootRarity(levelConfig);
+
+            List<BaseLootConfig> dropTierConfigs = baseLootConfigs.Where(x => x.Tier == itemTier).ToList();
             if (!dropTierConfigs.Any())
             {
-                Debug.LogError($"No BaseLootConfigs for tier ${dropRate.Tier}");
+                Debug.LogError($"No BaseLootConfigs for tier ${itemTier}");
                 continue;
             }
+            
+            RarityConfig rconf = LootManager.main.GetRarityConfig(itemRarity);
+            BaseLootConfig lconf = dropTierConfigs[Random.Range(0, dropTierConfigs.Count())];
 
-            int itemDrops = Mathf.CeilToInt(levelConfig.ItemAmount * dropRate.Percentage / 100);
-
-            for (int i = 0; i < itemDrops; i++)
-            {
-                RarityConfig rconf = LootManager.main.GetRarityConfig(dropRate.Rarity);
-                BaseLootConfig lconf = dropTierConfigs[Random.Range(0, dropTierConfigs.Count())];
-
-                items.Add(new LootItemData(rconf, lconf));
-            }
+            items.Add(new LootItemData(rconf, lconf));
         }
 
         Helpers.Shuffle(items);
         lootItems = new(items);
+    }
+
+    private LootRarity randomLootRarity(LevelConfig levelConfig) {
+        var weightedList = new List<LootRarity>();
+        foreach(var rarityRate in levelConfig.RarityDropRates) {
+            for(var i = 0; i < rarityRate.Weight; i++) {
+                weightedList.Add(rarityRate.Rarity);
+            }
+        }
+        return weightedList[Random.Range(0, weightedList.Count())];
+    }
+
+    private ItemTier randomItemTier(LevelConfig levelConfig) {
+        var weightedList = new List<ItemTier>();
+        foreach(var rate in levelConfig.DropRates) {
+            for(var i = 0; i < rate.Weight; i++) {
+                weightedList.Add(rate.Tier);
+            }
+        }
+        return weightedList[Random.Range(0, weightedList.Count())];
     }
 
     public int LootCount() { return lootItems.Count; }
