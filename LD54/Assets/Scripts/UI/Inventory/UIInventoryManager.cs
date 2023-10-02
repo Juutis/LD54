@@ -13,6 +13,9 @@ public class UIInventoryManager : MonoBehaviour
 
 
     [SerializeField]
+    private PoppingText poppingTextPrefab;
+
+    [SerializeField]
     private UIItemBuffer uiItemBuffer;
     [SerializeField]
     private UIItemDisposal uiItemDisposal;
@@ -32,18 +35,33 @@ public class UIInventoryManager : MonoBehaviour
 
     private bool stackAllButtonEnabled = false;
     private bool junkRemoveButtonEnabled = false;
+    public Transform GarbageThrowTarget;
+    public Transform BufferThrowTarget;
+    public Transform InventoryThrowTarget;
+    public Transform ThrownTargetOrigin;
+    public Transform PoppingTextLocation;
 
+    [SerializeField]
+    private UIThrownItem uiThrownItemPrefab;
     private void Initialize()
     {
         Vector2 nodeSize = uiInventoryGrid.Initialize(columns, rows);
         uiItemBuffer.Initialize(bufferSize);
         uiItemDisposal.Initialize();
+        //ShowPoppingText("Test");
     }
 
 
     void Start()
     {
         Initialize();
+    }
+
+    public void ShowPoppingText(string message)
+    {
+        PoppingText poppingText = Instantiate(poppingTextPrefab);
+        Debug.Log("Creating poppingText");
+        poppingText.Show(PoppingTextLocation.transform.position, message);
     }
 
     public ItemPlacement ShowGhost(UIInventoryItem uiInventoryItem)
@@ -72,9 +90,9 @@ public class UIInventoryManager : MonoBehaviour
     {
         uiInventoryGrid.AddItem(item);
     }
-    public void AddItemToBuffer(InventoryItem item)
+    public bool AddItemToBuffer(InventoryItem item)
     {
-        uiItemBuffer.AddItem(item);
+        return uiItemBuffer.AddItem(item);
     }
 
     public void RemoveItem(UIInventoryItem uiInventoryItem)
@@ -133,7 +151,8 @@ public class UIInventoryManager : MonoBehaviour
         uiInventoryGrid.EmptyInventory();
     }
 
-    public void EmptyBuffer() {
+    public void EmptyBuffer()
+    {
         uiItemBuffer.EmptyBuffer();
     }
 
@@ -166,11 +185,24 @@ public class UIInventoryManager : MonoBehaviour
         return stackAllButtonEnabled;
     }
 
-    public void StackSingles() {
+    public void StackSingles()
+    {
         InventoryManager.main.StackSingles();
     }
 
-    public void DeleteJunk() {
+    public void DeleteJunk()
+    {
         InventoryManager.main.DeleteJunk();
+    }
+
+    public void AnimateThrownItem(Sprite sprite, Vector2 target)
+    {
+        UIThrownItem thrownItem = Instantiate(uiThrownItemPrefab, transform);
+        thrownItem.Initialize(sprite, ThrownTargetOrigin.transform.position, target);
+    }
+    public void AnimateThrownItem(Sprite sprite, Vector2 target, Vector2 origin)
+    {
+        UIThrownItem thrownItem = Instantiate(uiThrownItemPrefab, transform);
+        thrownItem.Initialize(sprite, origin, target);
     }
 }
