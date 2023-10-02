@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tier: 6
   LootName: Skull
-  Lore: 
-  BasePrice: 0.1
+  Lore: Broken skull of an unknown species.
+  BasePrice: 5
   Sprites:
   - {fileID: 21300000, guid: 4d14458cdee0c2447a1eed26e1726ba8, type: 3}
   Shape: 1

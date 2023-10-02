@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tier: 0
   LootName: Stick
-  BasePrice: 0.1
+  Lore: It's a stick.
+  BasePrice: 1
   Sprites:
   - {fileID: 21300000, guid: dd3db3e2647b46d4c8a87eb99bd55bd3, type: 3}
   Shape: 7

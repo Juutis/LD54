@@ -11,6 +11,8 @@ public class UIItemTooltip : MonoBehaviour
     private Text itemDescription;
     [SerializeField]
     private Text itemPrice;
+    [SerializeField]
+    private Image itemIcon;
 
     // Start is called before the first frame update
     void Start()
@@ -24,10 +26,11 @@ public class UIItemTooltip : MonoBehaviour
         
     }
 
-    public void Show(InventoryItem item, string price)
+    public void Show(InventoryItem item, string lore, string price)
     { 
         itemName.text = item.Name;
-        itemDescription.text = item.Lore;
+        itemDescription.text = lore;
         itemPrice.text = price;
+        itemIcon.sprite = item.Sprite;
     }
 }

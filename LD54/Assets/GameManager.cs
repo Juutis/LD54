@@ -151,6 +151,7 @@ public class GameManager : MonoBehaviour
     public void LevelEnd()
     {
         Debug.Log("LEVEL FINISHED!");
+        ScrollingWorld.Instance.Reset();
     }
 
 }

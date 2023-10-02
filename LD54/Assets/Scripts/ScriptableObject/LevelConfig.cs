@@ -9,9 +9,20 @@ public class LevelConfig : ScriptableObject
     public string LevelName;
     public List<DropRate> DropRates;
     public int ItemAmount;
-    public List<Enemy> Encounters;
+    public List<Enemy> Encounters { get { return getEnemies(); } }
     public int EnemyMinItems;
     public int EnemyMaxItems;
+    public List<EncounterCount> EncounterCounts;
+
+    private List<Enemy> getEnemies() {
+        var enemies = new List<Enemy>();
+        foreach(var enemyCount in EncounterCounts) {
+            for(var i = 0; i < enemyCount.Count; i++) {
+                enemies.Add(enemyCount.Enemy);
+            }
+        }
+        return enemies;
+    }
 }
 
 [Serializable]
@@ -20,4 +31,11 @@ public class DropRate
     public LootRarity Rarity;
     public ItemTier Tier;
     public float Percentage;
+}
+
+[Serializable]
+public class EncounterCount
+{
+    public Enemy Enemy;
+    public int Count;
 }

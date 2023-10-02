@@ -60,8 +60,13 @@ public class ScrollingWorld : MonoBehaviour
     }
 
     public void Outro() {
-        backgrounds.ForEach(it => it.Pause(pause));
         outro = true;
+    }
+
+    public void Reset() {
+        characters.ForEach(it => it.Reset());
+        outro = false;
+        Pause(false);
     }
 
     public Transform GetSquire()
