@@ -16,5 +16,5 @@ MonoBehaviour:
   Price: 0
   Requirements:
   - {fileID: 11400000, guid: 1102ceac7c0971d439354bae397057ca, type: 2}
-  InventoryArea: []
-  BufferLength: 5
+  InventoryAreas: []
+  BufferLength: 4

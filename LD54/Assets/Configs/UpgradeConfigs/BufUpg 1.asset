@@ -20,4 +20,4 @@ MonoBehaviour:
     y: 2
     width: 2
     height: 2
-  BufferLength: 4
+  BufferLength: 3

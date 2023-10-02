@@ -16,13 +16,17 @@ MonoBehaviour:
   Price: 0
   Requirements:
   - {fileID: 11400000, guid: eac279e10caf965409f0eaf99edaf5c8, type: 2}
-  InventoryArea:
-  - x: 0
-    y: 0
-    width: 5
-    height: 5
-  - x: 7
-    y: 0
-    width: 4
+  InventoryAreas:
+  - x: 8
+    y: 1
+    width: 3
     height: 4
+  - x: 1
+    y: 2
+    width: 2
+    height: 3
+  - x: 16
+    y: 2
+    width: 2
+    height: 3
   BufferLength: 0

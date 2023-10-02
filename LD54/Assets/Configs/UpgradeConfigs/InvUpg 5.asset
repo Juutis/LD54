@@ -10,12 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8785c562b2215d478c46846a2b9f2ff, type: 3}
-  m_Name: BufUpg 3
+  m_Name: InvUpg 5
   m_EditorClassIdentifier: 
-  Type: 1
+  Type: 0
   Price: 0
   Requirements:
-  - {fileID: 11400000, guid: 1102ceac7c0971d439354bae397057ca, type: 2}
-  - {fileID: 11400000, guid: 067bbce7d9e60ab4398ea0a8974226fb, type: 2}
-  InventoryAreas: []
-  BufferLength: 5
+  - {fileID: 11400000, guid: eac279e10caf965409f0eaf99edaf5c8, type: 2}
+  - {fileID: 11400000, guid: 9a6e105c52ad1d244823d12a4a4e3974, type: 2}
+  InventoryAreas:
+  - x: 0
+    y: 0
+    width: 19
+    height: 10
+  BufferLength: 0
