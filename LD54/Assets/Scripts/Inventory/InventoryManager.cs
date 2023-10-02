@@ -118,7 +118,7 @@ public class InventoryManager : MonoBehaviour
         return inventory.GetItemPlacement(item, startY, startX, forceNoStack);
     }
 
-    public bool AddItem(LootItemData lootData)
+    public ItemInsertResult AddItem(LootItemData lootData)
     {
         return inventory.AddItem(lootData);
     }
@@ -203,11 +203,13 @@ public class InventoryManager : MonoBehaviour
     {
     }
 
-    public void StackSingles() {
+    public void StackSingles()
+    {
         inventory.StackSingles();
     }
 
-    public void DeleteJunk() {
+    public void DeleteJunk()
+    {
         inventory.DeleteJunk();
     }
 }

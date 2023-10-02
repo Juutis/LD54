@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LootItem : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class LootItem : MonoBehaviour
     private Transform end;
 
     public LootItemData LootData { get { return lootData; } }
+
+    private UnityAction afterCallback;
 
     public void Initialize(LootItemData data)
     {
@@ -45,13 +48,26 @@ public class LootItem : MonoBehaviour
 
             if (Mathf.Approximately(lerp_t, 1) || lerp_t > 1)
             {
-                spriteRenderer.enabled = false;
+                thrown = false;
+                if (afterCallback != null)
+                {
+                    afterCallback();
+                }
+                afterCallback = null;
+                Hide();
             }
         }
     }
 
-    public void Throw(Transform start, Transform end)
+    public void Hide()
     {
+        spriteRenderer.enabled = false;
+    }
+
+    public void Throw(Transform start, Transform end, UnityAction after)
+    {
+        lerp_t = 0f;
+        afterCallback = after;
         spriteRenderer.enabled = true;
         spriteRenderer.sprite = lootData.Sprite;
         this.start = start;

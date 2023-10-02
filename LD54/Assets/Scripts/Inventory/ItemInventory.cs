@@ -76,7 +76,7 @@ public class ItemInventory
         grid.RemoveItem(item);
     }
 
-    public bool AddItem(LootItemData lootData)
+    public ItemInsertResult AddItem(LootItemData lootData)
     {
         InventoryItem item = CreateItem(lootData);
         bool wasInserted = grid.InsertItemRandomly(item);
@@ -84,14 +84,19 @@ public class ItemInventory
         {
             inventoryItems.Add(item);
             UIInventoryManager.main.AddItem(item);
+            return ItemInsertResult.InsertedToInventory;
         }
         else
         {
             Debug.Log("No space, put it somewhere else!");
             bufferedItems.Add(item);
-            UIInventoryManager.main.AddItemToBuffer(item);
+            bool insertedToBuffer = UIInventoryManager.main.AddItemToBuffer(item);
+            if (insertedToBuffer)
+            {
+                return ItemInsertResult.InsertedToBuffer;
+            }
         }
-        return wasInserted;
+        return ItemInsertResult.DidNotFitToBuffer;
     }
 
     public ItemPlacement GetItemPlacement(InventoryItem item, int startY, int startX, bool forceNoStack = true)
@@ -194,4 +199,11 @@ public class ItemInventory
 
         items.ForEach(x => UIInventoryManager.main.DeleteItem(x));
     }
+}
+
+public enum ItemInsertResult
+{
+    InsertedToInventory,
+    InsertedToBuffer,
+    DidNotFitToBuffer
 }

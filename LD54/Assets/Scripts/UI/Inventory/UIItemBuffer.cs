@@ -49,8 +49,12 @@ public class UIItemBuffer : MonoBehaviour
         items.Remove(uiItem);
         uiItem.Hide();
     }
-    public void AddItem(InventoryItem inventoryItem)
+    public bool AddItem(InventoryItem inventoryItem)
     {
+        if (size == 0)
+        {
+            return false;
+        }
         UIInventoryItem uiItem = Instantiate(itemPrefab, itemContainer);
         uiItem.InitializeAsBufferItem(inventoryItem, nodeSize);
         items.Add(uiItem);
@@ -61,10 +65,13 @@ public class UIItemBuffer : MonoBehaviour
             if (lastItem != null)
             {
                 Debug.Log($"Hide {lastItem}");
+                UIInventoryManager.main.ShowPoppingText("My hands are full!");
+                UIInventoryManager.main.AnimateThrownItem(lastItem.InventoryItem.Sprite, UIInventoryManager.main.GarbageThrowTarget.position, lastItem.transform.position);
                 RemoveItem(lastItem);
             }
         }
         Draw();
+        return true;
     }
 
     public void Draw()

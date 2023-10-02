@@ -67,10 +67,29 @@ public class Enemy : MonoBehaviour
         {
             SoundManager.main.PlaySound(GameSoundType.HeroGrumble);
         }
-        item.transform.position = transform.position;
-        item.Throw(transform, ScrollingWorld.Instance.GetSquire());
+        item.Throw(transform, ScrollingWorld.Instance.GetSquire(), delegate
+        {
+            ItemInsertResult insertResult = InventoryManager.main.AddItem(item.LootData);
+            Debug.Log("Throwing item");
+            if (insertResult == ItemInsertResult.InsertedToInventory)
+            {
+                //Vector2 pos = UIInventoryManager.main.ClosestNode()
+                //UIInventoryManager.main.AnimateThrownItem(item.LootData.Sprite, item.transform.position, );
+                UIInventoryManager.main.AnimateThrownItem(item.LootData.Sprite, UIInventoryManager.main.InventoryThrowTarget.position);
+            }
+            else if (insertResult == ItemInsertResult.InsertedToBuffer)
+            {
+                Debug.Log("Throwing item to buffer");
+                UIInventoryManager.main.AnimateThrownItem(item.LootData.Sprite, UIInventoryManager.main.BufferThrowTarget.position);
+            }
+            else if (insertResult == ItemInsertResult.DidNotFitToBuffer)
+            {
+                Debug.Log("Throwing item to garbage");
+                UIInventoryManager.main.ShowPoppingText("No room!");
+                UIInventoryManager.main.AnimateThrownItem(item.LootData.Sprite, UIInventoryManager.main.GarbageThrowTarget.position);
+            }
+        });
         item.transform.parent = null;
-        InventoryManager.main.AddItem(item.LootData);
         lootItems.Remove(item);
         return true;
     }
