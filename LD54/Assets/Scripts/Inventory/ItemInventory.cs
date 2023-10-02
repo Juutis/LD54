@@ -40,7 +40,7 @@ public class ItemInventory
         InventoryItem box = CreateItem("Box", InventoryShapeType.Square2x2, sprite);
         InventoryItem bigBox = CreateItem("BigBox", InventoryShapeType.Square4x4, sprite);
         InventoryItem donut = CreateItem("Donut", InventoryShapeType.Donut3x3, sprite);*/
-
+/*
         LootItemData ring = new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "Ring", Shape = InventoryShapeType.Single };
         LootItemData ring2 = new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "Ring", Shape = InventoryShapeType.Single };
         LootItemData ring3 = new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "Ring", Shape = InventoryShapeType.Single };
