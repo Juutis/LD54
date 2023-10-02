@@ -144,7 +144,7 @@ public class UIInventoryGrid : MonoBehaviour
 
     public void EmptyInventory()
     {
-        for (int index = items.Count; index > 0; index -= 1)
+        for (int index = items.Count - 1; index > 0; index -= 1)
         {
             UIInventoryItem item = items[index];
             RemoveItem(item);

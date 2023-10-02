@@ -15,8 +15,7 @@ public class UIShop : MonoBehaviour
 
     [SerializeField]
     private Animator animator;
-    Callback showFinished;
-    Callback hideFinished;
+    Callback shopFinished;
 
     [SerializeField]
     private Transform container;
@@ -30,24 +29,25 @@ public class UIShop : MonoBehaviour
     private List<UIShopUpgrade> uiShopUpgrades = new();
 
     private bool isShown = false;
+    private bool itemsSold = false;
+
     public void Show(Callback afterFinish)
     {
+        itemsSold = false;
         Time.timeScale = 0f;
         container.gameObject.SetActive(true);
-        showFinished = afterFinish;
+        shopFinished = afterFinish;
         animator.SetTrigger("Show");
     }
 
-    public void Hide(Callback afterFinish)
+    public void Hide()
     {
-        hideFinished = afterFinish;
         animator.SetTrigger("Hide");
     }
 
     public void AnimationCallShowFinish()
     {
         isShown = true;
-        showFinished();
     }
 
     public void AnimationCallHideFinish()
@@ -55,26 +55,30 @@ public class UIShop : MonoBehaviour
         Time.timeScale = 1f;
         isShown = false;
         container.gameObject.SetActive(false);
-        hideFinished();
+        shopFinished();
+    }
+    public void AnimationCallHideSellOverlayFinish()
+    {
+        itemsSold = true;
     }
 
 
     public void SellInventory()
     {
-        if (!isShown)
+        if (!isShown || itemsSold)
         {
             return;
         }
         float inventoryValue = InventoryManager.main.GetInventoryPrice();
         InventoryManager.main.EmptyInventory();
         int gainedGold = Mathf.FloorToInt(inventoryValue);
-        uiGoldDisplay.UpdateValue(gainedGold);
-        GameManager.Main.PlayerProgress.UpdateGold(gainedGold);
+        UpdateGold(gainedGold);
+        animator.SetTrigger("HideSellOverlay");
     }
 
     public void BuyUpgrade(UpgradeConfig upgrade)
     {
-        if (!isShown)
+        if (!isShown || !itemsSold)
         {
             return;
         }
@@ -132,15 +136,12 @@ public class UIShop : MonoBehaviour
             {
                 Show(delegate
                 {
-                    Debug.Log("Show finished");
+                    Debug.Log("Shop closed");
                 });
             }
             else
             {
-                Hide(delegate
-                {
-                    Debug.Log("Hide finished");
-                });
+                Hide();
             }
         }
 
