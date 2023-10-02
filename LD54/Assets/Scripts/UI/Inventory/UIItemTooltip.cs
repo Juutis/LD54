@@ -42,8 +42,17 @@ public class UIItemTooltip : MonoBehaviour
         itemPrice.text = price;
         itemIcon.sprite = item.Sprite;
         itemRarity.text = item.Rarity.ToString();
-        itemRarity.color = item.Color;
+        itemRarity.color = GetRarityColor(item.Rarity);
     }
+
+    public static Color GetRarityColor(LootRarity rarity) => rarity switch
+    {
+        LootRarity.Common => new Color(0.6f, 0.6f, 0.6f),
+        LootRarity.Uncommon => Color.green,
+        LootRarity.Rare => new Color(0.5f, 0.5f, 1.0f),
+        LootRarity.Legendary => new Color(1.0f, 0.5f, 0.0f, 1.0f),
+        _ => Color.clear
+    };
 
     public void Hide()
     {

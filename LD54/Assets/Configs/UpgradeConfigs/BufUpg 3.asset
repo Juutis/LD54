@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BufUpg 3
   m_EditorClassIdentifier: 
   Type: 1
-  Price: 5
+  Price: 500
   Requirements:
   - {fileID: 11400000, guid: 067bbce7d9e60ab4398ea0a8974226fb, type: 2}
   InventoryAreas: []
