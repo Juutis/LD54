@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StackButton
   m_EditorClassIdentifier: 
   Type: 2
-  Price: 100
+  Price: 150
   Requirements: []
   InventoryAreas: []
   BufferLength: 0
