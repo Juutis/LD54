@@ -145,6 +145,7 @@ public class UIInventoryManager : MonoBehaviour
     public void EnableJunkRemoveButton()
     {
         junkRemoveButtonEnabled = true;
+        DeleteJunkButton.SetActive(true);
     }
 
     public bool IsJunkRemoveButtonVisible()
@@ -152,9 +153,12 @@ public class UIInventoryManager : MonoBehaviour
         return junkRemoveButtonEnabled;
     }
 
+    public GameObject StackAllButton, DeleteJunkButton;
+
     public void EnableStackAllButton()
     {
         stackAllButtonEnabled = true;
+        StackAllButton.SetActive(true);
     }
 
     public bool IsStackAllButtonVisible()

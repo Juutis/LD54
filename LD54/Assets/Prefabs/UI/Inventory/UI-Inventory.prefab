@@ -404,7 +404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &472978631863892356
 RectTransform:
   m_ObjectHideFlags: 0
@@ -987,6 +987,8 @@ MonoBehaviour:
   columns: 20
   rows: 10
   bufferSize: 0
+  StackAllButton: {fileID: 2451885671858071030}
+  DeleteJunkButton: {fileID: 8455018183926299648}
 --- !u!223 &5976913382121054896
 Canvas:
   m_ObjectHideFlags: 0
@@ -1542,7 +1544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4725521367686480000
 RectTransform:
   m_ObjectHideFlags: 0
