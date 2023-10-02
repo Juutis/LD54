@@ -167,10 +167,10 @@ public class InventoryManager : MonoBehaviour
 
     public static Color GetRarityColor(LootRarity rarity) => rarity switch
     {
-        LootRarity.Common => Color.gray,
-        LootRarity.Uncommon => Color.white,
-        LootRarity.Rare => Color.blue,
-        LootRarity.Legendary => Color.red + Color.yellow,
+        LootRarity.Common => Color.gray - new Color(0.0f, 0.0f, 0.0f, 0.5f),
+        LootRarity.Uncommon => Color.green - new Color(0.0f, 0.0f, 0.0f, 0.5f),
+        LootRarity.Rare => Color.blue - new Color(0.0f, 0.0f, 0.0f, 0.5f),
+        LootRarity.Legendary => new Color(1.0f, 0.5f, 0.0f, 0.5f),
         _ => Color.magenta
     };
 

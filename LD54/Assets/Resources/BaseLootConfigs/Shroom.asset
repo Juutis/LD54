@@ -15,7 +15,7 @@ MonoBehaviour:
   Tier: 1
   LootName: Mushroom
   Lore: Edible? Yeah, sure.
-  BasePrice: 5
+  BasePrice: 3
   Sprites:
   - {fileID: 21300000, guid: d861da98e2948394e929c21ba077ac19, type: 3}
   Shape: 0
