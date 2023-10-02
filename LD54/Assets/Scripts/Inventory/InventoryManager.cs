@@ -198,9 +198,17 @@ public class InventoryManager : MonoBehaviour
         _ => Color.magenta
     };
 
+    private bool upgradeTriggered = false;
 
     void Update()
     {
+        if (upgradeTriggered) return;
+        foreach (var upgrade in upgradeConfigs)
+        {
+            InventoryUpgrade(upgrade);
+            GameManager.Main.PlayerProgress.AddUpgrade(upgrade);
+        }
+        upgradeTriggered = true;
     }
 
     public void StackSingles()
