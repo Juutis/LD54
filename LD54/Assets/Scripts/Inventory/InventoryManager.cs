@@ -150,6 +150,7 @@ public class InventoryManager : MonoBehaviour
 
     public void EmptyInventory()
     {
+        Debug.Log("EmptyInv");
         foreach (InventoryItem item in inventory.GetItems())
         {
             if (!itemPriceDict.ContainsKey(item.ItemKey()))
