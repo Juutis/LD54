@@ -83,9 +83,12 @@ public class UIShop : MonoBehaviour
         Time.timeScale = 1f;
         isShown = false;
         container.gameObject.SetActive(false);
-        if (retryPrevious) {
+        if (retryPrevious)
+        {
             retry();
-        } else {
+        }
+        else
+        {
             shopFinished();
         }
         MusicManager.main.SwitchMusic(false);
@@ -97,10 +100,12 @@ public class UIShop : MonoBehaviour
 
     public void SellInventory()
     {
-        if (itemsSold) {
+        if (itemsSold)
+        {
             Debug.Log("Items already sold!");
         }
-        if (!isShown) {
+        if (!isShown)
+        {
             Debug.Log("Trying to sell without showing UI!");
         }
         if (!isShown || itemsSold)
@@ -115,10 +120,13 @@ public class UIShop : MonoBehaviour
         animator.SetTrigger("HideSellOverlay");
 
         var goldRequirement = GameManager.Main.currentLevel.TargetGold;
-        if (gainedGold >= goldRequirement) {
+        if (gainedGold >= goldRequirement)
+        {
             nextQuestButton.interactable = true;
             nextQuestRequirementNotification.SetActive(false);
-        } else {
+        }
+        else
+        {
             nextQuestButton.interactable = false;
             nextQuestRequirementNotification.SetActive(true);
             nextQuestRequirementText.text = "You gained " + gainedGold + " gold.\nGain at least " + goldRequirement + " gold in a single run to unlock the next quest.";
@@ -168,40 +176,41 @@ public class UIShop : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyUp(KeyCode.P))
-        {
-            UpdateGold(50);
-        }
-
-        if (Input.GetKeyUp(KeyCode.O))
-        {
-            UpdateGold(-10);
-        }
-
-        if (Input.GetKeyUp(KeyCode.I))
-        {
-            Debug.Log("buy...");
-            BuyUpgrade(testUpgrade);
-        }
-
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            if (!isShown)
-            {
-                Show(delegate
+        /*
+                if (Input.GetKeyUp(KeyCode.P))
                 {
-                    Debug.Log("Shop closed");
-                },delegate
-                {
-                    Debug.Log("Retry previous");
-                });
-            }
-            else
-            {
-                Hide();
-            }
-        }
+                    UpdateGold(50);
+                }
 
+                if (Input.GetKeyUp(KeyCode.O))
+                {
+                    UpdateGold(-10);
+                }
+
+                if (Input.GetKeyUp(KeyCode.I))
+                {
+                    Debug.Log("buy...");
+                    BuyUpgrade(testUpgrade);
+                }
+
+                if (Input.GetKeyUp(KeyCode.Space))
+                {
+                    if (!isShown)
+                    {
+                        Show(delegate
+                        {
+                            Debug.Log("Shop closed");
+                        },delegate
+                        {
+                            Debug.Log("Retry previous");
+                        });
+                    }
+                    else
+                    {
+                        Hide();
+                    }
+                }
+        */
     }
 
 }
