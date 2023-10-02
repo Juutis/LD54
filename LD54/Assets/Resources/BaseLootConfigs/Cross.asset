@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tier: 4
   LootName: Ornamental Cross
-  Lore: 
-  BasePrice: 0.1
+  Lore: A religious artefact.
+  BasePrice: 60
   Sprites:
   - {fileID: 21300000, guid: 842334ea77e10e74f9d4ce30e4cdb70d, type: 3}
   Shape: 12

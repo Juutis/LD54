@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tier: 3
   LootName: Anchor
-  Lore: 
-  BasePrice: 0.1
+  Lore: You never know when you need one.
+  BasePrice: 100
   Sprites:
   - {fileID: 21300000, guid: 141b30c81ec5e504d89d78f3dafb7142, type: 3}
   Shape: 8

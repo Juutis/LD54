@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tier: 1
   LootName: Bananas
-  Lore: 
-  BasePrice: 1
+  Lore: A bundle of two bananas. Such an unusual configuration.
+  BasePrice: 5
   Sprites:
   - {fileID: 21300000, guid: b082fca2095d48b4b8ed927a4e3c6d64, type: 3}
   Shape: 1

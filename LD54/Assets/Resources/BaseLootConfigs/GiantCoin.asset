@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: GiantCoin
   m_EditorClassIdentifier: 
   Tier: 4
-  LootName: Giant's Coin
-  Lore: 
-  BasePrice: 20
+  LootName: Giants' Coin
+  Lore: It only fits a giants' coin purse.
+  BasePrice: 80
   Sprites:
   - {fileID: 21300000, guid: 1309577ad3836974fa904c98d49a65ee, type: 3}
   Shape: 6
