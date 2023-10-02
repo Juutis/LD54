@@ -40,33 +40,33 @@ public class ItemInventory
         InventoryItem box = CreateItem("Box", InventoryShapeType.Square2x2, sprite);
         InventoryItem bigBox = CreateItem("BigBox", InventoryShapeType.Square4x4, sprite);
         InventoryItem donut = CreateItem("Donut", InventoryShapeType.Donut3x3, sprite);*/
-/*
-        LootItemData ring = new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "Ring", Shape = InventoryShapeType.Single };
-        LootItemData ring2 = new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "Ring", Shape = InventoryShapeType.Single };
-        LootItemData ring3 = new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "Ring", Shape = InventoryShapeType.Single };
-        LootItemData ring4 = new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "Ring", Shape = InventoryShapeType.Single };
-        LootItemData ring5 = new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "Ring", Shape = InventoryShapeType.Single };
-        LootItemData ring6 = new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "Ring", Shape = InventoryShapeType.Single };
-        LootItemData ring7 = new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "pantsu", Shape = InventoryShapeType.Pants };
-        AddItem(ring);
-        AddItem(ring2);
-        AddItem(ring3);
-        AddItem(ring4);
-        AddItem(ring5);
-        AddItem(ring6);
-        AddItem(ring7);
-        //grid.InsertItemRandomly(ring);
-        //grid.InsertItemRandomly(ring2);
-        //UIInventoryManager.main.AddItem(ring);
-        //UIInventoryManager.main.AddItem(ring2);
-        /*grid.InsertItemRandomly(lStick);
-        UIInventoryManager.main.AddItem(lStick);
-        grid.InsertItemRandomly(box);
-        UIInventoryManager.main.AddItem(box);
-        grid.InsertItemRandomly(bigBox);
-        UIInventoryManager.main.AddItem(bigBox);
-        grid.InsertItemRandomly(donut);
-        UIInventoryManager.main.AddItem(donut);*/
+        /*
+                LootItemData ring = new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "Ring", Shape = InventoryShapeType.Single };
+                LootItemData ring2 = new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "Ring", Shape = InventoryShapeType.Single };
+                LootItemData ring3 = new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "Ring", Shape = InventoryShapeType.Single };
+                LootItemData ring4 = new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "Ring", Shape = InventoryShapeType.Single };
+                LootItemData ring5 = new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "Ring", Shape = InventoryShapeType.Single };
+                LootItemData ring6 = new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "Ring", Shape = InventoryShapeType.Single };
+                LootItemData ring7 = new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "pantsu", Shape = InventoryShapeType.Pants };
+                AddItem(ring);
+                AddItem(ring2);
+                AddItem(ring3);
+                AddItem(ring4);
+                AddItem(ring5);
+                AddItem(ring6);
+                AddItem(ring7);
+                //grid.InsertItemRandomly(ring);
+                //grid.InsertItemRandomly(ring2);
+                //UIInventoryManager.main.AddItem(ring);
+                //UIInventoryManager.main.AddItem(ring2);
+                /*grid.InsertItemRandomly(lStick);
+                UIInventoryManager.main.AddItem(lStick);
+                grid.InsertItemRandomly(box);
+                UIInventoryManager.main.AddItem(box);
+                grid.InsertItemRandomly(bigBox);
+                UIInventoryManager.main.AddItem(bigBox);
+                grid.InsertItemRandomly(donut);
+                UIInventoryManager.main.AddItem(donut);*/
 
     }
 
@@ -148,8 +148,13 @@ public class ItemInventory
 
     public void EmptyInventory()
     {
-        inventoryItems.Clear();
+        for (int index = inventoryItems.Count - 1; index >= 0; index -= 1)
+        {
+            InventoryItem item = inventoryItems[index];
+            RemoveItem(item);
+        }
         UIInventoryManager.main.EmptyInventory();
+        InventoryManager.main.UpdateDebug();
     }
 
     public List<InventoryItem> GetItems()
