@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tier: 6
   LootName: Stone
-  Lore: 
-  BasePrice: 0.1
+  Lore: Like a pebble. But larger.
+  BasePrice: 1
   Sprites:
   - {fileID: 21300000, guid: 16374abeb60f38b4ca4b646716671634, type: 3}
   Shape: 1

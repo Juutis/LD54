@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tier: 6
   LootName: Massive Turd
-  Lore: 
-  BasePrice: 1
+  Lore: Absolutely massive!
+  BasePrice: 2
   Sprites:
   - {fileID: 21300000, guid: bfdde7b8db979214e868c3d0bee415c9, type: 3}
   Shape: 13

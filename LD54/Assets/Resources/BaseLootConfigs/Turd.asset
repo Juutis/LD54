@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tier: 0
   LootName: Turd
+  Lore: Why would you even pick this up?
   BasePrice: 0
   Sprites:
   - {fileID: 21300000, guid: afd72e28cd0ccc048aafe15b3046cab6, type: 3}

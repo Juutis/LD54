@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tier: 5
   LootName: Pointy Hat
-  Lore: 
-  BasePrice: 0.1
+  Lore: Smells magical.
+  BasePrice: 30
   Sprites:
   - {fileID: 21300000, guid: 2165978eb509d8741bf789bd5d5643c9, type: 3}
   Shape: 2

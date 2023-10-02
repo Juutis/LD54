@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tier: 5
   LootName: Revolutionary Cheese Bread
-  Lore: 
-  BasePrice: 0.1
+  Lore: A thin bread with melted cheese on top.
+  BasePrice: 15
   Sprites:
   - {fileID: 21300000, guid: 2d6b30d0fe86f1f4d9675c9cd39342ef, type: 3}
   Shape: 14

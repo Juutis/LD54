@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tier: 5
   LootName: Pot
-  Lore: 
-  BasePrice: 0.1
+  Lore: Now if we only had potaytoes...
+  BasePrice: 10
   Sprites:
   - {fileID: 21300000, guid: 85f7a13728bed4244aadc453c76b8c57, type: 3}
   Shape: 3
