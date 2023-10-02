@@ -18,13 +18,14 @@ public class UIInventoryNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private Color lockedColor;
     private Color originalColor;
     private bool isHighlighted = false;
-    public bool IsHighlighted { get { return isHighlighted; } }
 
     private int x = 0;
     private int y = 0;
     public int X { get { return x; } }
     public int Y { get { return y; } }
     private bool isBufferNode = false;
+
+    private bool isOpen = false;
 
     public void Initialize(int row, int col, Vector2 size, bool isBufferNode = false)
     {
@@ -53,8 +54,11 @@ public class UIInventoryNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             return;
         }
-        imgBg.color = highlightColor;
-        isHighlighted = true;
+        if (isOpen)
+        {
+            imgBg.color = highlightColor;
+            isHighlighted = true;
+        }
     }
 
     public void Unhighlight()
@@ -63,8 +67,11 @@ public class UIInventoryNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             return;
         }
-        imgBg.color = originalColor;
-        isHighlighted = false;
+        if (isOpen)
+        {
+            imgBg.color = originalColor;
+            isHighlighted = false;
+        }
     }
 
     public void Open()
@@ -73,12 +80,14 @@ public class UIInventoryNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             return;
         }
+        isOpen = true;
         imgBg.color = openColor;
         originalColor = imgBg.color;
     }
 
     public void Close()
     {
+        isOpen = false;
         imgBg.color = lockedColor;
         originalColor = imgBg.color;
     }
