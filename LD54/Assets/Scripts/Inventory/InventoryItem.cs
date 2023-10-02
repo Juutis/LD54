@@ -43,9 +43,9 @@ public class InventoryItem
     private string lore;
     public string Lore { get { return lore; } }
 
-    private LootItemData itemData;
+    public string LootName { get { return name; } }
     private bool stackable = false;
-   
+
 
     public InventoryItem(InventoryShape shape, ItemIdentity identity, Sprite sprite, string name, ItemTier tier, LootRarity rarity, float itemPrice, string lore, float rarityScale)
     {

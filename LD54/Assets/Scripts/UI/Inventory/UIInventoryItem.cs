@@ -239,6 +239,32 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
             //Debug.Log($"Lastplacement: {lastPlacement.Success} ({lastPlacement.Nodes.First()})");
             UIInventoryManager.main.RemoveItem(this);
             InventoryManager.main.MoveItem(inventoryItem, lastPlacement);
+
+            switch (inventoryItem.LootName)
+            {
+                case "Massive Turd":
+                    SoundManager.main.PlaySound(GameSoundType.ItemPoo);
+                    break;
+                case "Turd":
+                    SoundManager.main.PlaySound(GameSoundType.ItemPoo);
+                    break;
+                case "Sword":
+                    SoundManager.main.PlaySound(GameSoundType.ItemSword);
+                    break;
+                case "Bone":
+                    SoundManager.main.PlaySound(GameSoundType.ItemBone);
+                    break;
+                case "Stone":
+                    SoundManager.main.PlaySound(GameSoundType.ItemStone);
+                    break;
+                case "Pebble":
+                    SoundManager.main.PlaySound(GameSoundType.ItemStone);
+                    break;
+                default:
+                    SoundManager.main.PlaySound(GameSoundType.UIClick);
+                    break;
+            }
+
         }
         transform.position = positionAtDragStart;
         imgIcon.color = originalColor;
