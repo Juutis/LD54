@@ -211,9 +211,16 @@ public class InventoryManager : MonoBehaviour
         upgradeTriggered = true;
     }
 
+
     public void StackSingles()
     {
-        inventory.StackSingles();
+        //inventory.StackSingles();
+        StackStackables();
+    }
+
+    public void StackStackables()
+    {
+        inventory.StackStackables();
     }
 
     public void DeleteJunk()

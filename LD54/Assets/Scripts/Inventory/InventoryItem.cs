@@ -45,18 +45,16 @@ public class InventoryItem
 
     public string LootName { get { return name; } }
     private bool stackable = false;
+    public bool Stackable { get { return stackable; } }
 
 
-    public InventoryItem(InventoryShape shape, ItemIdentity identity, Sprite sprite, string name, ItemTier tier, LootRarity rarity, float itemPrice, string lore, float rarityScale)
+    public InventoryItem(InventoryShape shape, ItemIdentity identity, Sprite sprite, string name, ItemTier tier, LootRarity rarity, float itemPrice, string lore, float rarityScale, bool stackable)
     {
         this.sprite = sprite;
         this.identity = identity;
         this.shape = shape;
 
-        if (this.shape.ShapeType == InventoryShapeType.Single)
-        {
-            stackable = true;
-        }
+        this.stackable = stackable;
         color = InventoryManager.GetRarityColor(rarity);
         this.name = name;
         this.tier = tier;

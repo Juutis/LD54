@@ -152,11 +152,23 @@ public class UIInventoryGrid : MonoBehaviour
         HideGhost();
     }
 
+    public void RemoveItem(InventoryItem item)
+    {
+        Debug.Log("items is: " + items);
+        UIInventoryItem removed = items.FirstOrDefault(foundItem => foundItem.InventoryItem != null && foundItem.InventoryItem.Identity == item.Identity);
+        if (removed != null)
+        {
+            RemoveItem(removed);
+        }
+
+    }
+
     public void DeleteItem(InventoryItem item)
     {
         List<UIInventoryItem> removed = items.Where(x => x.InventoryItem.Identity == item.Identity).ToList();
 
-        removed.ForEach(x => {
+        removed.ForEach(x =>
+        {
             items.Remove(x);
             x.Kill();
         });

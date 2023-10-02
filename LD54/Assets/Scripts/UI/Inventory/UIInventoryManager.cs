@@ -158,7 +158,7 @@ public class UIInventoryManager : MonoBehaviour
 
     public void DeleteItem(InventoryItem item)
     {
-        uiInventoryGrid.DeleteItem(item);
+        uiInventoryGrid.RemoveItem(item);
     }
 
     public void EnableJunkRemoveButton()

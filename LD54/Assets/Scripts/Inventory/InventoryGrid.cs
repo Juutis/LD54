@@ -83,7 +83,7 @@ public class InventoryGrid
         List<InventoryNode> junkNodes = FindJunkNodes();
         HashSet<InventoryItem> items = new();
 
-        foreach(InventoryNode node in junkNodes)
+        foreach (InventoryNode node in junkNodes)
         {
             if (!items.Contains(node.InventoryItem))
             {
@@ -112,13 +112,39 @@ public class InventoryGrid
         return singleItemNodes;
     }
 
+    public Dictionary<string, List<InventoryNode>> GetUniqueStackables()
+    {
+        Dictionary<string, List<InventoryNode>> stackableNodes = new();
+        for (int row = 0; row < height; row++)
+        {
+            for (int col = 0; col < width; col++)
+            {
+                InventoryNode node = nodes[row, col];
+                if (!node.IsEmpty && !node.IsLocked && node.InventoryItem != null && node.InventoryItem.Stackable)
+                {
+                    string stackKey = node.InventoryItem.GetStackKey();
+                    if (!stackableNodes.ContainsKey(stackKey))
+                    {
+                        stackableNodes[stackKey] = new() { node };
+                    }
+                    else
+                    {
+                        stackableNodes[stackKey].Add(node);
+                    }
+
+                }
+            }
+        }
+        return stackableNodes;
+    }
+
     public List<InventoryItem> StackSingles()
     {
         List<InventoryItem> deletedItems = new();
         List<InventoryNode> singleNodes = FindSingleNodes();
         Dictionary<string, List<InventoryNode>> stackables = new();
 
-        foreach(InventoryNode node in singleNodes)
+        foreach (InventoryNode node in singleNodes)
         {
             string nodeStackKey = node.InventoryItem.GetStackKey();
             if (!stackables.ContainsKey(nodeStackKey))

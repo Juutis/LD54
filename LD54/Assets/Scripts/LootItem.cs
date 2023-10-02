@@ -88,6 +88,7 @@ public class LootItemData
     public Sprite Sprite { get; set; }
     public InventoryShapeType Shape { get; set; }
     public string Lore { get; set; }
+    public bool Stackable { get; set; }
 
     public LootItemData(RarityConfig rarityConfig, BaseLootConfig lootConfig)
     {
@@ -102,5 +103,6 @@ public class LootItemData
         Shape = lootConfig.Shape;
         Lore = lootConfig.Lore;
         LootName = lootConfig.LootName;
+        Stackable = lootConfig.Stackable;
     }
 }

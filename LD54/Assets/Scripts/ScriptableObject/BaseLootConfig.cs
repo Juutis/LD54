@@ -12,6 +12,7 @@ public class BaseLootConfig : ScriptableObject
     public float BasePrice;
     public List<Sprite> Sprites;
     public InventoryShapeType Shape;
+    public bool Stackable;
 }
 
 

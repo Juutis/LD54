@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemInventory
@@ -34,8 +35,6 @@ public class ItemInventory
         grid = new InventoryGrid(width, height, emptyChar, lockedChar, openSlots);
         Sprite sprite = UIInventoryManager.main.PLACEHOLDER_SPRITE;
 
-        //InventoryItem ring = CreateItem();
-        //InventoryItem ring2 = CreateItem(new LootItemData(new() { Prefixes = new() { "moi" } }, new() { Sprites = new() { sprite } }) { LootName = "Ring", Shape = InventoryShapeType.Single });
         /*InventoryItem lStick = CreateItem("LStick", InventoryShapeType.L, sprite);
         InventoryItem box = CreateItem("Box", InventoryShapeType.Square2x2, sprite);
         InventoryItem bigBox = CreateItem("BigBox", InventoryShapeType.Square4x4, sprite);
@@ -120,7 +119,18 @@ public class ItemInventory
         //Debug.Log($"Creating {itemData.LootName} {itemData.Tier} {itemData.Rarity} {itemPrice} {itemData.Lore}");
 
         ItemIdentity identity = new(itemData.LootName, itemChar, itemIndex);
-        InventoryItem inventoryItem = new(InventoryShapes.Shapes[itemData.Shape], identity, itemData.Sprite, itemData.LootName, itemData.Tier, itemData.Rarity, itemPrice, itemData.Lore, itemData.PriceScale);
+        InventoryItem inventoryItem = new(
+            InventoryShapes.Shapes[itemData.Shape],
+            identity,
+            itemData.Sprite,
+            itemData.LootName,
+            itemData.Tier,
+            itemData.Rarity,
+            itemPrice,
+            itemData.Lore,
+            itemData.PriceScale,
+            itemData.Stackable
+        );
         itemIndex += 1;
 
         return inventoryItem;
@@ -149,6 +159,7 @@ public class ItemInventory
     {
         openSlots = slots;
         grid.SetOpenSlots(openSlots);
+
     }
 
     public float GetInventoryPrice()
@@ -191,6 +202,27 @@ public class ItemInventory
         items.ForEach(x => UIInventoryManager.main.DeleteItem(x));
     }
 
+    public void StackStackables()
+    {
+        Dictionary<string, List<InventoryNode>> uniqueStackables = grid.GetUniqueStackables();
+        Debug.Log($"Found {uniqueStackables.Count} stackables");
+        foreach (KeyValuePair<string, List<InventoryNode>> kvp in uniqueStackables)
+        {
+            InventoryNode mainNode = kvp.Value[0];
+            Debug.Log($"Found {kvp.Value.Count} instances of {kvp.Key}");
+            foreach (InventoryNode innerNode in kvp.Value)
+            {
+                if (innerNode == mainNode)
+                {
+                    continue;
+                }
+                UIInventoryManager.main.DeleteItem(innerNode.InventoryItem);
+                RemoveItem(innerNode.InventoryItem);
+            }
+            mainNode.InventoryItem.AddStack(kvp.Value.Count);
+        }
+    }
+
     public void DeleteJunk()
     {
         List<InventoryItem> items = grid.GetJunkItems();
@@ -199,6 +231,7 @@ public class ItemInventory
 
         items.ForEach(x => UIInventoryManager.main.DeleteItem(x));
     }
+
 }
 
 public enum ItemInsertResult
