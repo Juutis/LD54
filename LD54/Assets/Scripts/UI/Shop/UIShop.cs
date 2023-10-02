@@ -24,6 +24,8 @@ public class UIShop : MonoBehaviour
     private UIGoldDisplay uiGoldDisplay;
     [SerializeField]
     private UpgradeConfig testUpgrade;
+    [SerializeField]
+    private UILevelNameDisplay uiLevelNameDisplay;
 
     [SerializeField]
     private List<UIShopUpgrade> uiShopUpgrades = new();
@@ -108,6 +110,11 @@ public class UIShop : MonoBehaviour
         {
             upgrade.UpdateStatus();
         }
+    }
+
+    public void SetLevelName(string levelName)
+    {
+        uiLevelNameDisplay.SetLevelName(levelName);
     }
 
 
