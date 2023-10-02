@@ -8,11 +8,14 @@ public class RunningCharacter : MonoBehaviour
     [SerializeField]
     private float animationSpeed = 1.0f;
 
+    private Vector3 startPosition;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         anim.speed = animationSpeed;
+        startPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -27,5 +30,9 @@ public class RunningCharacter : MonoBehaviour
 
     public void Stop() {
         anim.SetBool("Run", false);
+    }
+
+    public void Reset() {
+        transform.position = startPosition;
     }
 }
