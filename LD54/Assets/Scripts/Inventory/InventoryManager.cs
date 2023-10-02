@@ -140,7 +140,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (itemPriceDict.ContainsKey(item.ItemKey()))
         {
-            return item.ItemPrice * item.RarityScale + "";
+            return Mathf.FloorToInt(item.ItemPrice * item.RarityScale) + "";
         }
 
         return "???";

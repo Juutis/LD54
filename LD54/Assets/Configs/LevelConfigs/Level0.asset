@@ -23,7 +23,7 @@ MonoBehaviour:
     Weight: 10
   - Rarity: 0
     Weight: 1
-  ItemAmount: 25
+  ItemAmount: 9
   EnemyMinItems: 2
   EnemyMaxItems: 7
   EncounterCounts:
