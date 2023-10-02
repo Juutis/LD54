@@ -122,15 +122,14 @@ public class UIInventoryGrid : MonoBehaviour
         {
             Debug.Log($"Couldn't find node at {slot}!");
             return;
-        } 
+        }
         foundNode.Close();
     }
 
     public void RemoveItem(UIInventoryItem uiInventoryItem)
     {
         items.Remove(uiInventoryItem);
-        Debug.Log(uiInventoryItem.gameObject.name);
-        Destroy(uiInventoryItem.gameObject);
+        uiInventoryItem.Kill();
     }
 
     private float NodeDistance(UIInventoryNode node, Vector2 position)
@@ -141,5 +140,15 @@ public class UIInventoryGrid : MonoBehaviour
     public UIInventoryNode ClosestNode(Vector2 position)
     {
         return nodes.Aggregate((node1, node2) => NodeDistance(node1, position) > NodeDistance(node2, position) ? node2 : node1);
+    }
+
+    public void EmptyInventory()
+    {
+        for (int index = items.Count; index > 0; index -= 1)
+        {
+            UIInventoryItem item = items[index];
+            RemoveItem(item);
+        }
+        HideGhost();
     }
 }

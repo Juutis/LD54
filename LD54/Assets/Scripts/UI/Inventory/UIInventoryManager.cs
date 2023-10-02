@@ -110,4 +110,9 @@ public class UIInventoryManager : MonoBehaviour
     {
         uiItemTooltip.Show(item, price);
     }
+
+    public void EmptyInventory()
+    {
+        uiInventoryGrid.EmptyInventory();
+    }
 }

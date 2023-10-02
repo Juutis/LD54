@@ -144,4 +144,10 @@ public class ItemInventory
     {
         return inventoryItems.Sum(x => x.ItemPrice);
     }
+
+    public void EmptyInventory()
+    {
+        inventoryItems.Clear();
+        UIInventoryManager.main.EmptyInventory();
+    }
 }

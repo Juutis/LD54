@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private PlayerProgress progress = new PlayerProgress();
+    public PlayerProgress PlayerProgress { get { return progress; } }
+
     [SerializeField]
     private LootItem lootItemPrefab;
     [SerializeField]
@@ -25,7 +28,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Main;
 
-    void Awake() {
+    void Awake()
+    {
         Main = this;
     }
 
@@ -121,7 +125,7 @@ public class GameManager : MonoBehaviour
 
         // spread enemies around
         int i = 0;
-        foreach(Enemy enemy in enemies)
+        foreach (Enemy enemy in enemies)
         {
             enemy.transform.position = new Vector2((i + 1f) * enemyXSpace, enemyAnchor.position.y);
             i++;
@@ -129,19 +133,70 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void EnemyHandled(Enemy enemy) {
+    public void EnemyHandled(Enemy enemy)
+    {
         activeEnemies.Remove(enemy);
-        if (activeEnemies.Count == 0) {
+        if (activeEnemies.Count == 0)
+        {
             Invoke("LevelOutro", 2.0f);
             Invoke("LevelEnd", 10.0f);
         }
     }
 
-    public void LevelOutro() {
+    public void LevelOutro()
+    {
         ScrollingWorld.Instance.Outro();
     }
 
-    public void LevelEnd() {
-            Debug.Log("LEVEL FINISHED!");
+    public void LevelEnd()
+    {
+        Debug.Log("LEVEL FINISHED!");
     }
+
+}
+
+[System.Serializable]
+public class PlayerProgress
+{
+    int gold = 0;
+    public int Gold { get { return gold; } }
+
+    private List<UpgradeConfig> boughtUpgrades = new();
+
+    public bool HasEnoughGold(int price)
+    {
+        return gold >= price;
+    }
+
+    public bool HasUpgrade(UpgradeConfig config)
+    {
+        return boughtUpgrades.Contains(config);
+    }
+
+    public void AddUpgrade(UpgradeConfig config)
+    {
+        boughtUpgrades.Add(config);
+    }
+
+    public bool CanBuy(UpgradeConfig upgrade)
+    {
+        if (boughtUpgrades.Contains(upgrade))
+        {
+            return false;
+        }
+        foreach (UpgradeConfig requirement in upgrade.Requirements)
+        {
+            if (!HasUpgrade(requirement))
+            {
+                return false;
+            }
+        }
+        return HasEnoughGold(upgrade.Price);
+    }
+
+    public void UpdateGold(int change)
+    {
+        gold += change;
+    }
+
 }

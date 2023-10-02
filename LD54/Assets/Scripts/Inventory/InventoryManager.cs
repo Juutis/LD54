@@ -41,13 +41,13 @@ public class InventoryManager : MonoBehaviour
     private void InitInventory()
     {
         List<Vector2Int> openSlots = new();
-        for (var i = 0; i < 30; i++)
+        /*for (var i = 0; i < 30; i++)
         {
             for (var j = 0; j < 15; j++)
             {
                 openSlots.Add(new Vector2Int(i, j));
             }
-        }
+        }*/
         inventory = new ItemInventory(width, height, emptyInventorySlotCharacter, lockedInventorySlotCharacter, itemCharacters, openSlots);
         inventoryDebug = inventory.ToString();
     }
@@ -137,8 +137,18 @@ public class InventoryManager : MonoBehaviour
         inventoryDebug = inventory.ToString();
     }
 
+    public float GetInventoryPrice()
+    {
+        return inventory.GetInventoryPrice();
+    }
+
+    public void EmptyInventory()
+    {
+        inventory.EmptyInventory();
+    }
+
     void Update()
     {
-        Debug.Log($"You have {inventory.GetInventoryPrice()} monies");
+        //Debug.Log($"You have {inventory.GetInventoryPrice()} monies");
     }
 }
