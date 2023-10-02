@@ -151,7 +151,13 @@ public class GameManager : MonoBehaviour
     public void LevelEnd()
     {
         Debug.Log("LEVEL FINISHED!");
-        ScrollingWorld.Instance.Reset();
+        UIShop.main.Show(delegate
+        {
+            Debug.Log("Shop closed.");
+            ScrollingWorld.Instance.Reset();
+            currentLevelNum += 1;
+            LoadLevel();
+        });
     }
 
 }
