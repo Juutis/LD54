@@ -75,6 +75,8 @@ public class GameManager : MonoBehaviour
         generator.InitializeLoot();
 
         InstantiateEnemiesWithLoot(generator);
+
+        UIShop.main.SetLevelName(currentLevel.LevelName);
     }
 
     private void InstantiateEnemiesWithLoot(LootGenerator generator)

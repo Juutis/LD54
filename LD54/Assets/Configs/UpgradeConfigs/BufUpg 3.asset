@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: BufUpg 3
   m_EditorClassIdentifier: 
   Type: 1
-  Price: 0
+  Price: 5
   Requirements:
-  - {fileID: 11400000, guid: 1102ceac7c0971d439354bae397057ca, type: 2}
   - {fileID: 11400000, guid: 067bbce7d9e60ab4398ea0a8974226fb, type: 2}
   InventoryAreas: []
   BufferLength: 5
+  Title: Juggling Mastery
+  Description: Carry more items in your hands.
+  FlavorText: An expert technique taught by the former chainsaw juggler Johnny No-Hands.

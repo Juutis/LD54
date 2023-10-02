@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: BufUpg 2
   m_EditorClassIdentifier: 
   Type: 1
-  Price: 0
+  Price: 3
   Requirements:
   - {fileID: 11400000, guid: 1102ceac7c0971d439354bae397057ca, type: 2}
   InventoryAreas: []
-  BufferLength: 4
+  BufferLength: 3
+  Title: Strongman Arms
+  Description: Carry more items in your hands.
+  FlavorText: So strong!

@@ -15,6 +15,9 @@ public class UpgradeConfig : ScriptableObject
     public List<RectInt> InventoryAreas;
     [Header("Buffer upgrade")]
     public int BufferLength;
+    public string Title;
+    public string Description;
+    public string FlavorText;
 }
 
 public enum UpgradeType {

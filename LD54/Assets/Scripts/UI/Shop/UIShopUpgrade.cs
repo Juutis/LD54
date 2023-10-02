@@ -26,6 +26,17 @@ public class UIShopUpgrade : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI textValue;
 
+    [SerializeField]
+    private TextMeshProUGUI titleText;
+
+    [SerializeField]
+    private TextMeshProUGUI descriptionText;
+
+    [SerializeField]
+    private TextMeshProUGUI flavorText;
+
+    private Animator anim;
+
     void Start()
     {
         Initialize();
@@ -36,6 +47,14 @@ public class UIShopUpgrade : MonoBehaviour
         textValue.text = $"{upgrade.Price}";
         UpdateStatus();
         Debug.Log("updateStatus");
+        titleText.text = upgrade.Title;
+        descriptionText.text = upgrade.Description;
+        flavorText.text = upgrade.FlavorText;
+        anim = GetComponent<Animator>();
+    }
+
+    public void Update() {
+        UpdateStatus();
     }
 
     public void UpdateStatus()
@@ -54,6 +73,7 @@ public class UIShopUpgrade : MonoBehaviour
         }
         else
         {
+            status = UIShopUpgradeStatus.Unavailable;
             purchasedIndicator.SetActive(false);
             unavailableIndicator.SetActive(true);
         }
@@ -64,6 +84,7 @@ public class UIShopUpgrade : MonoBehaviour
         if (status == UIShopUpgradeStatus.Available)
         {
             UIShop.main.BuyUpgrade(upgrade);
+            anim.SetBool("Done", true);
             UpdateStatus();
         }
     }

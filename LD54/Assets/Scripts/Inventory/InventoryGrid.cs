@@ -52,6 +52,60 @@ public class InventoryGrid
         }
     }
 
+    private List<InventoryNode> FindSingleNodes()
+    {
+        List<InventoryNode> singleItemNodes = new List<InventoryNode>();
+        for (int row = 0; row < height; row++)
+        {
+            for (int col = 0; col < width; col++)
+            {
+                InventoryNode node = nodes[row, col];
+                if (!node.IsEmpty && !node.IsLocked && node.InventoryItem.Shape.ShapeType == InventoryShapeType.Single)
+                {
+                    singleItemNodes.Add(node);
+                }
+            }
+        }
+
+        return singleItemNodes;
+    }
+
+    public List<InventoryItem> StackSingles()
+    {
+        List<InventoryItem> deletedItems = new();
+        List<InventoryNode> singleNodes = FindSingleNodes();
+        Dictionary<string, List<InventoryNode>> stackables = new();
+
+        foreach(InventoryNode node in singleNodes)
+        {
+            string nodeStackKey = node.InventoryItem.GetStackKey();
+            if (!stackables.ContainsKey(nodeStackKey))
+            {
+                stackables.Add(nodeStackKey, new() { node });
+            }
+            else
+            {
+                stackables[nodeStackKey].Add(node);
+            }
+        }
+
+        Dictionary<string, List<InventoryNode>> modifiedStackables = new(stackables);
+        foreach (KeyValuePair<string, List<InventoryNode>> kvp in stackables)
+        {
+            modifiedStackables[kvp.Key] = kvp.Value.OrderBy(x => x.InventoryItem.StackCount).ToList();
+            modifiedStackables[kvp.Key][0].InventoryItem.AddStack(kvp.Value.Count - 1);
+
+            for (int i = 1; i < modifiedStackables[kvp.Key].Count; i++)
+            {
+                deletedItems.Add(modifiedStackables[kvp.Key][i].InventoryItem);
+                modifiedStackables[kvp.Key][i].InventoryItem.ClearNodes();
+                modifiedStackables[kvp.Key][i].Clear();
+            }
+        }
+
+        return deletedItems;
+    }
+
     private List<InventoryNode> GetEmptyNodes()
     {
         List<InventoryNode> emptyNodes = new List<InventoryNode>();
