@@ -61,11 +61,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    private GameObject youWin;
+
     private void LoadLevel()
     {
         if (currentLevelNum >= levelConfigs.Count)
         {
-            Debug.LogError("No victory/end state implemented!");
+            youWin.SetActive(true);
             return;
         }
 

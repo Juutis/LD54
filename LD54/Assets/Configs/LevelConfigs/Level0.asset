@@ -16,14 +16,14 @@ MonoBehaviour:
   DropRates:
   - Tier: 0
     Weight: 10
-  - Tier: 1
+  - Tier: 0
     Weight: 1
   RarityDropRates:
   - Rarity: 0
     Weight: 10
-  - Rarity: 1
+  - Rarity: 0
     Weight: 1
-  ItemAmount: 9
+  ItemAmount: 25
   EnemyMinItems: 2
   EnemyMaxItems: 7
   EncounterCounts:
@@ -33,3 +33,4 @@ MonoBehaviour:
     Count: 2
   - Enemy: {fileID: 8764759191118173614, guid: 272186cfbf18e384486a408808f6e96d, type: 3}
     Count: 1
+  TargetGold: 0

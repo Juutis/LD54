@@ -2676,6 +2676,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScrollingGraphics
       objectReference: {fileID: 0}
+    - target: {fileID: 8538316497432191565, guid: 2463cc662c076ab479fb833fd32b6961, type: 3}
+      propertyPath: youWin
+      value: 
+      objectReference: {fileID: 6978447992103435441}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2862,6 +2866,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38944d59448dc104e9f5645366a2a9fc, type: 3}
+--- !u!1 &6978447992103435441 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7578404901390119323, guid: 38944d59448dc104e9f5645366a2a9fc, type: 3}
+  m_PrefabInstance: {fileID: 6978447992103435440}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
