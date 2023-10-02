@@ -416,10 +416,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIInventoryContainer
       objectReference: {fileID: 0}
-    - target: {fileID: 9111078393411310636, guid: 38944d59448dc104e9f5645366a2a9fc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
