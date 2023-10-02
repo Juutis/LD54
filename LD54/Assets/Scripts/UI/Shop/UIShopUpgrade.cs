@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 
 public enum UIShopUpgradeStatus
@@ -22,6 +23,9 @@ public class UIShopUpgrade : MonoBehaviour
     [SerializeField]
     private GameObject purchasedIndicator;
 
+    [SerializeField]
+    private TextMeshProUGUI textValue;
+
     void Start()
     {
         Initialize();
@@ -29,6 +33,7 @@ public class UIShopUpgrade : MonoBehaviour
 
     public void Initialize()
     {
+        textValue.text = $"{upgrade.Price}";
         UpdateStatus();
         Debug.Log("updateStatus");
     }
