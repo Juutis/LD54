@@ -43,7 +43,8 @@ public class InventoryManager : MonoBehaviour
         List<Vector2Int> openSlots = new();
         inventory = new ItemInventory(width, height, emptyInventorySlotCharacter, lockedInventorySlotCharacter, itemCharacters, openSlots);
         inventoryDebug = inventory.ToString();
-        foreach(var upgrade in upgradeConfigs) {
+        foreach (var upgrade in upgradeConfigs)
+        {
             InventoryUpgrade(upgrade);
             GameManager.Main.PlayerProgress.AddUpgrade(upgrade);
         }
@@ -177,5 +178,9 @@ public class InventoryManager : MonoBehaviour
     void Update()
     {
         //Debug.Log($"You have {inventory.GetInventoryPrice()} monies");
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            inventory.StackSingles();
+        }
     }
 }

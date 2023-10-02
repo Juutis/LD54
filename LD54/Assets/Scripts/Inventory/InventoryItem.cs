@@ -112,6 +112,11 @@ public class InventoryItem
         return IsStackable(item.name, item.tier, item.rarity);
     }
 
+    public string GetStackKey()
+    {
+        return $"{this.name};{this.tier};{this.rarity}";
+    }
+
     public override string ToString()
     {
         return $"Item[{identity}] with shape {shape}";

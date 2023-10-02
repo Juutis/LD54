@@ -151,4 +151,15 @@ public class UIInventoryGrid : MonoBehaviour
         }
         HideGhost();
     }
+
+    public void DeleteItem(InventoryItem item)
+    {
+        List<UIInventoryItem> removed = items.Where(x => x.InventoryItem.Identity == item.Identity).ToList();
+
+        removed.ForEach(x => {
+            items.Remove(x);
+            x.Kill();
+        });
+
+    }
 }
