@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb74dcd0bb11ec42b9189056c28f2b6, type: 3}
   m_Name: Level0
   m_EditorClassIdentifier: 
-  LevelName: Level 0
+  LevelName: Level 1
   DropRates:
   - Tier: 0
     Weight: 10

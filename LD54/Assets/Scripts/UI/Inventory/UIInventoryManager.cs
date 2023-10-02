@@ -130,6 +130,10 @@ public class UIInventoryManager : MonoBehaviour
         uiInventoryGrid.EmptyInventory();
     }
 
+    public void EmptyBuffer() {
+        uiItemBuffer.EmptyBuffer();
+    }
+
     public void DeleteItem(InventoryItem item)
     {
         uiInventoryGrid.DeleteItem(item);

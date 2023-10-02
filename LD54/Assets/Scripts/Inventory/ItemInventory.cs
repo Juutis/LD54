@@ -112,7 +112,7 @@ public class ItemInventory
         }
 
         float itemPrice = itemData.BasePrice; // * itemData.PriceScale;
-        Debug.Log($"Creating {itemData.LootName} {itemData.Tier} {itemData.Rarity} {itemPrice} {itemData.Lore}");
+        //Debug.Log($"Creating {itemData.LootName} {itemData.Tier} {itemData.Rarity} {itemPrice} {itemData.Lore}");
 
         ItemIdentity identity = new(itemData.LootName, itemChar, itemIndex);
         InventoryItem inventoryItem = new(InventoryShapes.Shapes[itemData.Shape], identity, itemData.Sprite, itemData.LootName, itemData.Tier, itemData.Rarity, itemPrice, itemData.Lore, itemData.PriceScale);
@@ -155,6 +155,15 @@ public class ItemInventory
         }
         UIInventoryManager.main.EmptyInventory();
         InventoryManager.main.UpdateDebug();
+    }
+
+    public void EmptyBuffer() {
+        for (int index = bufferedItems.Count - 1; index >= 0; index -= 1)
+        {
+            InventoryItem item = bufferedItems[index];
+            RemoveItem(item);
+        }
+        UIInventoryManager.main.EmptyBuffer();
     }
 
     public List<InventoryItem> GetItems()

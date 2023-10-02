@@ -104,4 +104,12 @@ public class UIItemBuffer : MonoBehaviour
             nodes.Add(node);
         }
     }
+
+    public void EmptyBuffer() {
+        for (int index = items.Count - 1; index >= 0; index -= 1)
+        {
+            UIInventoryItem item = items[index];
+            RemoveItem(item);
+        }
+    }
 }

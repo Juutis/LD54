@@ -69,12 +69,19 @@ public class UIShop : MonoBehaviour
 
     public void SellInventory()
     {
+        if (itemsSold) {
+            Debug.Log("Items already sold!");
+        }
+        if (!isShown) {
+            Debug.Log("Trying to sell without showing UI!");
+        }
         if (!isShown || itemsSold)
         {
             return;
         }
         float inventoryValue = InventoryManager.main.GetInventoryPrice();
         InventoryManager.main.EmptyInventory();
+        InventoryManager.main.EmptyBuffer();
         int gainedGold = Mathf.FloorToInt(inventoryValue);
         UpdateGold(gainedGold);
         animator.SetTrigger("HideSellOverlay");

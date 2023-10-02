@@ -163,6 +163,12 @@ public class InventoryManager : MonoBehaviour
         inventory.EmptyInventory();
     }
 
+    public void EmptyBuffer()
+    {
+        Debug.Log("EmptyBuffer");
+        inventory.EmptyBuffer();
+    }
+
     public static Color GetRarityColor(LootRarity rarity) => rarity switch
     {
         LootRarity.Common => Color.gray - new Color(0.0f, 0.0f, 0.0f, 0.5f),

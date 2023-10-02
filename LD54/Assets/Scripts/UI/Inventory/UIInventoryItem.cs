@@ -107,12 +107,18 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
+    private bool destroyed = false;
     public void Kill()
     {
+        if (destroyed) return;
+        destroyed = true;
         Destroy(gameObject);
     }
+
     public void Hide()
     {
+        if (destroyed) return;
+        destroyed = true;
         Destroy(gameObject);
     }
 
@@ -163,7 +169,7 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         string price = InventoryManager.main.GetItemPrice(inventoryItem);
         string lore = InventoryManager.main.GetItemLore(inventoryItem);
-        Debug.Log($"highlighted {inventoryItem.Name} price: {price}");
+        //Debug.Log($"highlighted {inventoryItem.Name} price: {price}");
         UIInventoryManager.main.ShowTooltip(inventoryItem, lore, price);
         isHovered = true;
     }
