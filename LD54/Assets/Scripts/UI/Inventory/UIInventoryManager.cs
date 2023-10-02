@@ -115,6 +115,11 @@ public class UIInventoryManager : MonoBehaviour
         uiItemTooltip.Show(item, lore, price);
     }
 
+    public void HideTooltip()
+    {
+        uiItemTooltip.Hide();
+    }
+
     public bool IsShowingGhost()
     {
         return showingGhost;

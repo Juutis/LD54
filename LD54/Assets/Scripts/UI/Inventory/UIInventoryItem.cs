@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -177,6 +174,7 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             shapePart.SetColor(inventoryItem.Color);
         }
+        UIInventoryManager.main.HideTooltip();
         isHovered = false;
     }
 
