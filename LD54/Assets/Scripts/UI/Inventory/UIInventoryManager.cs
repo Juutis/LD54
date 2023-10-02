@@ -106,8 +106,8 @@ public class UIInventoryManager : MonoBehaviour
         }
     }
 
-    public void ShowTooltip(InventoryItem item, string price)
+    public void ShowTooltip(InventoryItem item, string lore, string price)
     {
-        uiItemTooltip.Show(item, price);
+        uiItemTooltip.Show(item, lore, price);
     }
 }

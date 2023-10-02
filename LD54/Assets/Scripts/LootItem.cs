@@ -85,5 +85,6 @@ public class LootItemData
         Sprite = lootConfig.Sprites[UnityEngine.Random.Range(0, lootConfig.Sprites.Count)];
         Shape = lootConfig.Shape;
         Lore = lootConfig.Lore;
+        LootName = lootConfig.LootName;
     }
 }

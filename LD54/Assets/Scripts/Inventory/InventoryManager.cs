@@ -128,6 +128,16 @@ public class InventoryManager : MonoBehaviour
         return "???";
     }
 
+    public string GetItemLore(InventoryItem item)
+    {
+        if (itemPriceDict.ContainsKey(item.ItemKey()))
+        {
+            return item.Lore;
+        }
+
+        return "Sell this item to learn it's description and price";
+    }
+
     public void UpdateDebug()
     {
         if (inventory == null)

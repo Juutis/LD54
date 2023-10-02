@@ -165,6 +165,9 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
 
         string price = InventoryManager.main.GetItemPrice(inventoryItem);
+        string lore = InventoryManager.main.GetItemLore(inventoryItem);
+        Debug.Log($"highlighted {inventoryItem.Name} price: {price}");
+        UIInventoryManager.main.ShowTooltip(inventoryItem, lore, price);
         isHovered = true;
     }
 
