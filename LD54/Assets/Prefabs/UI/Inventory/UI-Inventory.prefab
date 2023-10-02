@@ -679,8 +679,8 @@ MonoBehaviour:
   uiItemDisposal: {fileID: 5342888395687955334}
   uiItemTooltip: {fileID: 5084218812787671430}
   PLACEHOLDER_SPRITE: {fileID: 21300000, guid: bac09d084c641954c833d2d22797be9c, type: 3}
-  columns: 30
-  rows: 15
+  columns: 20
+  rows: 10
   bufferSize: 5
 --- !u!223 &5976913382121054896
 Canvas:
