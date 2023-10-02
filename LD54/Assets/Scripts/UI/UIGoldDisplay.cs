@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Properties;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,6 +30,9 @@ public class UIGoldDisplay : MonoBehaviour
     [SerializeField]
     private float duration = 0.5f;
 
+    private int previousGold = 0;
+    private int soundEveryGold = 5;
+
     private float timer = 0f;
 
     void Start()
@@ -47,6 +51,8 @@ public class UIGoldDisplay : MonoBehaviour
         targetValue = currentValue + change;
         isAnimating = true;
         animationHalfwayPassed = false;
+        previousGold = currentValue;
+        SoundManager.main.PlaySound(GameSoundType.GainGold);
     }
 
     void Update()
@@ -54,6 +60,11 @@ public class UIGoldDisplay : MonoBehaviour
         if (isAnimating)
         {
             timer += Time.unscaledDeltaTime;
+            if (Mathf.Abs(currentValue - previousGold) > soundEveryGold)
+            {
+                SoundManager.main.PlaySound(GameSoundType.GainGold);
+                previousGold = currentValue;
+            }
             currentValue = (int)Mathf.Lerp(startValue, targetValue, timer / duration);
             if (animationHalfwayPassed)
             {

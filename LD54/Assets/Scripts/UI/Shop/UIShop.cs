@@ -40,6 +40,7 @@ public class UIShop : MonoBehaviour
         container.gameObject.SetActive(true);
         shopFinished = afterFinish;
         animator.SetTrigger("Show");
+        MusicManager.main.SwitchMusic(true);
     }
 
     public void Hide()
@@ -58,6 +59,7 @@ public class UIShop : MonoBehaviour
         isShown = false;
         container.gameObject.SetActive(false);
         shopFinished();
+        MusicManager.main.SwitchMusic(false);
     }
     public void AnimationCallHideSellOverlayFinish()
     {

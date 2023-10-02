@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
                 Debug.LogError($"{levelConfig.LevelName} level has too many total items for the enemy count ({levelConfig.Encounters.Count}) / max items per enemy ({levelConfig.EnemyMaxItems})!");
             }
         }
+        MusicManager.main.StartMusic(false);
     }
 
     // Update is called once per frame

@@ -20,48 +20,64 @@ public class KnightAnimationHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void LootChest(Chest chest, Enemy enemy) {
+    public void LootChest(Chest chest, Enemy enemy)
+    {
+        SoundManager.main.PlaySound(GameSoundType.OpenChest);
         ScrollingWorld.Instance.Pause(true);
         anim.SetBool("Loot", true);
         chest.Open();
         currentEnemyAnimator = null;
         currentEnemy = enemy;
+        SoundManager.main.PlaySound(GameSoundType.HeroSearch);
     }
 
-    public void LootEnemy(Enemy enemy) {
+    public void LootEnemy(Enemy enemy)
+    {
         ScrollingWorld.Instance.Pause(true);
         anim.SetBool("Loot", true);
         currentEnemyAnimator = null;
         currentEnemy = enemy;
     }
 
-    public void KillEnemy(EnemyAnimator enemyAnimator, Enemy enemy) {
+    public void KillEnemy(EnemyAnimator enemyAnimator, Enemy enemy)
+    {
         ScrollingWorld.Instance.Pause(true);
         anim.SetBool("Attack", true);
         currentEnemyAnimator = enemyAnimator;
         currentEnemy = enemy;
     }
 
-    public void StopLoot() {
+    public void StopLoot()
+    {
         anim.SetBool("Loot", false);
         ScrollingWorld.Instance.Pause(false);
     }
 
-    public void ThrowLoot() {
-        if (!currentEnemy.Loot()) {
+    public void ThrowLoot()
+    {
+        if (!currentEnemy.Loot())
+        {
             StopLoot();
         }
     }
 
-    public void TriggerEnemyDeath() {
+    public void TriggerEnemyDeath()
+    {
+        SoundManager.main.PlaySound(GameSoundType.HeroFight);
+        if (currentEnemy != null)
+        {
+            SoundManager.main.PlaySound(GameSoundType.GoblinFight);
+        }
         if (currentEnemyAnimator == null) return;
         currentEnemyAnimator.Die();
+        SoundManager.main.PlaySound(GameSoundType.GoblinDie);
     }
 
-    public void AttackFinished() {
+    public void AttackFinished()
+    {
         anim.SetBool("Attack", false);
         LootEnemy(currentEnemy);
     }

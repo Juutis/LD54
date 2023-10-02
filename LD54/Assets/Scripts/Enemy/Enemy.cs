@@ -44,6 +44,29 @@ public class Enemy : MonoBehaviour
         }
 
         LootItem item = lootItems.Last();
+        bool foundRare = lootItems.Any(lItem => lItem.LootData.Rarity == LootRarity.Rare);
+        bool foundLegendary = lootItems.Any(lItem => lItem.LootData.Rarity == LootRarity.Legendary);
+        bool foundUncommon = lootItems.Any(lItem => lItem.LootData.Rarity == LootRarity.Uncommon);
+        if (foundLegendary)
+        {
+
+            Debug.Log("foundLegendary");
+            SoundManager.main.PlaySound(GameSoundType.HeroHappy);
+        }
+        else if (foundRare)
+        {
+            Debug.Log("foundRare");
+            SoundManager.main.PlaySound(GameSoundType.HeroHappy);
+        }
+        else if (foundUncommon)
+        {
+            Debug.Log("foundUncommon");
+            SoundManager.main.PlaySound(GameSoundType.HeroMild);
+        }
+        else
+        {
+            SoundManager.main.PlaySound(GameSoundType.HeroGrumble);
+        }
         item.transform.position = transform.position;
         item.Throw(transform, ScrollingWorld.Instance.GetSquire());
         item.transform.parent = null;
