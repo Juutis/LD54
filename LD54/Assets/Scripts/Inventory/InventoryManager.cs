@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -30,6 +31,9 @@ public class InventoryManager : MonoBehaviour
     [SerializeField]
     private List<UpgradeConfig> upgradeConfigs;
 
+    private bool autoStacker = false;
+    private bool autoJunkRemoval = false;
+
     // Dictionary for known item prices (those that have been sold)
     Dictionary<string, float> itemPriceDict = new();
 
@@ -59,6 +63,22 @@ public class InventoryManager : MonoBehaviour
         else if (upgrade.Type == UpgradeType.Buffer)
         {
             UIInventoryManager.main.BufferSizeUpgrade(upgrade);
+        }
+        else if (upgrade.Type == UpgradeType.JunkRemoveButton)
+        {
+            UIInventoryManager.main.EnableJunkRemoveButton();
+        }
+        else if (upgrade.Type == UpgradeType.AutoJunkRemover)
+        {
+            autoJunkRemoval = true;
+        }
+        else if (upgrade.Type == UpgradeType.StackAllButton)
+        {
+            UIInventoryManager.main.EnableStackAllButton();
+        }
+        else if (upgrade.Type == UpgradeType.AutoStacker)
+        {
+            autoStacker = true;
         }
     }
 
@@ -182,9 +202,13 @@ public class InventoryManager : MonoBehaviour
     void Update()
     {
         //Debug.Log($"You have {inventory.GetInventoryPrice()} monies");
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L) || autoStacker)
         {
             inventory.StackSingles();
+        }
+        else if (Input.GetKeyDown(KeyCode.K) || autoJunkRemoval)
+        {
+            inventory.DeleteJunk();
         }
     }
 }
