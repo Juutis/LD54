@@ -13,6 +13,8 @@ public class UIItemTooltip : MonoBehaviour
     private Text itemPrice;
     [SerializeField]
     private Image itemIcon;
+    [SerializeField]
+    private Text itemRarity;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +41,8 @@ public class UIItemTooltip : MonoBehaviour
         itemDescription.text = lore;
         itemPrice.text = price;
         itemIcon.sprite = item.Sprite;
+        itemRarity.text = item.Rarity.ToString();
+        itemRarity.color = GetRarityColor(item);
     }
 
     public void Hide()
@@ -48,4 +52,13 @@ public class UIItemTooltip : MonoBehaviour
             t.gameObject.SetActive(false);
         }
     }
+
+    public Color GetRarityColor(InventoryItem item) => item.Rarity switch
+    {
+        LootRarity.Common => Color.gray,
+        LootRarity.Uncommon => Color.white,
+        LootRarity.Rare => Color.blue,
+        LootRarity.Legendary => Color.red + Color.yellow,
+        _ => Color.magenta
+    };
 }
