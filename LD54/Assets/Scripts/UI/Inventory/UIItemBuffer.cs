@@ -22,7 +22,7 @@ public class UIItemBuffer : MonoBehaviour
     [SerializeField]
     private GridLayoutGroup grid;
     Vector2 nodeSize;
-    int size = 5;
+    int size = 0;
 
     [SerializeField]
     private GameObject graphics;
@@ -80,22 +80,22 @@ public class UIItemBuffer : MonoBehaviour
         }
     }
 
-    public void UpdateBufferSize(int size)
+    public void UpdateBufferSize(int newSize)
     {
-        if (size == 0)
+        if (newSize == 0)
         {
             graphics.SetActive(false);
             return;
         }
-        else if (size <= this.size)
+        else if (newSize <= this.size)
         {
             graphics.SetActive(true);
             return;
         }
         graphics.SetActive(true);
 
-        int added = size - this.size;
-        this.size = size;
+        int added = newSize - this.size;
+        this.size = newSize;
 
         for (int i = 0; i < added; i++)
         {
@@ -105,7 +105,8 @@ public class UIItemBuffer : MonoBehaviour
         }
     }
 
-    public void EmptyBuffer() {
+    public void EmptyBuffer()
+    {
         for (int index = items.Count - 1; index >= 0; index -= 1)
         {
             UIInventoryItem item = items[index];

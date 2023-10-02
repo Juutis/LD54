@@ -681,7 +681,7 @@ MonoBehaviour:
   PLACEHOLDER_SPRITE: {fileID: 21300000, guid: bac09d084c641954c833d2d22797be9c, type: 3}
   columns: 20
   rows: 10
-  bufferSize: 5
+  bufferSize: 0
 --- !u!223 &5976913382121054896
 Canvas:
   m_ObjectHideFlags: 0
