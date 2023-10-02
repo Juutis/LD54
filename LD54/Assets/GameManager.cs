@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
             }
         }
         MusicManager.main.StartMusic(false);
+        Debug.Log("Build 2023");
     }
 
     // Update is called once per frame
