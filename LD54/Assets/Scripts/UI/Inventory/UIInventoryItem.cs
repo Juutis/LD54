@@ -244,7 +244,8 @@ public class UIInventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             //Debug.Log($"Lastplacement: {lastPlacement.Success} ({lastPlacement.Nodes.First()})");
             UIInventoryManager.main.RemoveItem(this);
-            InventoryManager.main.MoveItem(inventoryItem, lastPlacement);
+
+            InventoryManager.main.MoveItem(inventoryItem, lastPlacement, isBufferItem);
 
             switch (inventoryItem.LootName)
             {

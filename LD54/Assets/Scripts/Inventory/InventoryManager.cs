@@ -108,9 +108,9 @@ public class InventoryManager : MonoBehaviour
         inventory.SetOpenSlots(openSlots);
     }
 
-    public void MoveItem(InventoryItem item, ItemPlacement placement)
+    public void MoveItem(InventoryItem item, ItemPlacement placement, bool isBufferItem = false)
     {
-        inventory.MoveItem(item, placement);
+        inventory.MoveItem(item, placement, isBufferItem);
     }
 
     public ItemPlacement GetItemPlacement(InventoryItem item, int startY, int startX, bool forceNoStack = true)

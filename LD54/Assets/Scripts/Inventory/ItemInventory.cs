@@ -121,8 +121,13 @@ public class ItemInventory
         return inventoryItem;
     }
 
-    public void MoveItem(InventoryItem item, ItemPlacement placement)
+    public void MoveItem(InventoryItem item, ItemPlacement placement, bool isBufferItem = false)
     {
+        if (isBufferItem)
+        {
+            bufferedItems.Remove(item);
+            inventoryItems.Add(item);
+        }
         grid.MoveItem(item, placement);
         if (!placement.isStacked)
         {
@@ -157,7 +162,8 @@ public class ItemInventory
         InventoryManager.main.UpdateDebug();
     }
 
-    public void EmptyBuffer() {
+    public void EmptyBuffer()
+    {
         for (int index = bufferedItems.Count - 1; index >= 0; index -= 1)
         {
             InventoryItem item = bufferedItems[index];
