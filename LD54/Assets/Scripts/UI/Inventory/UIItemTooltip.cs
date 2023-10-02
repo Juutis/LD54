@@ -49,7 +49,7 @@ public class UIItemTooltip : MonoBehaviour
     {
         LootRarity.Common => new Color(0.6f, 0.6f, 0.6f),
         LootRarity.Uncommon => Color.green,
-        LootRarity.Rare => new Color(0.2f, 0.2f, 1.0f),
+        LootRarity.Rare => new Color(0.5f, 0.5f, 1.0f),
         LootRarity.Legendary => new Color(1.0f, 0.5f, 0.0f, 1.0f),
         _ => Color.clear
     };
