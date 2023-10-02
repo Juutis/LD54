@@ -180,5 +180,9 @@ public class InventoryManager : MonoBehaviour
         {
             inventory.StackSingles();
         }
+        else if (Input.GetKeyDown(KeyCode.K))
+        {
+            inventory.DeleteJunk();
+        }
     }
 }

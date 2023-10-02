@@ -69,6 +69,10 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        FindObjectsByType<LootItem>(FindObjectsSortMode.None).ToList()
+            .Where(x => x.transform.parent == null).ToList()
+            .ForEach(x => Destroy(x.gameObject));
+
         currentLevel = levelConfigs[currentLevelNum];
 
         LootGenerator generator = new LootGenerator(currentLevel);

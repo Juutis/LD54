@@ -52,6 +52,48 @@ public class InventoryGrid
         }
     }
 
+    private List<InventoryNode> FindJunkNodes()
+    {
+        List<InventoryNode> junkNodes = new List<InventoryNode>();
+
+        for (int row = 0; row < height; row++)
+        {
+            for (int col = 0; col < width; col++)
+            {
+                InventoryNode node = nodes[row, col];
+                if (node.IsEmpty || node.IsLocked)
+                {
+                    continue;
+                }
+
+                bool junky = node.InventoryItem.Tier == ItemTier.Junk || node.InventoryItem.Tier == ItemTier.LargeJunk;
+
+                if (junky)
+                {
+                    junkNodes.Add(node);
+                }
+            }
+        }
+
+        return junkNodes;
+    }
+
+    public List<InventoryItem> GetJunkItems()
+    {
+        List<InventoryNode> junkNodes = FindJunkNodes();
+        HashSet<InventoryItem> items = new();
+
+        foreach(InventoryNode node in junkNodes)
+        {
+            if (!items.Contains(node.InventoryItem))
+            {
+                items.Add(node.InventoryItem);
+            }
+        }
+
+        return items.ToList();
+    }
+
     private List<InventoryNode> FindSingleNodes()
     {
         List<InventoryNode> singleItemNodes = new List<InventoryNode>();

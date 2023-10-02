@@ -165,6 +165,18 @@ public class ItemInventory
     public void StackSingles()
     {
         List<InventoryItem> items = grid.StackSingles();
+
+        items.ForEach(x => inventoryItems.Remove(x));
+
+        items.ForEach(x => UIInventoryManager.main.DeleteItem(x));
+    }
+
+    public void DeleteJunk()
+    {
+        List<InventoryItem> items = grid.GetJunkItems();
+
+        items.ForEach(x => inventoryItems.Remove(x));
+
         items.ForEach(x => UIInventoryManager.main.DeleteItem(x));
     }
 }
