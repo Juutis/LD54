@@ -219,7 +219,7 @@ public class ItemInventory
                 UIInventoryManager.main.DeleteItem(innerNode.InventoryItem);
                 RemoveItem(innerNode.InventoryItem);
             }
-            mainNode.InventoryItem.AddStack(kvp.Value.Count);
+            mainNode.InventoryItem.AddStack(kvp.Value.Count - 1);
         }
     }
 
