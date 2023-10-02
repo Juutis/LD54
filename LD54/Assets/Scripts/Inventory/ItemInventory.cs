@@ -143,12 +143,17 @@ public class ItemInventory
 
     public float GetInventoryPrice()
     {
-        return inventoryItems.Sum(x => x.ItemPrice);
+        return inventoryItems.Sum(x => x.ItemPrice * Mathf.Max(x.StackCount, 1f));
     }
 
     public void EmptyInventory()
     {
         inventoryItems.Clear();
         UIInventoryManager.main.EmptyInventory();
+    }
+
+    public List<InventoryItem> GetItems()
+    {
+        return inventoryItems;
     }
 }
