@@ -116,7 +116,9 @@ public class InventoryManager : MonoBehaviour
     {
         if (itemPriceDict.ContainsKey(item.ItemKey()))
         {
-            return itemPriceDict[item.ItemKey()].ToString();
+            float itemPrice = itemPriceDict[item.ItemKey()];
+            float stackRarityPrice = item.StackCount * itemPrice * item.RarityScale;
+            return stackRarityPrice.ToString();
         }
 
         return "???";

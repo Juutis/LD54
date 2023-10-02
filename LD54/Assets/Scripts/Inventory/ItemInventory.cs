@@ -111,11 +111,11 @@ public class ItemInventory
             itemChar = itemCharacterSet[itemIndex];
         }
 
-        float itemPrice = itemData.BasePrice * itemData.PriceScale;
+        float itemPrice = itemData.BasePrice; // * itemData.PriceScale;
         Debug.Log($"Creating {itemData.LootName} {itemData.Tier} {itemData.Rarity} {itemPrice} {itemData.Lore}");
 
         ItemIdentity identity = new(itemData.LootName, itemChar, itemIndex);
-        InventoryItem inventoryItem = new(InventoryShapes.Shapes[itemData.Shape], identity, itemData.Sprite, itemData.LootName, itemData.Tier, itemData.Rarity, itemPrice, itemData.Lore);
+        InventoryItem inventoryItem = new(InventoryShapes.Shapes[itemData.Shape], identity, itemData.Sprite, itemData.LootName, itemData.Tier, itemData.Rarity, itemPrice, itemData.Lore, itemData.PriceScale);
         itemIndex += 1;
 
         return inventoryItem;
@@ -143,7 +143,7 @@ public class ItemInventory
 
     public float GetInventoryPrice()
     {
-        return inventoryItems.Sum(x => x.ItemPrice * Mathf.Max(x.StackCount, 1f));
+        return inventoryItems.Sum(x => x.ItemPrice * x.RarityScale * Mathf.Max(x.StackCount, 1f));
     }
 
     public void EmptyInventory()

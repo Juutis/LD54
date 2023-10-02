@@ -37,13 +37,17 @@ public class InventoryItem
     private float itemPrice = 0f;
     public float ItemPrice { get { return itemPrice; } }
 
+    private float rarityScale = 0f;
+    public float RarityScale { get { return rarityScale; } }
+
     private string lore;
     public string Lore { get { return lore; } }
 
     private LootItemData itemData;
     private bool stackable = false;
+   
 
-    public InventoryItem(InventoryShape shape, ItemIdentity identity, Sprite sprite, string name, ItemTier tier, LootRarity rarity, float itemPrice, string lore)
+    public InventoryItem(InventoryShape shape, ItemIdentity identity, Sprite sprite, string name, ItemTier tier, LootRarity rarity, float itemPrice, string lore, float rarityScale)
     {
         this.sprite = sprite;
         this.identity = identity;
@@ -59,6 +63,7 @@ public class InventoryItem
         this.rarity = rarity;
         this.itemPrice = itemPrice;
         this.lore = lore;
+        this.rarityScale = rarityScale;
     }
 
     public void ClearNodes()
