@@ -8,6 +8,7 @@ public class LevelConfig : ScriptableObject
 {
     public string LevelName;
     public List<DropRate> DropRates;
+    public List<RarityDropRate> RarityDropRates;
     public int ItemAmount;
     public List<Enemy> Encounters { get { return getEnemies(); } }
     public int EnemyMinItems;
@@ -28,9 +29,15 @@ public class LevelConfig : ScriptableObject
 [Serializable]
 public class DropRate
 {
-    public LootRarity Rarity;
     public ItemTier Tier;
-    public float Percentage;
+    public int Weight;
+}
+
+[Serializable]
+public class RarityDropRate
+{
+    public LootRarity Rarity;
+    public int Weight;
 }
 
 [Serializable]

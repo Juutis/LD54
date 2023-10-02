@@ -14,19 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelName: Level 1
   DropRates:
-  - Rarity: 0
-    Tier: 0
-    Percentage: 80
-  - Rarity: 0
-    Tier: 1
-    Percentage: 20
+  - Tier: 0
+    Weight: 10
+  - Tier: 1
+    Weight: 10
+  RarityDropRates: []
   ItemAmount: 24
   EnemyMinItems: 3
   EnemyMaxItems: 7
   EncounterCounts:
   - Enemy: {fileID: 300038784792007239, guid: e0ced71ca777739499a74f946afe6aea, type: 3}
-    Count: 1
+    Count: 3
   - Enemy: {fileID: 8764759191118173614, guid: 272186cfbf18e384486a408808f6e96d, type: 3}
-    Count: 1
+    Count: 2
   - Enemy: {fileID: 8287582213028744936, guid: 25d9d0975549ea4419a6e2b9132cd42d, type: 3}
     Count: 3
