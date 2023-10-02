@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIItemTooltip : MonoBehaviour
 {
     [SerializeField]
-    private Text itemName;
+    private TextMeshProUGUI itemName;
     [SerializeField]
-    private Text itemDescription;
+    private TextMeshProUGUI itemDescription;
     [SerializeField]
-    private Text itemPrice;
+    private TextMeshProUGUI itemPrice;
     [SerializeField]
     private Image itemIcon;
     [SerializeField]
-    private Text itemRarity;
+    private TextMeshProUGUI itemRarity;
 
     // Start is called before the first frame update
     void Start()
