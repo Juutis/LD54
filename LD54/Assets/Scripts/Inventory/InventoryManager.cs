@@ -70,9 +70,9 @@ public class InventoryManager : MonoBehaviour
                 {
                     if (
                         x >= area.x &&
-                        x <= area.x + area.width &&
+                        x < area.x + area.width &&
                         y >= area.y &&
-                        y <= area.y + area.height
+                        y < area.y + area.height
                     )
                     {
                         openSlots.Add(new Vector2Int(x, y));

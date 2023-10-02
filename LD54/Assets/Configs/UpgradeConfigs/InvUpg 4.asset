@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8785c562b2215d478c46846a2b9f2ff, type: 3}
-  m_Name: InvUpg 3
+  m_Name: InvUpg 4
   m_EditorClassIdentifier: 
   Type: 0
   Price: 0
@@ -30,4 +30,8 @@ MonoBehaviour:
     y: 2
     width: 2
     height: 3
+  - x: 2
+    y: 1
+    width: 15
+    height: 5
   BufferLength: 0

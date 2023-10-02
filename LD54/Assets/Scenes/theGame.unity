@@ -316,6 +316,38 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7602382958194600062, guid: ea2fd8fe78cec0a44ba927e8a1902659, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602382958194600062, guid: ea2fd8fe78cec0a44ba927e8a1902659, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602382958194600062, guid: ea2fd8fe78cec0a44ba927e8a1902659, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602382958194600062, guid: ea2fd8fe78cec0a44ba927e8a1902659, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602382958194600062, guid: ea2fd8fe78cec0a44ba927e8a1902659, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602382958194600062, guid: ea2fd8fe78cec0a44ba927e8a1902659, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602382958194600062, guid: ea2fd8fe78cec0a44ba927e8a1902659, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602382958194600062, guid: ea2fd8fe78cec0a44ba927e8a1902659, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -482,8 +514,8 @@ MonoBehaviour:
   lockedInventorySlotCharacter: 9617
   itemCharacters: abcdefghijklmnopqrstuvwxyz1234567890
   inventoryDebug: 
-  width: 30
-  height: 15
+  width: 20
+  height: 10
   upgradeConfig: {fileID: 11400000, guid: eac279e10caf965409f0eaf99edaf5c8, type: 2}
 --- !u!4 &1986217264
 Transform:
@@ -616,6 +648,14 @@ PrefabInstance:
     - target: {fileID: 4742808836215231503, guid: 38944d59448dc104e9f5645366a2a9fc, type: 3}
       propertyPath: m_Name
       value: UIInventoryContainer
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578698368158099052, guid: 38944d59448dc104e9f5645366a2a9fc, type: 3}
+      propertyPath: rows
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578698368158099052, guid: 38944d59448dc104e9f5645366a2a9fc, type: 3}
+      propertyPath: columns
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

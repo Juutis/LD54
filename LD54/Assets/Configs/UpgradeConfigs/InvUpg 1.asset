@@ -16,12 +16,8 @@ MonoBehaviour:
   Price: 0
   Requirements: []
   InventoryAreas:
-  - x: 2
-    y: 2
-    width: 2
-    height: 2
-  - x: 6
-    y: 2
+  - x: 8
+    y: 1
     width: 3
-    height: 3
+    height: 4
   BufferLength: 0
