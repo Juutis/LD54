@@ -28,7 +28,7 @@ public class InventoryManager : MonoBehaviour
     private int height = 8;
 
     [SerializeField]
-    private UpgradeConfig upgradeConfig;
+    private List<UpgradeConfig> upgradeConfigs;
 
     // Dictionary for known item prices (those that have been sold)
     Dictionary<string, float> itemPriceDict = new();
@@ -43,7 +43,10 @@ public class InventoryManager : MonoBehaviour
         List<Vector2Int> openSlots = new();
         inventory = new ItemInventory(width, height, emptyInventorySlotCharacter, lockedInventorySlotCharacter, itemCharacters, openSlots);
         inventoryDebug = inventory.ToString();
-        UpgradeInventorySize(upgradeConfig);
+        foreach(var upgrade in upgradeConfigs) {
+            InventoryUpgrade(upgrade);
+            GameManager.Main.PlayerProgress.AddUpgrade(upgrade);
+        }
     }
 
     public void InventoryUpgrade(UpgradeConfig upgrade)

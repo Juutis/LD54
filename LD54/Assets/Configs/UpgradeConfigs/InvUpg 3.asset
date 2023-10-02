@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: InvUpg 3
   m_EditorClassIdentifier: 
   Type: 0
-  Price: 0
+  Price: 2
   Requirements:
   - {fileID: 11400000, guid: eac279e10caf965409f0eaf99edaf5c8, type: 2}
   - {fileID: 11400000, guid: 9a6e105c52ad1d244823d12a4a4e3974, type: 2}
@@ -31,3 +31,6 @@ MonoBehaviour:
     width: 2
     height: 3
   BufferLength: 0
+  Title: Extended Main Compartment
+  Description: Increase backpack size.
+  FlavorText: Loosen straps to gain additional space.

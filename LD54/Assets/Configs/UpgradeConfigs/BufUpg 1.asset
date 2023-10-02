@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8785c562b2215d478c46846a2b9f2ff, type: 3}
   m_Name: BufUpg 1
   m_EditorClassIdentifier: 
-  Type: 0
+  Type: 1
   Price: 100
-  Requirements: []
+  Requirements:
+  - {fileID: 11400000, guid: d1eb9c184b7096240864b70e0550862b, type: 2}
   InventoryAreas:
   - x: 2
     y: 2
     width: 2
     height: 2
   BufferLength: 3
+  Title: 
+  Description: 
+  FlavorText: 
